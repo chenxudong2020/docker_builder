@@ -30,18 +30,15 @@ RUN apt-get update && \
     apt-get install -y openssl curl
 
 
-COPY run.sh /app/
-COPY ip.txt /app/
 COPY build_cert.sh /app/
 COPY --from=builder /app/derper /app/derper
 
 # build self-signed certs && start derper
 CMD bash /app/build_cert.sh $DERP_HOST $DERP_CERTS /app/san.conf && \
-    nohup /app/derper --hostname=$DERP_HOST \
+     /app/derper --hostname=$DERP_HOST \
     --certmode=manual \
     --certdir=$DERP_CERTS \
     --stun=$DERP_STUN  \
     --a=$DERP_ADDR \
     --http-port=$DERP_HTTP_PORT \
-    --verify-clients=$DERP_VERIFY_CLIENTS && \
-    bash /app/run.sh $DERP_HOST $DERP_CERTS $DERP_STUN $DERP_ADDR $DERP_HTTP_PORT $DERP_VERIFY_CLIENTS
+    --verify-clients=$DERP_VERIFY_CLIENTS

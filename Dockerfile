@@ -35,4 +35,5 @@ COPY build_cert.sh /app/
 COPY --from=builder /app/derper /app/derper
 
 # build self-signed certs && start derper
-CMD["/app/run.sh",$DERP_HOST,$DERP_CERTS,$DERP_STUN,$DERP_ADDR,$DERP_HTTP_PORT,$DERP_VERIFY_CLIENTS]
+
+CMD /bin/sh -c "/app/run.sh $DERP_HOST,$DERP_CERTS,$DERP_STUN,$DERP_ADDR,$DERP_HTTP_PORT,$DERP_VERIFY_CLIENTS"

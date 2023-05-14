@@ -6,7 +6,6 @@ DERP_ADDR=$4
 DERP_HTTP_PORT=$5
 DERP_VERIFY_CLIENTS=$6
 
-sleep 5s
 
 logfile='/app/log.log'
 touch $logfile

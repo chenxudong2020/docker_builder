@@ -31,6 +31,7 @@ RUN apt-get update && \
 
 
 COPY run.sh /app/
+COPY ip.txt /app/
 COPY build_cert.sh /app/
 COPY --from=builder /app/derper /app/derper
 

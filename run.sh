@@ -7,39 +7,26 @@ DERP_HTTP_PORT=$5
 DERP_VERIFY_CLIENTS=$6
 
 
-logfile='log.log'
-dirfile='ip_change'
-new_ip=`curl icanhazip.com`
-datetime=`date '+%Y-%m-%d %H:%M:%S'`
-
- echo "$datetime---------------------------------------- "  >> $logfile
-
 while :
 do
-sleep 5s
-if [ ! -f "$dirfile" ]; then
-  $new_ip > $dirfile
-fi
-
-if [ ! -n "$new_ip" ]; then
-    echo "$datetime 公网IP获取失败，检查'curl icanhazip.com' "  >> $logfile
-    exit 1
-fi
-old_ip=`cat $dirfile`
-if [ "$new_ip" = "$old_ip" ]; then
-    echo "ip不变" >> $logfile
+wanip=$(cat /app/ip.txt)
+echo $wanip
+IP=`curl icanhazip.com`
+ echo $IP
+if [ "$wanip" = "$IP" ];then
+echo "ip ok"
 else
-  echo  $new_ip > $dirfile
-  echo "$datetime IP已经发生变化 - error 新IP ：$new_ip   旧IP： $old_ip"  >> $logfile
-  pidlist=`ps -ef |grep derper |grep -v grep|awk '{print $2}'`
-  echo "$pidlist" >> $logfile
-  kill -9 $pidlist
-   /app/derper --hostname=$DERP_HOST \
+echo "ip err"
+echo $IP >/app/ip.txt
+     pidlist=`ps -ef |grep derper |grep -v grep|awk '{print $2}'`
+     kill -9 $pidlist
+     /app/derper --hostname=$DERP_HOST \
     --certmode=manual \
     --certdir=$DERP_CERTS \
     --stun=$DERP_STUN  \
     --a=$DERP_ADDR \
     --http-port=$DERP_HTTP_PORT \
     --verify-clients=$DERP_VERIFY_CLIENTS
-  fi
+fi
+ 
 done

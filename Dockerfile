@@ -30,7 +30,7 @@ RUN apt-get update && \
     apt-get install -y openssl curl
 
 
-COPY 
+
 COPY build_cert.sh /app/
 COPY --from=builder /app/derper /app/derper
 

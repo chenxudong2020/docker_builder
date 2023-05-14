@@ -25,6 +25,7 @@ if [ ! -n "$new_ip" ]; then
 fi
 old_ip=`cat $dirfile`
 if [ "$new_ip" = "$old_ip" ]; then
+    echo "ip不变" >> $logfile
 else
   echo  $new_ip > $dirfile
   echo "$datetime IP已经发生变化 - error 新IP ：$new_ip   旧IP： $old_ip"  >> $logfile

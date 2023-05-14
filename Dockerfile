@@ -37,7 +37,7 @@ COPY --from=builder /app/derper /app/derper
 
 # build self-signed certs && start derper
 CMD bash /app/build_cert.sh $DERP_HOST $DERP_CERTS /app/san.conf && \
-    /app/derper --hostname=$DERP_HOST \
+    nohup /app/derper --hostname=$DERP_HOST \
     --certmode=manual \
     --certdir=$DERP_CERTS \
     --stun=$DERP_STUN  \

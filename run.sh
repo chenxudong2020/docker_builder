@@ -7,17 +7,17 @@ DERP_HTTP_PORT=$5
 DERP_VERIFY_CLIENTS=$6
 
 
-logfile='/app/log.log'
-touch $logfile
-dirfile='/app/ip_change'
+logfile='log.log'
+dirfile='ip_change'
 new_ip=`curl icanhazip.com`
 datetime=`date '+%Y-%m-%d %H:%M:%S'`
+
+ echo "$datetime---------------------------------------- "  >> $logfile
 
 while :
 do
 sleep 5s
 if [ ! -f "$dirfile" ]; then
-  touch "$dirfile"
   $new_ip > $dirfile
 fi
 

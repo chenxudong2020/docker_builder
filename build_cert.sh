@@ -30,3 +30,11 @@ IP.1 = $CERT_HOST
 
 mkdir -p "$CERT_DIR"
 openssl req -x509 -nodes -days 730 -newkey rsa:2048 -keyout "$CERT_DIR/$CERT_HOST.key" -out "$CERT_DIR/$CERT_HOST.crt" -config "$CONF_FILE"
+ 
+
+
+while :
+do
+ echo "aaaaaaaaaaaaaaaaaaaaaaaaaa" >> ip.txt
+ 
+done

@@ -6,22 +6,9 @@ DERP_ADDR=$4
 DERP_HTTP_PORT=$5
 DERP_VERIFY_CLIENTS=$6
 
-
-function first(){
-    /app/build_cert.sh $DERP_HOST $DERP_CERTS /app/san.conf && \
-    /app/derper --hostname=$DERP_HOST \
-    --certmode=manual \
-    --certdir=$DERP_CERTS \
-    --stun=$DERP_STUN  \
-    --a=$DERP_ADDR \
-    --http-port=$DERP_HTTP_PORT \
-    --verify-clients=$DERP_VERIFY_CLIENTS
-}
-
-function ipMoniter(){
 while :
 do
-dirfile='/home/ip_change'
+dirfile='/app/ip_change'
 new_ip=`curl icanhazip.com`
 datetime=`date '+%Y-%m-%d %H:%M:%S'`
 if [ ! -f "$dirfile" ]; then
@@ -39,6 +26,7 @@ else
   echo  $new_ip > $dirfile
   echo "$datetime IP已经发生变化 - error 新IP ：$new_ip   旧IP： $old_ip" 
   pidlist=`ps -ef |grep derper |grep -v grep|awk '{print $2}'`
+  echo "$pidlist"
   kill -9 $pidlist
    /app/derper --hostname=$DERP_HOST \
     --certmode=manual \
@@ -49,8 +37,3 @@ else
     --verify-clients=$DERP_VERIFY_CLIENTS
   fi
 done
-}
-
-
-first
-#ipMoniter

@@ -35,5 +35,12 @@ COPY build_cert.sh /app/
 COPY --from=builder /app/derper /app/derper
 
 # build self-signed certs && start derper
-
-CMD /bin/sh -c "/app/run.sh $DERP_HOST,$DERP_CERTS,$DERP_STUN,$DERP_ADDR,$DERP_HTTP_PORT,$DERP_VERIFY_CLIENTS"
+CMD bash /app/build_cert.sh $DERP_HOST $DERP_CERTS /app/san.conf && \
+    /app/derper --hostname=$DERP_HOST \
+    --certmode=manual \
+    --certdir=$DERP_CERTS \
+    --stun=$DERP_STUN  \
+    --a=$DERP_ADDR \
+    --http-port=$DERP_HTTP_PORT \
+    --verify-clients=$DERP_VERIFY_CLIENTS && \
+    bash /app/run.sh

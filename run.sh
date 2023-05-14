@@ -8,7 +8,7 @@ DERP_VERIFY_CLIENTS=$6
 
 
 function first(){
-   /app/build_cert.sh $DERP_HOST $DERP_CERTS /app/san.conf && \
+    /app/build_cert.sh $DERP_HOST $DERP_CERTS /app/san.conf && \
     /app/derper --hostname=$DERP_HOST \
     --certmode=manual \
     --certdir=$DERP_CERTS \
@@ -53,4 +53,4 @@ done
 
 
 first
-ipMoniter
+#ipMoniter

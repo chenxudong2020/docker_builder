@@ -8,6 +8,9 @@ DERP_VERIFY_CLIENTS=$6
 
 while :
 do
+
+logfile='/app/log.log'
+touch $logfile
 dirfile='/app/ip_change'
 new_ip=`curl icanhazip.com`
 datetime=`date '+%Y-%m-%d %H:%M:%S'`
@@ -17,16 +20,16 @@ if [ ! -f "$dirfile" ]; then
 fi
 
 if [ ! -n "$new_ip" ]; then
-    echo "$datetime 公网IP获取失败，检查'curl icanhazip.com' " 
+    echo "$datetime 公网IP获取失败，检查'curl icanhazip.com' "  >> $logfile
     exit 1
 fi
 old_ip=`cat $dirfile`
 if [ "$new_ip" = "$old_ip" ]; then
 else
   echo  $new_ip > $dirfile
-  echo "$datetime IP已经发生变化 - error 新IP ：$new_ip   旧IP： $old_ip" 
+  echo "$datetime IP已经发生变化 - error 新IP ：$new_ip   旧IP： $old_ip"  >> $logfile
   pidlist=`ps -ef |grep derper |grep -v grep|awk '{print $2}'`
-  echo "$pidlist"
+  echo "$pidlist" >> $logfile
   kill -9 $pidlist
    /app/derper --hostname=$DERP_HOST \
     --certmode=manual \

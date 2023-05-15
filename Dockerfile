@@ -22,7 +22,7 @@ ENV DERP_HTTP_PORT 80
 ENV DERP_HOST=127.0.0.1
 ENV DERP_CERTS=/app/certs/
 ENV DERP_STUN true
-ENV DERP_VERIFY_CLIENTS false
+ENV DERP_VERIFY_CLIENTS true
 # ==========================
 
 # apt
@@ -41,4 +41,5 @@ CMD bash /app/build_cert.sh $DERP_HOST $DERP_CERTS /app/san.conf && \
     --stun=$DERP_STUN  \
     --a=$DERP_ADDR \
     --http-port=$DERP_HTTP_PORT \
-    --verify-clients=$DERP_VERIFY_CLIENTS
+    --verify-clients=$DERP_VERIFY_CLIENTS \
+      -v /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock

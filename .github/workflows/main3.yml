@@ -1,0 +1,54 @@
+name: Dockerfile_For_Synology_Domain
+
+on:
+  schedule:
+    - cron: '0 18 * * *'
+  workflow_dispatch:
+    inputs:
+      clean_cache:
+        description: 'Clear caches'
+        required: false
+        type: boolean
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Build
+        uses: docker/setup-buildx-action@v1
+          
+      - name: Login to aliyuncs
+        uses: docker/login-action@v2
+        with:
+          registry: registry.cn-hangzhou.aliyuncs.com
+          username: ${{ secrets.HUB_NAME }}
+          password: ${{ secrets.HUB_PASS }}
+
+      # Runs a single command using the runners shell
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v2
+        with:
+          file: 'Dockerfile_For_Synology_Domain'
+          platforms: linux/amd64
+          context: ./
+          push: true
+          tags: |
+            registry.cn-hangzhou.aliyuncs.com/dubux/ip_derper_for_synology_domain:latest
+      - name: Export Images
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          tags: ip_derper_for_synology_domain:latest
+          outputs: type=docker,dest=/tmp/ip_derper_for_synology_domain.tar    
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ip_derper
+          path: /tmp/ip_derper_for_synology_domain.tar

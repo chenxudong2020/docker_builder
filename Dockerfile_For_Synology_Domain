@@ -18,7 +18,7 @@ WORKDIR /app
 # ========= CONFIG =========
 # - derper args
 ENV DERP_ADDR :18889
-ENV DERP_HTTP_PORT 18888
+ENV DERP_HTTP_PORT -1
 ENV DERP_HOST your-hostname.com
 ENV DERP_CERTS=/app/certs/
 ENV DERP_STUN true

@@ -51,14 +51,7 @@ jobs:
            imageName=nginxwebui
            docker tag $imageName registry.cn-hangzhou.aliyuncs.com/dubux/$imageName:latest
            docker push registry.cn-hangzhou.aliyuncs.com/dubux/$imageName
-          
-        
-      - name: Export Images
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          tags: nginxwebui:latest
-          outputs: type=docker,dest=/tmp/nginxwebui.tar    
+           docker save -o /tmp/nginxwebui.tar $imageName:latest
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:

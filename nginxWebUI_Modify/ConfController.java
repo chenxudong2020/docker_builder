@@ -285,6 +285,9 @@ public class ConfController extends BaseController {
 			String cpCmd="cp -rf "+cer+" "+certDir+domain+ ".crt";
 			String cp = RuntimeUtil.execForStr(cpCmd);
 
+			String cpChainCmd="cp -rf "+cer+" "+certDir+ "fullchain.pem";
+			String cpcpChainCmd = RuntimeUtil.execForStr(cpChainCmd);
+
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 		}

@@ -1,4 +1,4 @@
-name: Dockerfile_For_Synology_Domain
+name: Build_nginxWebUI
 
 on:
   schedule:
@@ -17,9 +17,12 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: true
+
       - name: modify
         run: |
-          git clone https://github.com/tailscale/tailscale
+          git clone https://gitee.com/cym1102/nginxWebUI.git
+          cd nginxWebUI
+          sed -i '/hi.ServerName != m.hostname/,+2d' cmd/derper/cert.go
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -38,20 +41,20 @@ jobs:
       - name: Build and push Docker images
         uses: docker/build-push-action@v2
         with:
-          file: 'Dockerfile_For_Synology_Domain'
+          file: 'Dockerfile'
           platforms: linux/amd64
           context: ./
           push: true
           tags: |
-            registry.cn-hangzhou.aliyuncs.com/dubux/ip_derper_for_synology_domain:latest
+            registry.cn-hangzhou.aliyuncs.com/dubux/ip_derper:latest
       - name: Export Images
         uses: docker/build-push-action@v2
         with:
           context: .
-          tags: ip_derper_for_synology_domain:latest
-          outputs: type=docker,dest=/tmp/ip_derper_for_synology_domain.tar    
+          tags: ip_derper:latest
+          outputs: type=docker,dest=/tmp/ip_derper.tar    
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: ip_derper
-          path: /tmp/ip_derper_for_synology_domain.tar
+          path: /tmp/ip_derper.tar

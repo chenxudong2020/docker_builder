@@ -1,4 +1,4 @@
-name: Build_Images_For_Synology
+name: Build_Cert_Derper_For_Synology
 
 on:
   schedule:
@@ -17,12 +17,9 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: true
-
       - name: modify
         run: |
           git clone https://github.com/tailscale/tailscale
-          cd tailscale
-          sed -i '/hi.ServerName != m.hostname/,+2d' cmd/derper/cert.go
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -41,20 +38,20 @@ jobs:
       - name: Build and push Docker images
         uses: docker/build-push-action@v2
         with:
-          file: 'Dockerfile_For_Synology'
+          file: 'Build_Cert_Derper_For_Synology'
           platforms: linux/amd64
           context: ./
           push: true
           tags: |
-            registry.cn-hangzhou.aliyuncs.com/dubux/ip_derper_for_synology:latest
+            registry.cn-hangzhou.aliyuncs.com/dubux/ip_derper_for_synology_domain:latest
       - name: Export Images
         uses: docker/build-push-action@v2
         with:
           context: .
-          tags: ip_derper_for_synology:latest
-          outputs: type=docker,dest=/tmp/ip_derper_for_synology.tar    
+          tags: ip_derper_for_synology_domain:latest
+          outputs: type=docker,dest=/tmp/ip_derper_for_synology_domain.tar    
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: ip_derper
-          path: /tmp/ip_derper_for_synology.tar
+          path: /tmp/ip_derper_for_synology_domain.tar

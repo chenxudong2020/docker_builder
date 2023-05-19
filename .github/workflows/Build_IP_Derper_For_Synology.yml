@@ -1,4 +1,4 @@
-name: Build_Images
+name: Build_Images_For_Synology
 
 on:
   schedule:
@@ -41,20 +41,20 @@ jobs:
       - name: Build and push Docker images
         uses: docker/build-push-action@v2
         with:
-          file: 'Dockerfile'
+          file: 'Build_IP_Derper_For_Synology'
           platforms: linux/amd64
           context: ./
           push: true
           tags: |
-            registry.cn-hangzhou.aliyuncs.com/dubux/ip_derper:latest
+            registry.cn-hangzhou.aliyuncs.com/dubux/ip_derper_for_synology:latest
       - name: Export Images
         uses: docker/build-push-action@v2
         with:
           context: .
-          tags: ip_derper:latest
-          outputs: type=docker,dest=/tmp/ip_derper.tar    
+          tags: ip_derper_for_synology:latest
+          outputs: type=docker,dest=/tmp/ip_derper_for_synology.tar    
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: ip_derper
-          path: /tmp/ip_derper.tar
+          path: /tmp/ip_derper_for_synology.tar

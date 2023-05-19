@@ -35,6 +35,7 @@ jobs:
         run : |
           cd nginxWebUI
           mvn clean package
+          docker build -t nginxwebui:latest .
           
       - name: Login to aliyuncs
         uses: docker/login-action@v2

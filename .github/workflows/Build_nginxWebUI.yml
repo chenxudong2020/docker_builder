@@ -20,7 +20,6 @@ jobs:
 
       - name: modify
         run: |
-          git clone https://gitee.com/cym1102/nginxWebUI.git
           cd nginxWebUI_Modify
           sh copy.sh
 

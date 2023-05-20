@@ -44,12 +44,3 @@ jobs:
           push: true
           tags: |
             registry.cn-hangzhou.aliyuncs.com/dubux/ip_derper_for_synology_domain:latest
-      - name: Export Docker images
-        id : Export
-        run : |
-          docker save -o /tmp/ip_derper_for_synology_domain.tar ip_derper_for_synology_domain:latest
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: ip_derper_for_synology_domain
-          path: /tmp/ip_derper_for_synology_domain.tar

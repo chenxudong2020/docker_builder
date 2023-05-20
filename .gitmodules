@@ -1,0 +1,3 @@
+[submodule "nginxWebUI"]
+	path = nginxWebUI
+	url = https://gitee.com/cym1102/nginxWebUI.git

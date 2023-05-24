@@ -1,3 +1,6 @@
 [submodule "nginxWebUI"]
 	path = nginxWebUI
 	url = https://gitee.com/cym1102/nginxWebUI.git
+[submodule "wg-easy"]
+	path = wg-easy
+	url = https://github.com/wg-easy/wg-easy.git

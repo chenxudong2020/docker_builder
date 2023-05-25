@@ -21,12 +21,13 @@ const {
   PORTS,
   RELEASE,
   PASSWORD,
+  WG_HOST,
 } = require('../config');
 
 
 const options = !PORTS ? {} : {
-  cert: fs.readFileSync('etc/tls/fullchain.pem'),
-  key: fs.readFileSync('etc/tls/privkey.pem'),
+  cert: fs.readFileSync(`etc/tls/${WG_HOST}.csr`),
+  key: fs.readFileSync(`etc/tls/${WG_HOST}.key`),
 };
 
 module.exports = class Server {

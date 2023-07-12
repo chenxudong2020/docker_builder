@@ -25,9 +25,12 @@ ENV DERP_STUN true
 ENV DERP_VERIFY_CLIENTS false
 # ==========================
 
+RUN echo "deb http://th.archive.ubuntu.com/ubuntu jammy main" >> /etc/apt/sources.list
+
 # apt
 RUN apt-get update && \
-    apt-get install -y openssl curl
+    apt-get install -y openssl curl && \
+    apt-get install -y libc6
 
 
 COPY build_cert.sh /app/

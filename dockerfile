@@ -1,38 +1,38 @@
-
+# Install operating system and dependencies
 FROM ubuntu:20.04
-
-
-ADD rustdesk /usr/local/rustdesk
-
-RUN echo "deb http://th.archive.ubuntu.com/ubuntu jammy main" >> /etc/apt/sources.list
-
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
 RUN apt-get install -y curl git wget unzip libgconf-2-4 gdb libstdc++6 libglu1-mesa fonts-droid-fallback lib32stdc++6 python3 clang cmake ninja-build pkg-config libgtk-3-dev
 RUN apt-get clean
+
+# Download Flutter SDK from Flutter GitHub repo
 RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
+
+# Set flutter environment path
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
+
+# Run flutter doctor
 RUN flutter doctor
+
+# Enable flutter web
 RUN flutter channel master
 RUN flutter upgrade
 RUN flutter config --enable-web
 
-RUN mkdir -p /app/server
+# Copy files to container and build
+RUN mkdir /app/
+# I was unable to build web app from dockerfile
+# So instead I built it locally and commented the "flutter build web" in this file
 COPY . /app/
 WORKDIR /app/
-COPY /usr/local/rustdesk/server.sh /app/server/
+# RUN flutter build web
 
-
-
-RUN cd /usr/local/rustdesk && chmod +x hbbs hbbr runhbb stophbb runhbbweb server
-EXPOSE 21115
-EXPOSE 21116
-EXPOSE 21117
-EXPOSE 21118
-EXPOSE 21119
-EXPOSE 21116/udp
+# Record the exposed port
 EXPOSE 5000
 
-CMD bash /usr/local/rustdesk/runhbbweb
+# Make server startup script executable and start the web server
+RUN ["chmod", "+x", "/app/server/server.sh"]
+
+ENTRYPOINT [ "/app/server/server.sh"]

@@ -13,4 +13,4 @@ RUN apt-get update && \
 
 RUN cd /usr/local/rustdesk && chmod +x hbbs hbbr runhbb stophbb
 
-CMD bash /usr/local/rustdesk/hbbs -k opopop880 && /usr/local/rustdesk/hbbr -k opopop880
+# CMD bash /usr/local/rustdesk/hbbs -k opopop880 && /usr/local/rustdesk/hbbr -k opopop880

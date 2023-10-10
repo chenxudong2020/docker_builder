@@ -1,6 +1,7 @@
 
-FROM keyurbhole/flutter_web_desk:v1.0.0 AS build
+FROM keyurbhole/flutter_web_desk:v1.0.0
 
+ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
 ADD rustdesk /usr/local/rustdesk
 
 RUN echo "deb http://th.archive.ubuntu.com/ubuntu jammy main" >> /etc/apt/sources.list

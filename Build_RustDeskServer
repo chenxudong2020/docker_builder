@@ -1,7 +1,8 @@
 
 FROM ubuntu:20.04
-WORKDIR /app
+ADD rustdesk /app/rustdesk
 
+WORKDIR /app
 
 RUN echo "deb http://th.archive.ubuntu.com/ubuntu jammy main" >> /etc/apt/sources.list
 
@@ -11,8 +12,6 @@ RUN apt-get update && \
     apt-get install -y libc6
 
 RUN pwd
-
-COPY rustdesk /app 
 
 RUN cd /app/rustdesk/ && chmod +x hbbs hbbr runhbb stophbb && ll -al 
 

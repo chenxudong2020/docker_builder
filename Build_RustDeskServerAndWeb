@@ -22,7 +22,7 @@ RUN flutter config --enable-web
 RUN mkdir -p /app/server
 COPY . /app/
 WORKDIR /app/
-COPY /usr/local/rustdesk/server.sh /app/server/
+COPY /usr/local/rustdesk/server /app/server/
 
 
 

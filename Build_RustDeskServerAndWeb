@@ -1,0 +1,21 @@
+
+FROM keyurbhole/flutter_web_desk:v1.0.0 AS build
+
+ADD rustdesk /usr/local/rustdesk
+
+RUN echo "deb http://th.archive.ubuntu.com/ubuntu jammy main" >> /etc/apt/sources.list
+
+
+RUN cd /usr/local/rustdesk && chmod +x hbbs hbbr runhbb stophbb runhbbweb
+
+ 
+
+EXPOSE 21115
+EXPOSE 21116
+EXPOSE 21117
+EXPOSE 21118
+EXPOSE 21119
+EXPOSE 21116/udp
+EXPOSE 5000
+
+CMD bash /usr/local/rustdesk/runhbbweb

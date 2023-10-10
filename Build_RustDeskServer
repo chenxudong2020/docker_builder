@@ -1,8 +1,8 @@
 
 FROM ubuntu:20.04
-ADD rustdesk /app/rustdesk
+ADD rustdesk /usr/local/rustdesk
 
-WORKDIR /app
+WORKDIR /usr/local/rustdesk
 
 RUN echo "deb http://th.archive.ubuntu.com/ubuntu jammy main" >> /etc/apt/sources.list
 
@@ -11,8 +11,6 @@ RUN apt-get update && \
     apt-get install -y openssl curl && \
     apt-get install -y libc6
 
-RUN pwd
+RUN chmod +x hbbs hbbr runhbb stophbb
 
-RUN cd /app/rustdesk/ && chmod +x hbbs hbbr runhbb stophbb
-
-CMD bash /app/rustdesk/runhbb  
+CMD bash runhbb  

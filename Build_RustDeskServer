@@ -13,6 +13,6 @@ RUN apt-get update && \
 
 RUN pwd
 
-RUN cd /app/rustdesk/ && chmod +x hbbs hbbr runhbb stophbb && ll -al 
+RUN cd /app/rustdesk/ && chmod +x hbbs hbbr runhbb stophbb
 
 CMD bash /app/rustdesk/runhbb  

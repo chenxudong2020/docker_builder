@@ -26,12 +26,13 @@ RUN flutter config --enable-web
 # Copy files to container and build
 RUN mkdir /app/
 RUN mkdir -p /app/server
+ADD rustdesk/server /app/server/
 # I was unable to build web app from dockerfile
 # So instead I built it locally and commented the "flutter build web" in this file
 COPY . /app/
 WORKDIR /app/
 # RUN flutter build web
-COPY /usr/local/rustdesk/server /app/server/
+
 # Record the exposed port
 EXPOSE 5000
 

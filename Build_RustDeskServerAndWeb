@@ -20,9 +20,9 @@ RUN flutter upgrade
 RUN flutter config --enable-web
 
 RUN mkdir -p /app/server
+ADD rustdesk/server /app/server/
 COPY . /app/
-WORKDIR /app/
-COPY /usr/local/rustdesk/server /app/server/
+
 
 
 

@@ -10,9 +10,10 @@ RUN apt-get update && \
     apt-get install -y openssl curl && \
     apt-get install -y libc6
 
+RUN chmod +x rustdesk/hbbr rustdesk/hbbs rustdesk/runhbb rustdesk/stophbb
 
 COPY rustdesk /app 
 
-RUN chmod +x hbbr hbbs runhbb stophbb
+RUN ll -al /app/rustdesk
 
 CMD bash /app/rustdesk/runhbb  

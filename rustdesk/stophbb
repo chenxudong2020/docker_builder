@@ -1,0 +1,7 @@
+#!/bin/sh
+ 
+kill `cat hbbs.pid`
+rm -rf hbbs.pid
+
+kill `cat hbbr.pid`
+rm -rf hbbr.pid

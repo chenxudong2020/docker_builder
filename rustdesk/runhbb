@@ -1,0 +1,6 @@
+#!/bin/sh
+cd /usr/local/rustdesk/
+nohup ./hbbs -k opopop880>/dev/null 2>&1 &
+echo $! > hbbs.pid
+nohup ./hbbr -k opopop880>/dev/null 2>&1 &
+echo $! > hbbr.pid

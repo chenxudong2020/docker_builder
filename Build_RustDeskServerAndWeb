@@ -22,6 +22,7 @@ RUN flutter config --enable-web
 RUN mkdir -p /app/server
 ADD rustdesk/server /app/server/
 COPY . /app/
+RUN cd /app/server/ && chmod +x server
 
 
 

@@ -18,5 +18,6 @@ EXPOSE 21118
 EXPOSE 21119
 EXPOSE 21116/udp
 
+WORKDIR /app/
 
 ENTRYPOINT [ "/usr/local/rustdesk/runhbb"]

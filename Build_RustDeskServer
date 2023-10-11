@@ -1,5 +1,5 @@
 
-FROM ubuntu:20.04
+FROM keyurbhole/flutter_web_desk:v1.0.0
 ADD rustdesk /usr/local/rustdesk
 
 # WORKDIR /usr/local/rustdesk

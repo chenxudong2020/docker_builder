@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Set the port
+PORT=9000
+
+# Stop any program currently running on the set port
+echo 'preparing port' $PORT '...'
+fuser -k 9000/tcp
+
+# Switch directory
+cd /app/build/web/
+
+# Start the server
+echo 'Server starting on port' $PORT '...'
+python3 -m http.server $PORT

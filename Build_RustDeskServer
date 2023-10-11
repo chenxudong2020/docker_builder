@@ -6,11 +6,14 @@ ADD rustdesk /usr/local/rustdesk
 
 RUN echo "deb http://th.archive.ubuntu.com/ubuntu jammy main" >> /etc/apt/sources.list
 
-
+RUN apt-get update && \
+    apt-get install -y psmisc
 
 RUN cd /usr/local/rustdesk && chmod +x hbbs hbbr rustdesk-utils runhbb stophbb
 
-EXPOSE 5000
+RUN rm -rf /app/server/server.sh && mv /usr/local/rustdesk/server.sh /app/server/
+
+EXPOSE 9000
 EXPOSE 21115
 EXPOSE 21116
 EXPOSE 21117
@@ -18,6 +21,6 @@ EXPOSE 21118
 EXPOSE 21119
 EXPOSE 21116/udp
 
-WORKDIR /app/
+
 
 ENTRYPOINT [ "/usr/local/rustdesk/runhbb"]

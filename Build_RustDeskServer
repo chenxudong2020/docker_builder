@@ -1,5 +1,5 @@
 
-FROM ubuntu:20.04
+FROM keyurbhole/flutter_web_desk:v1.0.0
 ADD rustdesk /usr/local/rustdesk
 
 # WORKDIR /usr/local/rustdesk
@@ -8,6 +8,6 @@ RUN echo "deb http://th.archive.ubuntu.com/ubuntu jammy main" >> /etc/apt/source
 
 
 
-RUN cd /usr/local/rustdesk && chmod +x hbbs hbbr runhbb stophbb
+RUN cd /usr/local/rustdesk && chmod +x hbbs hbbr rustdesk-utils runhbb stophbb
 
 CMD bash /usr/local/rustdesk/runhbb

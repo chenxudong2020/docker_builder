@@ -19,4 +19,4 @@ EXPOSE 21119
 EXPOSE 21116/udp
 
 
-CMD bash /usr/local/rustdesk/runhbb
+ENTRYPOINT [ "/usr/local/rustdesk/runhbb"]

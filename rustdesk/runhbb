@@ -1,4 +1,4 @@
 #!/bin/sh
 cd /usr/local/rustdesk/
 key=$*
-./hbbs -k key & ./hbbr -k key & /app/server/rustdeskweb
+./hbbs -k $key & ./hbbr -k $key & /app/server/rustdeskweb

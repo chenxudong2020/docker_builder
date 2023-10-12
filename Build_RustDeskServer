@@ -22,7 +22,7 @@ EXPOSE 21119
 EXPOSE 21116/udp
 
 
-ENV KEY rustdeskkey
+ENV KEY=rustdeskkey
 
 
 ENTRYPOINT /usr/local/rustdesk/runhbb $KEY

@@ -1,3 +1,4 @@
 #!/bin/sh
 cd /usr/local/rustdesk/
-./hbbs -k opopop880 & ./hbbr -k opopop880 & /app/server/server.sh
+key=$*
+./hbbs -k key & ./hbbr -k key & /app/server/rustdeskweb

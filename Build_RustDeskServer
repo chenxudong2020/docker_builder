@@ -9,9 +9,9 @@ RUN echo "deb http://th.archive.ubuntu.com/ubuntu jammy main" >> /etc/apt/source
 RUN apt-get update && \
     apt-get install -y psmisc
 
-RUN cd /usr/local/rustdesk && chmod +x hbbs hbbr rustdesk-utils runhbb stophbb server.sh
+RUN cd /usr/local/rustdesk && chmod +x hbbs hbbr rustdesk-utils runhbb stophbb rustdeskweb
 
-RUN rm -rf /app/server/server.sh && mv /usr/local/rustdesk/server.sh /app/server/
+RUN rm -rf /app/server/server.sh && mv /usr/local/rustdesk/rustdeskweb /app/server/
 
 EXPOSE 9000
 EXPOSE 21115
@@ -22,5 +22,8 @@ EXPOSE 21119
 EXPOSE 21116/udp
 
 
+ENV KEY rustdeskkey
 
-ENTRYPOINT [ "/usr/local/rustdesk/runhbb"]
+
+
+ENTRYPOINT [ "/usr/local/rustdesk/runhbb $KEY"]

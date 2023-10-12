@@ -9,7 +9,7 @@ RUN echo "deb http://th.archive.ubuntu.com/ubuntu jammy main" >> /etc/apt/source
 RUN apt-get update && \
     apt-get install -y psmisc
 
-RUN cd /usr/local/rustdesk && chmod +x hbbs hbbr rustdesk-utils runhbb stophbb rustdeskweb
+RUN cd /usr/local/rustdesk && chmod +x hbbs hbbr rustdesk-utils runhbb rustdeskweb
 
 RUN rm -rf /app/server/server.sh && mv /usr/local/rustdesk/rustdeskweb /app/server/
 

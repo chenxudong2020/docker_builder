@@ -1,4 +1,22 @@
 #!/bin/sh
 cd /usr/local/rustdesk/
-key=$*
-./hbbs -k $key & ./hbbr -k $key & /app/server/rustdeskweb
+key=$0
+enable_web_client=$1
+
+if [ -n "$enable_web_client" && -n "$key"  ];then
+     if [ $enable_web_client =="true" ];then
+        ./hbbs -k $key & ./hbbr -k $key & /app/server/rustdeskweb
+     else
+       ./hbbs -k $key & ./hbbr -k $key   
+     fi  
+elif [ -n "$enable_web_client" && -z "$key"  ];then
+      if [ $enable_web_client =="true" ];then
+        ./hbbs & ./hbbr & /app/server/rustdeskweb
+      else
+        ./hbbs & ./hbbr 
+      fi
+elif [ -z "$enable_web_client" && -n "$key"  ];then
+      ./hbbs -k $key & ./hbbr -k $key
+else 
+    ./hbbs & ./hbbr 
+fi         

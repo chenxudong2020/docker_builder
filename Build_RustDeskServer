@@ -23,6 +23,6 @@ EXPOSE 21116/udp
 
 
 ENV KEY=rustdeskkey
+ENV ENABLE_WEB_CLIENT false
 
-
-ENTRYPOINT /usr/local/rustdesk/runhbb $KEY
+ENTRYPOINT /usr/local/rustdesk/runhbb $KEY $ENABLE_WEB_CLIENT

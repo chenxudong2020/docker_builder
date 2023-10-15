@@ -3,7 +3,7 @@ cd /usr/local/rustdesk/
 key=$1
 enable_web_client=$2
 
-sed -i 's/authkey: KEY/authkey: $key/g' ./conf/config.yml
+sed -i "s/authkey: KEY/authkey: $key/g" ./conf/config.yml
 
 
 if [ "$enable_web_client" ] && [ "$key" ];then

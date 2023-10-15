@@ -12,13 +12,13 @@ if [ "$enable_web_client" ] && [ "$key" ];then
      else
        ./hbbs -k $key & ./hbbr -k $key & ./apiserver  
      fi  
-elif [ -n "$enable_web_client" && -z "$key" ];then
+elif [ -n "$enable_web_client" ] && [ -z "$key" ];then
       if [ "$enable_web_client" = "true" ];then
         ./hbbs & ./hbbr & ./apiserver & /app/server/rustdeskweb
       else
         ./hbbs & ./hbbr & ./apiserver 
       fi
-elif [ -z "$enable_web_client" && -n "$key" ];then
+elif [ -z "$enable_web_client" ] && [ -n "$key" ];then
       ./hbbs -k $key & ./hbbr -k $key & ./apiserver
 else 
     ./hbbs & ./hbbr & ./apiserver

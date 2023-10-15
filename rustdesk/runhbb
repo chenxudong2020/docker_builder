@@ -3,21 +3,23 @@ cd /usr/local/rustdesk/
 key=$1
 enable_web_client=$2
 
+sed -i 's/authkey: KEY/authkey: $key/g' ./conf/config.yml
+
 
 if [ "$enable_web_client" ] && [ "$key" ];then
      if [ "$enable_web_client" = "true" ];then
-        ./hbbs -k $key & ./hbbr -k $key & /app/server/rustdeskweb
+        ./hbbs -k $key & ./hbbr -k $key & ./apiserver & /app/server/rustdeskweb
      else
-       ./hbbs -k $key & ./hbbr -k $key   
+       ./hbbs -k $key & ./hbbr -k $key & ./apiserver  
      fi  
 elif [ -n "$enable_web_client" && -z "$key" ];then
       if [ "$enable_web_client" = "true" ];then
-        ./hbbs & ./hbbr & /app/server/rustdeskweb
+        ./hbbs & ./hbbr & ./apiserver & /app/server/rustdeskweb
       else
-        ./hbbs & ./hbbr 
+        ./hbbs & ./hbbr & ./apiserver 
       fi
 elif [ -z "$enable_web_client" && -n "$key" ];then
-      ./hbbs -k $key & ./hbbr -k $key
+      ./hbbs -k $key & ./hbbr -k $key & ./apiserver
 else 
-    ./hbbs & ./hbbr 
+    ./hbbs & ./hbbr & ./apiserver
 fi         

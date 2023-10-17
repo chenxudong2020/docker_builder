@@ -23,6 +23,10 @@ jobs:
           cd nginxWebUI_Modify
           sh copy.sh
 
+      - name: Debugging with tmate
+        uses: mxschmitt/action-tmate@v3.17
+          
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 

@@ -40,7 +40,7 @@ jobs:
           git clone https://github.com/rustdesk/rustdesk-server.git ./build_rustdesk
           cd ./build_rustdesk
           pwd
-          ll -al
+          ll
           pwd
           echo "------------------------------------------------------------------------"
           cargo build --release --all-features --target=${{ matrix.job.target }}

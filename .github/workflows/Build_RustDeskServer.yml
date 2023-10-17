@@ -24,19 +24,11 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: true
-
-      - name: Install toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: "1.70.0"
-          override: true
-          default: true
-          components: rustfmt
-          profile: minimal
-          target: ${{ matrix.job.target }}
   
       - name: Build
         run: |
+          bash <(curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs) -y
+          source $HOME/.cargo/env
           git clone https://github.com/rustdesk/rustdesk-server.git ./build_rustdesk
           cd ./build_rustdesk
           cargo install cross

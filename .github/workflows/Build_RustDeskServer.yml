@@ -36,13 +36,9 @@ jobs:
           target: ${{ matrix.job.target }}
   
       - name: Build
-        run:
+        run: |
           git clone https://github.com/rustdesk/rustdesk-server.git ./build_rustdesk
           cd ./build_rustdesk
-          pwd
-          ll
-          pwd
-          echo "------------------------------------------------------------------------"
           cargo build --release --all-features --target=${{ matrix.job.target }}
           cd ..
           \cp -f ./build_rustdesk/target/release/hbbr ./rustdesk/hbbr

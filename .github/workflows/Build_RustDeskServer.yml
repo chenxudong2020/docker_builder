@@ -33,7 +33,10 @@ jobs:
           cd ./build_rustdesk
           cargo install cross
           cross build --release --all-features --target=${{ matrix.job.target }}
-          cd ..
+          echo '--------------------------------------------------------'
+          cd target
+          ll
+          echo '----------------------------------------------------'
           \cp -f ./build_rustdesk/target/release/hbbr ./rustdesk/hbbr
           \cp -f ./build_rustdesk/target/release/hbbs ./rustdesk/hbbs
           \cp -f ./build_rustdesk/target/release/rustdesk-utils ./rustdesk/rustdesk-utils

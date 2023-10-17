@@ -4,3 +4,6 @@
 [submodule "wg-easy"]
 	path = wg-easy
 	url = https://github.com/wg-easy/wg-easy.git
+[submodule "rustdesk-api-server"]
+	path = rustdesk-api-server
+	url = https://github.com/xiaoyi510/rustdesk-api-server.git

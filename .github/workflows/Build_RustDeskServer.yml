@@ -32,7 +32,7 @@ jobs:
           git clone https://github.com/rustdesk/rustdesk-server.git ./build_rustdesk
           cd ./build_rustdesk
           cargo install cross
-          cargo build --release --all-features --target=${{ matrix.job.target }}
+          cross build --release --all-features --target=${{ matrix.job.target }}
           cd ..
           \cp -f ./build_rustdesk/target/release/hbbr ./rustdesk/hbbr
           \cp -f ./build_rustdesk/target/release/hbbs ./rustdesk/hbbs

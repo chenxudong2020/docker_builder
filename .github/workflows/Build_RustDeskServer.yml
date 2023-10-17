@@ -33,13 +33,11 @@ jobs:
           cd ./build_rustdesk
           cargo install cross
           cross build --release --all-features --target=${{ matrix.job.target }}
-          echo '--------------------------------------------------------'
-          cd target
-          ll
-          echo '----------------------------------------------------'
-          \cp -f ./build_rustdesk/target/release/hbbr ./rustdesk/hbbr
-          \cp -f ./build_rustdesk/target/release/hbbs ./rustdesk/hbbs
-          \cp -f ./build_rustdesk/target/release/rustdesk-utils ./rustdesk/rustdesk-utils
+          chmod -v a+x target/${{ matrix.job.target }}/release/*
+          \cp -f target/${{ matrix.job.target }}/release/hbbr ../rustdesk/hbbr
+          \cp -f target/${{ matrix.job.target }}/release/hbbs ../rustdesk/hbbs
+          \cp -f target/${{ matrix.job.target }}/release/rustdesk-utils ../rustdesk/rustdesk-utils
+
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1

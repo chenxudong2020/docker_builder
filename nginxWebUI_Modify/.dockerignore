@@ -1,0 +1,5 @@
+*
+!target/nginxWebUI-*.jar
+!Dockerfile
+!entrypoint.sh
+!reload.sh

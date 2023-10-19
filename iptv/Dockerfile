@@ -23,10 +23,10 @@ RUN apt update && apt-get -y install mariadb-server net-tools vim \
 
 
 # 安装PHP扩展
-RUN docker-php-ext-install mysqli pdo pdo_mysql gd opcache sockets phar intl curl zlib
+RUN docker-php-ext-install mysqli pdo pdo_mysql gd sockets zlib
 
 # 将Apache的rewrite模块启用
-# RUN a2enmod rewrite
+RUN a2enmod rewrite
  
 
 

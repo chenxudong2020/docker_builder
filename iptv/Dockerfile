@@ -13,7 +13,6 @@ RUN ln -s /usr/local/app/iptv /var/www/html/iptv
 
 
 
-
 #安装mariadb数据库
 RUN apt update && apt-get -y install mariadb-server net-tools vim \
     libpng-dev \
@@ -48,6 +47,9 @@ RUN echo "set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936" >> /etc/vim/
 	&& echo "set termencoding=utf-8" >> /etc/vim/vimrc \
 	&& echo "set encoding=utf-8" >> /etc/vim/vimrc
 
+
+
+RUN \cp -rf php.ini /usr/local/etc/php
 
 
 #初始化

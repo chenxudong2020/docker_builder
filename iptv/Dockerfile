@@ -30,9 +30,9 @@ RUN apt update && apt-get -y install mariadb-server net-tools vim
 ENV MARIADB_USER iptv
 ENV MARIADB_PASS 123456
 # 对外服务的域名或者公网IP
-ENV HOST=127.0.0.1
+ENV HOST=www.dubux.ltd
 #docker映射之后的端口
-ENV PORT=80
+ENV PORT=81
 
 
 

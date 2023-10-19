@@ -51,7 +51,7 @@ RUN bash db_init.sh
 
 RUN ["chmod","+x","java/bin/java"]
 RUN ["chmod", "+x", "install.sh"]
-RUN bash install.sh
+RUN bash install.sh $HOST $PORT
 
  
 

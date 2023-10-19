@@ -14,9 +14,9 @@ if (!isset($_SESSION['psw']) || $_SESSION['psw'] != $psw) {
 } 
 
 ?>
-
 <?php
 header("Content-type:text/json;charset=utf-8");
+
 function echoSource($category) {
     global $db;
     $db->mQuery("SET NAMES UTF8");

@@ -51,8 +51,8 @@ RUN bash db_init.sh
 
 RUN ["chmod","+x","java/bin/java"]
 RUN ["chmod", "+x", "install.sh"]
-RUN bash install.sh $HOST $PORT
-
+RUN bash install.sh
+RUN ["chmod", "+x", "run.sh"]
  
 
 
@@ -60,7 +60,7 @@ RUN bash install.sh $HOST $PORT
 EXPOSE 3306
 EXPOSE 80
  
-ENTRYPOINT service apache2 restart & mysqld_safe
+ENTRYPOINT service apache2 restart & mysqld_safe & base run.sh $HOST $PORT
  
 
 

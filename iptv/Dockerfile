@@ -37,8 +37,7 @@ ENV PORT=80
 
 
 
-#让容器支持中文
-ENV LC_ALL en_US.UTF-8
+
 RUN echo "set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936" >> /etc/vim/vimrc \
 	&& echo "set termencoding=utf-8" >> /etc/vim/vimrc \
 	&& echo "set encoding=utf-8" >> /etc/vim/vimrc

@@ -23,7 +23,7 @@
 								</thead>
 								<tbody>
 									<?php
-									$result=$db->mQuery("SELECT name,ip,loc,time,func from iptv_adminrec order by time desc");
+									$result=$db->mQuery("SELECT name,ip,loc,time,func from luo2888_adminrec order by time desc");
 									while ($row=mysqli_fetch_array($result)) {
 										$loguser=$row['name'];
 										$logip=$row['ip'];

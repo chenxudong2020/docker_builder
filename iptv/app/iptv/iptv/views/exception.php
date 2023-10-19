@@ -38,7 +38,7 @@
 										</thead>
 										<tbody>
 											<?php
-												$result=$db->mQuery("SELECT status,name,model,vpn,idchange,marks,exp from iptv_users where vpn>0 or idchange>0");
+												$result=$db->mQuery("SELECT status,name,model,vpn,idchange,marks,exp from luo2888_users where vpn>0 or idchange>0");
 												while ($row=mysqli_fetch_array($result)) {
 													$vpn=$row['vpn'];
 													$idchange=$row['idchange'];

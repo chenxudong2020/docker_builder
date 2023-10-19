@@ -45,7 +45,7 @@
 				</form>
 				<hr>
 				<footer class="col-sm-12 text-center">
-					<p class="m-b-0">Copyright © 2020 <a href="http://bobohome.f3322.net:8880/sspks/">裙下孤魂</a>. All right reserved</p>
+					<p class="m-b-0">Copyright © 2022 <a href="http://www.dkewl.com">刀客源码整理分享（dkewl.com）</a>. All right reserved</p>
 				</footer>
 			</div>
 		</div>

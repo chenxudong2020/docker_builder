@@ -92,7 +92,7 @@ function submitForm(){
 											<?php
 											//获取EPG数据显示
 											$recStart=$recCounts*($page-1);
-											$result=$db->mQuery("select * from iptv_epg $searchparam limit $recStart,$recCounts");
+											$result=$db->mQuery("select * from luo2888_epg $searchparam limit $recStart,$recCounts");
 											if (!mysqli_num_rows($result)) {
 												echo"<tr>";
 												echo"<td  colspan=\"7\" align=\"center\" style=\"font-size:14px;color:red;height:35px;font-weight: bold;\">当前未有EPG数据！";
@@ -111,6 +111,8 @@ function submitForm(){
 												$epg = explode("-",$row['name']);
 												if($epg[0] == 'cntv'){
 														$epgname = 'CCTV官网';
+												}else if($epg[0] == 'jisu'){
+														$epgname = '极速数据';
 												}else if($epg[0] == 'tvming'){
 														$epgname = '天脉聚源';
 												}else if($epg[0] == 'tvmao'){
@@ -154,13 +156,14 @@ function submitForm(){
 														</div>
 														<div class="form-group">
 															<label class="control-label">备注：</label>
-															<input type="text" class="form-control" name="remarks" placeholder="请输入备注">
+															<input type="text" class="form-control" name="remarks" placeholder="多个备注请用 | 分隔开">
 														</div>
 														<div class="form-group">
 															<label class="control-label">EPG来源：</label>
 															<select class="form-control btn btn-default dropdown-toggle" id="epg" name="epg">
 																<option value="">请选EPG来源</option>
 																<option value="cntv">CCTV官网</option>
+																<option value="cntv">极速数据</option>
 																<option value="tvming">天脉聚源</option>
 																<option value="tvmao">电视猫</option>
 																<option value="tvsou">搜视网</option>

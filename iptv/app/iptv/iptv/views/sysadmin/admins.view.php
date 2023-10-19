@@ -21,7 +21,7 @@
 								</thead>
 								<tbody>
 									<?php
-									$result=$db->mQuery("select name,author,useradmin,ipcheck,epgadmin,mealsadmin,channeladmin from iptv_admin");
+									$result=$db->mQuery("select name,author,useradmin,ipcheck,epgadmin,mealsadmin,channeladmin from luo2888_admin");
 									while ($row=mysqli_fetch_array($result)) {
 										$adminname=$row['name'];
 										$author=$row['author'];

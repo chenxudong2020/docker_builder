@@ -35,7 +35,7 @@ class Aes
     public function __construct($key, $method = 'AES-128-ECB', $iv = '', $options = 0)
     {
         // key是必须要设置的
-        $this->secret_key = isset($key) ? $key : 'tvkey_iptv';
+        $this->secret_key = isset($key) ? $key : 'tvkey_luo2888';
 
         $this->method = $method;
  
@@ -71,9 +71,9 @@ class Aes
     }
 }
 
-$sig=$db->mGet("iptv_config","value","where name='app_sign'");
-$appname=$db->mGet("iptv_config","value","where name='app_appname'");
-$packagename=$db->mGet("iptv_config","value","where name='app_packagename'");
+$sig=$db->mGet("luo2888_config","value","where name='app_sign'");
+$appname=$db->mGet("luo2888_config","value","where name='app_appname'");
+$packagename=$db->mGet("luo2888_config","value","where name='app_packagename'");
 $key=md5($sig.$appname.$packagename."AD80F93B542B");
 $key=md5($key.$appname.$packagename);
 ?>

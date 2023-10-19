@@ -17,7 +17,7 @@ error_reporting(E_ERROR);
 if(isset($_POST['movie_name'])){
 	$name=$_POST['movie_name'];
 	$api=$_POST['movie_api'];
-	$sql="INSERT into qhtv_movie (name,api,state) values('$name','$api',1)";
+	$sql="INSERT into eztv_movie (name,api,state) values('$name','$api',1)";
 	$db->mQuery($sql);
 	//mysqli_query($con,$sql);
 }
@@ -26,27 +26,27 @@ if(isset($_POST['movie_edit_id'])){
 	$id=$_POST['movie_edit_id'];
 	$movie_edit_api=$_POST['movie_edit_api'];
 	$movie_edit_name=$_POST['movie_edit_name'];
-	$sql="UPDATE qhtv_movie SET name = '$movie_edit_name' ,api = '$movie_edit_api' where id =".$id;
+	$sql="UPDATE eztv_movie SET name = '$movie_edit_name' ,api = '$movie_edit_api' where id =".$id;
 	$db->mQuery($sql);
 }
 
 if(isset($_GET['delete'])){
 	$id=$_GET['id'];
-	$sql="delete from qhtv_movie where id =".$id;
+	$sql="delete from eztv_movie where id =".$id;
 	$db->mQuery($sql);
 }
 
 if(isset($_GET['toggle'])){
 	$id=$_GET['id'];
 	$state=$_GET['toggle'];
-	$sql="update qhtv_movie set state = ".$state." where id =".$id;
+	$sql="update eztv_movie set state = ".$state." where id =".$id;
 	$db->mQuery($sql);
 }
 
 
 
 //getTable
-$result=$db->mQuery("select * from qhtv_movie");
+$result=$db->mQuery("select * from eztv_movie");
 $tableBody="";
 $index_table=0;
 while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)){
@@ -83,7 +83,7 @@ function edit(arg,arg1,arg2) {
 								
 							
 							接口名称：
-							<input name="movie_name" style="width: 30%;display: inline;margin-right: 10px;" type="text" class="form-control" placeholder="接口地址啦...">
+							<input name="movie_name" style="width: 30%;display: inline;margin-right: 10px;" type="text" class="form-control" placeholder="接口地址啦...比如EZ视屏网">
 							接口地址：
 							<input name="movie_api" style="width: 40%;display: inline;" type="text" class="form-control" placeholder="http://..cms">
 							<div style="margin-top: 10px;">
@@ -127,7 +127,7 @@ function edit(arg,arg1,arg2) {
             <form method="post">
             	<input id="sig_id" name="movie_edit_id" style="display: none;" >
             	接口名称：
-							<input id="sig_name" name="movie_edit_name" style="width: 30%;display: inline;margin-right: 10px;" type="text" class="form-control" placeholder="接口地址啦...">
+							<input id="sig_name" name="movie_edit_name" style="width: 30%;display: inline;margin-right: 10px;" type="text" class="form-control" placeholder="接口地址啦...比如EZ视屏网">
 							接口地址：
 							<input id="sig_api" name="movie_edit_api" style="width: 40%;display: inline;" type="text" class="form-control" placeholder="http://..cms">
            

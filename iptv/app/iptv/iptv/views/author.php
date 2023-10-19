@@ -102,7 +102,7 @@
 										<tbody>
 											<form method="POST">
 												<?php
-												$result=$db->mQuery("select id,name from iptv_meals where status=1 ORDER BY id ASC");
+												$result=$db->mQuery("select id,name from luo2888_meals where status=1 ORDER BY id ASC");
 												if (!mysqli_num_rows($result)) {
 													mysqli_free_result($result);
 													$meal_select = "<select class=\"btn btn-sm btn-default dropdown-toggle\" name=\"meal_s[]\"><option value=\"1000\" selected>默认/测试套餐</select>";
@@ -116,7 +116,7 @@
 													mysqli_free_result($result);
 												} 
 												$recStart=$recCounts*($page-1);
-												$result=$db->mQuery("select name,mac,deviceid,model,ip,region,lasttime,exp,status from iptv_users where status<1 $searchparam order by $order limit $recStart,$recCounts");
+												$result=$db->mQuery("select name,mac,deviceid,model,ip,region,lasttime,exp,status from luo2888_users where status<1 $searchparam order by $order limit $recStart,$recCounts");
 												while($row=mysqli_fetch_array($result)){
 													$lasttime=date("Y-m-d H:i:s",$row['lasttime']);
 													$name=$row['name'];

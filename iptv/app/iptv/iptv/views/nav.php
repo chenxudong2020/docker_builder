@@ -1,10 +1,10 @@
 <meta charset="UTF-8"> <!-- for HTML5 -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>群晖电视</title>
+<title>EZ视频</title>
 <link rel="icon" href="favicon.ico" type="image/ico">
  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-<meta name="keywords" content="群晖电视">
-<meta name="description" content="群晖电视">
+<meta name="keywords" content="EZ视频">
+<meta name="description" content="EZ视频">
 <meta name="author" content="yinqi">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/materialdesignicons.min.css" rel="stylesheet">
@@ -22,7 +22,7 @@
 <!-- 固定列所需的js和css(bootstrap-table-fixed-columns) -->
 <link rel="stylesheet" type="text/css" href="./css/bootstrap-table-fixed-columns.css">
 <script src="./js/bootstrap-table-fixed-columns.js"></script>
-<title>群晖电视</title>
+<title>EZ视频</title>
 <?php
 include_once "conn.php";
 include_once "val.php";
@@ -220,7 +220,7 @@ a#topnav_current { color: #fff }
         
         <nav class="sidebar-main">
           <ul class="nav nav-drawer">
-            <li class="nav-item active"> <a href="sysadmin.php"><i class="mdi mdi-home"></i> 群晖电视后台</a> </li>
+            <li class="nav-item active"> <a href="sysadmin.php"><i class="mdi mdi-home"></i> EZ后台</a> </li>
             <li class="nav-item nav-item-has-subnav">
               <a href="javascript:void(0)"><i class="mdi mdi-palette"></i> 系统管理</a>
               <ul class="nav nav-subnav">
@@ -272,7 +272,7 @@ a#topnav_current { color: #fff }
         </nav>
         
         <div class="sidebar-footer">
-          <p class="copyright">你好2021 </br> 群晖电视 By：QQ316122141</br>QQ群：762319488</p>
+          <p class="copyright">EZ视频</p>
         </div>
       </div>
       

@@ -22,7 +22,7 @@
 									</thead>
 									<tbody>
 										<?php
-											$meals=$db->mQuery("select id,name from iptv_meals");
+											$meals=$db->mQuery("select id,name from luo2888_meals");
 											if (mysqli_num_rows($meals)) {
 												$meals_arr = [];
 												while ($row = mysqli_fetch_array($meals, MYSQLI_ASSOC)) {
@@ -31,7 +31,7 @@
 												unset($row);
 												mysqli_free_result($meals);
 											} 
-											$result=$db->mQuery("SELECT userid,order_id,meal,days,status from iptv_payment");
+											$result=$db->mQuery("SELECT userid,order_id,meal,days,status from luo2888_payment");
 											while ($row=mysqli_fetch_array($result)) {
 												$userid=$row['userid'];
 												$order_id=$row['order_id'];

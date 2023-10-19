@@ -9,16 +9,16 @@ $db = Config::GetIntance();
 
 if (isset($_GET['id'])) {
     $androidid = $_GET['id'];
-    $mealid = $db->mGet("iptv_users", "meal", "where deviceid='$androidid'");
-    $mealname = $db->mGet("iptv_meals", "name", "where id='$mealid'");
+    $mealid = $db->mGet("luo2888_users", "meal", "where deviceid='$androidid'");
+    $mealname = $db->mGet("luo2888_meals", "name", "where id='$mealid'");
     echo $mealname;
 } 
 
 if (isset($_POST['login'])) {
     $GetIP = new GetIP();
     $ip = $GetIP->getuserip();
-    $num = $db->mGet("iptv_users", "count(*)", "where ip='$ip'");
-    if ($num >= $db->mGet("iptv_config", "value", "where name='max_sameip_user'")) {
+    $num = $db->mGet("luo2888_users", "count(*)", "where ip='$ip'");
+    if ($num >= $db->mGet("luo2888_config", "value", "where name='max_sameip_user'")) {
         header('HTTP/1.1 403 Forbidden');
         exit();
     } else {
@@ -35,7 +35,7 @@ if (isset($_POST['login'])) {
 	        $region = 'localhost'; 
         }
         if (empty($region)) {
-            $myurl = 'http://' . $_SERVER['HTTP_HOST'] . '/iptv/iptv';
+            $myurl = 'http://' . $_SERVER['HTTP_HOST'];
             $json = file_get_contents("$myurl/getIpInfo.php?ip=$ip");
             $obj = json_decode($json);
             $region = $obj->data->region . $obj->data->city . $obj->data->isp;
@@ -43,7 +43,7 @@ if (isset($_POST['login'])) {
         function genName() {
             global $db;
             $name = rand(1000, 999999);
-            $result = $db->mGet("iptv_users", "*", "where name=$name");
+            $result = $db->mGet("luo2888_users", "*", "where name=$name");
             if (!$result) {
                 unset($result);
                 return $name;
@@ -62,7 +62,7 @@ if (isset($_POST['login'])) {
 	        exit();
 	    }
         // mac是否匹配
-        if ($row = $db->mCheckRow("iptv_users", "name,status,exp,deviceid,mac,model,meal", "where mac='$mac'")) {
+        if ($row = $db->mCheckRow("luo2888_users", "name,status,exp,deviceid,mac,model,meal", "where mac='$mac'")) {
             // 匹配成功
             $days = ceil(($row['exp'] - time()) / 86400);
             $status = intval($row['status']);
@@ -77,14 +77,14 @@ if (isset($_POST['login'])) {
                 $status = 1;
             } 
             if ($deviceid != $androidid){
-            	$db->mSet("iptv_users", "deviceid='$androidid',idchange=idchange+1", "where mac='$mac'"); 
+            	$db->mSet("luo2888_users", "deviceid='$androidid',idchange=idchange+1", "where mac='$mac'"); 
             }
             // 更新位置，登陆时间
-            $db->mSet("iptv_users", "region='$region',ip='$ip',lasttime=$nowtime", "where mac='$mac'"); 
+            $db->mSet("luo2888_users", "region='$region',ip='$ip',lasttime=$nowtime", "where mac='$mac'"); 
         } else {
             // 用户验证失败，识别用户信息存入后台
             $name = genName();
-            $days = $db->mGet("iptv_config", "value", "where name='trialdays'");
+            $days = $db->mGet("luo2888_config", "value", "where name='trialdays'");
             if (empty($days)) {
                 $days = 0;
             } 
@@ -102,7 +102,7 @@ if (isset($_POST['login'])) {
             $mealid = 1000;
             $status2 = $status;
             $exp = strtotime(date("Y-m-d"), time()) + 86400 * $days;
-            $db->mInt("iptv_users", "name,mac,deviceid,model,exp,ip,status,region,lasttime,marks", "$name,'$mac','$androidid','$model',$exp,'$ip',$status,'$region',$nowtime,'$marks'");
+            $db->mInt("luo2888_users", "name,mac,deviceid,model,exp,ip,status,region,lasttime,marks", "$name,'$mac','$androidid','$model',$exp,'$ip',$status,'$region',$nowtime,'$marks'");
             if ($days > 0 && $status == -1) {
                 $status = 1;
             } else if ($status2 == -999) {
@@ -111,26 +111,26 @@ if (isset($_POST['login'])) {
         } 
         unset($row);
 
-        $app_appname = $db->mGet("iptv_config", "value", "where name='app_appname'");
-        $dataver = $db->mGet("iptv_config", "value", "where name='dataver'");
-        $appUrl = $db->mGet("iptv_config", "value", "where name='appurl'");
-        $appver = $db->mGet("iptv_config", "value", "where name='appver'");
-        $setver = $db->mGet("iptv_config", "value", "where name='setver'");
-        $adinfo = $db->mGet("iptv_config", "value", "where name='adinfo'");
-        $adtext = $db->mGet("iptv_config", "value", "where name='adtext'");
-        $showwea = $db->mGet("iptv_config", "value", "where name='showwea'");
-        $showtime = $db->mGet("iptv_config", "value", "where name='showtime'");
-        $showinterval = $db->mGet("iptv_config", "value", "where name='showinterval'");
-        $decoder = $db->mGet("iptv_config", "value", "where name='decoder'");
-        $buffTimeOut = $db->mGet("iptv_config", "value", "where name='buffTimeOut'");
-        $needauthor = $db->mGet("iptv_config", "value", "where name='needauthor'");
-        $autoupdate = $db->mGet("iptv_config", "value", "where name='autoupdate'");
-        $randkey = $db->mGet("iptv_config", "value", "where name='randkey'");
-        $updateinterval = $db->mGet("iptv_config", "value", "where name='updateinterval'");
-        $tiploading = $db->mGet("iptv_config", "value", "where name='tiploading'");
-        $tipusernoreg = $db->mGet("iptv_config", "value", "where name='tipusernoreg'");
-        $tipuserexpired = '当前账号' . $name . '，' . $db->mGet("iptv_config", "value", "where name='tipuserexpired'");
-        $tipuserforbidden = '当前账号' . $name . '，' . $db->mGet("iptv_config", "value", "where name='tipuserforbidden'");
+        $app_appname = $db->mGet("luo2888_config", "value", "where name='app_appname'");
+        $dataver = $db->mGet("luo2888_config", "value", "where name='dataver'");
+        $appUrl = $db->mGet("luo2888_config", "value", "where name='appurl'");
+        $appver = $db->mGet("luo2888_config", "value", "where name='appver'");
+        $setver = $db->mGet("luo2888_config", "value", "where name='setver'");
+        $adinfo = $db->mGet("luo2888_config", "value", "where name='adinfo'");
+        $adtext = $db->mGet("luo2888_config", "value", "where name='adtext'");
+        $showwea = $db->mGet("luo2888_config", "value", "where name='showwea'");
+        $showtime = $db->mGet("luo2888_config", "value", "where name='showtime'");
+        $showinterval = $db->mGet("luo2888_config", "value", "where name='showinterval'");
+        $decoder = $db->mGet("luo2888_config", "value", "where name='decoder'");
+        $buffTimeOut = $db->mGet("luo2888_config", "value", "where name='buffTimeOut'");
+        $needauthor = $db->mGet("luo2888_config", "value", "where name='needauthor'");
+        $autoupdate = $db->mGet("luo2888_config", "value", "where name='autoupdate'");
+        $randkey = $db->mGet("luo2888_config", "value", "where name='randkey'");
+        $updateinterval = $db->mGet("luo2888_config", "value", "where name='updateinterval'");
+        $tiploading = $db->mGet("luo2888_config", "value", "where name='tiploading'");
+        $tipusernoreg = $db->mGet("luo2888_config", "value", "where name='tipusernoreg'");
+        $tipuserexpired = '当前账号' . $name . '，' . $db->mGet("luo2888_config", "value", "where name='tipuserexpired'");
+        $tipuserforbidden = '当前账号' . $name . '，' . $db->mGet("luo2888_config", "value", "where name='tipuserforbidden'");
         $url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER["REQUEST_URI"];
         $dataurl = dirname($url) . "/data.php";
 
@@ -138,12 +138,12 @@ if (isset($_POST['login'])) {
             $status = 999;
         } 
 
-        $mealname = $db->mGet("iptv_meals", "name", "where id='$mealid'");
+        $mealname = $db->mGet("luo2888_meals", "name", "where id='$mealid'");
         $adtext = '尊敬的用户，欢迎使用' . $app_appname . '，当前套餐：' . $mealname . '。' . $adtext;
 
         if ($showwea == 1) {
-            $weaapi_id = $db->mGet("iptv_config", "value", "where name='weaapi_id'");
-            $weaapi_key = $db->mGet("iptv_config", "value", "where name='weaapi_key'");
+            $weaapi_id = $db->mGet("luo2888_config", "value", "where name='weaapi_id'");
+            $weaapi_key = $db->mGet("luo2888_config", "value", "where name='weaapi_key'");
             $url = "https://www.tianqiapi.com/api?version=v6&appid=$weaapi_id&appsecret=$weaapi_key&ip=$ip";
             $weajson = file_get_contents($url);
             $obj = json_decode($weajson);
@@ -161,7 +161,7 @@ if (isset($_POST['login'])) {
 		
 		$movieengine = '{
 			"model": [';
-		$result=$db->mQuery("select * from qhtv_movie");
+		$result=$db->mQuery("select * from eztv_movie");
 		while($row=mysqli_fetch_array($result,MYSQLI_ASSOC)){
 			if($row["state"]==1||$row["state"]=='1'){
 				$movieengine.='{"name": "'.$row["name"].'","api": "'.$row["api"].'"}';
@@ -174,7 +174,7 @@ if (isset($_POST['login'])) {
 		
 		
 
-        $result = $db->mQuery("SELECT name from iptv_category where enable=1 and type='province' order by id");
+        $result = $db->mQuery("SELECT name from luo2888_category where enable=1 and type='province' order by id");
         while ($row = mysqli_fetch_array($result)) {
             $arrprov[] = $row[0];
         } 

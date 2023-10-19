@@ -44,9 +44,4 @@ jobs:
            imageName=iptv
            docker tag $imageName registry.cn-hangzhou.aliyuncs.com/dubux/$imageName:latest
            docker push registry.cn-hangzhou.aliyuncs.com/dubux/$imageName
-           docker save -o /tmp/iptv.tar $imageName:latest
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: iptv
-          path: /tmp/iptv.tar
+

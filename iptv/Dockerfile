@@ -14,17 +14,23 @@ RUN ln -s /usr/local/app/iptv /var/www/html/iptv
 
 
 
+#安装mariadb数据库
+RUN apt update && apt-get -y install mariadb-server net-tools vim \
+    libpng-dev \
+    libjpeg-dev \
+    libpq-dev \
+    libxml2-dev
+
 
 # 安装PHP扩展
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN docker-php-ext-install mysqli pdo pdo_mysql gd opcache sockets phar openssl intl curl zlib
 
 # 将Apache的rewrite模块启用
 RUN a2enmod rewrite
  
 
 
-#安装mariadb数据库
-RUN apt update && apt-get -y install mariadb-server net-tools vim
+
 
 #设置环境变量，便于管理
 ENV MARIADB_USER iptv

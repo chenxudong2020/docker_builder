@@ -59,7 +59,7 @@ CREATE TABLE `luo2888_admin` (
 --
 
 INSERT INTO `luo2888_admin` (`id`, `name`, `psw`, `showcounts`, `author`, `useradmin`, `ipcheck`, `epgadmin`, `mealsadmin`, `channeladmin`) VALUES
-(1, 'admin', 'a3fe70fac15e42f8e352786025ba0c73', 20, 1, 1, 1, 1, 1, 1);
+(1, 'admin', '980784867833e9c6e8cf5816874bb08c', 20, 1, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 

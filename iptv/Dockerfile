@@ -1,4 +1,4 @@
-FROM ubuntu/apache2
+FROM php:7.4-apache AS base
 
 #ADD app/sources.list /etc/apt/ 
 
@@ -15,8 +15,10 @@ RUN ln -s /usr/local/app/iptv /var/www/html/iptv
 
 #安装mariadb数据库
 RUN apt update && apt-get -y install mariadb-server net-tools vim \
-    php \
-    php-mysql
+    libpng-dev \
+    libjpeg-dev \
+    libpq-dev \
+    libxml2-dev
 
 
 # 安装PHP扩展

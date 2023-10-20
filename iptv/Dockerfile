@@ -17,7 +17,9 @@ RUN apt update && apt-get -y install mariadb-server net-tools vim \
     libpng-dev \
     libjpeg-dev \
     libpq-dev \
-    libxml2-dev
+    libxml2-dev\
+    zlib1g-dev \
+    libzip-dev
 
 
 # 安装PHP扩展

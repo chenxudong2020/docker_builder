@@ -81,7 +81,7 @@
 												<div class="input-group-btn">
 													<select class="btn btn-sm btn-default dropdown-toggle" name="thirdlist">
 														<option selected="selected" value="">请选列表</option>
-															<?php $result=$db->mQuery("SELECT name from luo2888_category where type='$categorytype' and url is not null");
+															<?php $result=$db->mQuery("SELECT name from iptv_category where type='$categorytype' and url is not null");
 															while ($row=mysqli_fetch_array($result)) {
 																$listname=$row['name'];
 																echo "<option>$listname</option>";
@@ -175,9 +175,9 @@
 									<label class="btn-block">分类列表</label>
 									<?php
 										if ($categorytype=='vip'){
-											$func = "SELECT name,psw,enable FROM luo2888_category where type='$categorytype' order by id";
+											$func = "SELECT name,psw,enable FROM iptv_category where type='$categorytype' order by id";
 										}else{
-											$func = "SELECT name,psw,enable FROM luo2888_category where type='$categorytype' or type='thirdlist' order by id";
+											$func = "SELECT name,psw,enable FROM iptv_category where type='$categorytype' or type='thirdlist' order by id";
 										}
 										$result = $db->mQuery($func);
 										$index=0;

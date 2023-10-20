@@ -1,14 +1,13 @@
 <?php
-//decode by http://www.m i k n i o.com
 ?><!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <title>IPTV管理系统</title>
 <link rel="icon" href="views/images/favicon.ico" type="image/ico">
-<meta name="keywords" content="IPTV管理系统-站 / 长 / 图 / 库（dkewl.com）" />
-<meta name="description" content="IPTV管理系统-站 / 长 / 图 / 库（dkewl.com）" />
-<meta name="author" content="luo2888" />
+<meta name="keywords" content="IPTV管理系统" />
+<meta name="description" content="IPTV管理系统" />
+<meta name="author" content="iptv" />
 <meta name="renderer" content="webkit" />
 <link href="views/css/bootstrap.min.css" rel="stylesheet">
 <link href="views/css/materialdesignicons.min.css" rel="stylesheet">

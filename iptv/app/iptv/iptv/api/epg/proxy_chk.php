@@ -1,20 +1,20 @@
 <?php
 chks();
 function chks(){
-	$utoken=!empty($_SERVER["HTTP_USER_TOKEN"])?$_SERVER["HTTP_USER_TOKEN"]:msg(200,"1000_EPG接口验证失败,请与管理员联系!如有疑问请加QQ：87351183");
-	$uid=!empty($_SERVER["HTTP_USER_ID"])?$_SERVER["HTTP_USER_ID"]:msg(200,"1001_EPG接口验证失败,请与管理员联系!如有疑问请加QQ：87351183");
-	$uip=!empty($_SERVER["HTTP_USER_IP"])?$_SERVER["HTTP_USER_IP"]:msg(200,"1002_EPG接口验证失败,请与管理员联系!如有疑问请加QQ：87351183");
+	$utoken=!empty($_SERVER["HTTP_USER_TOKEN"])?$_SERVER["HTTP_USER_TOKEN"]:msg(200,"1000_EPG接口验证失败,请与管理员联系!如有疑问请加QQ：303634685");
+	$uid=!empty($_SERVER["HTTP_USER_ID"])?$_SERVER["HTTP_USER_ID"]:msg(200,"1001_EPG接口验证失败,请与管理员联系!如有疑问请加QQ：303634685");
+	$uip=!empty($_SERVER["HTTP_USER_IP"])?$_SERVER["HTTP_USER_IP"]:msg(200,"1002_EPG接口验证失败,请与管理员联系!如有疑问请加QQ：303634685");
 	$u=explode("|",str_de($utoken));
 	if(count($u)<4){
 		unset($utoken,$uid,$uip,$u);
-		msg(200,"1003_EPG接口验证失败,请与管理员联系!如有疑问请加QQ：87351183");
+		msg(200,"1003_EPG接口验证失败,请与管理员联系!如有疑问请加QQ：303634685");
 	}
 	if(hex_de($uid) != $u[1]){
 		unset($utoken,$uid,$uip,$u);
-		msg(200,"1004_EPG接口验证失败,请与管理员联系!如有疑问请加QQ：87351183");
+		msg(200,"1004_EPG接口验证失败,请与管理员联系!如有疑问请加QQ：303634685");
 	}elseif(hex_de($uip) != $u[0]){
 		unset($utoken,$uid,$uip,$u);
-		msg(200,"1005_EPG接口验证失败,请与管理员联系!如有疑问请加QQ：87351183");
+		msg(200,"1005_EPG接口验证失败,请与管理员联系!如有疑问请加QQ：303634685");
 	}
 }
 function hex_de($str){
@@ -58,7 +58,7 @@ function msg($code,$msg){
 		header('content-type:application/json;charset=utf-8');
 		$arr=[];
 		$datas=[];
-		$datas["name"]="您现在是盗用EPG接口如有疑问请加QQ：87351183";
+		$datas["name"]="您现在是盗用EPG接口如有疑问请加QQ：303634685";
 		$datas["starttime"]=date("H:i",time());
 		$arr["code"]=$code;
 		$arr["msg"]=$msg;

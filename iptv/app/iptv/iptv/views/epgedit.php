@@ -7,13 +7,13 @@ if ($_GET["act"] == "edits") {
     $epg_name = $epg . '-' . $name;
     $ids = implode(",", array_unique($_POST['ids']));
     $remarks = $_POST["remarks"];
-    $db->mSet("luo2888_epg", "name='" . $epg_name . "',content='" . $ids . "',remarks='" . $remarks . "'", "where id=" . $id);
+    $db->mSet("iptv_epg", "name='" . $epg_name . "',content='" . $ids . "',remarks='" . $remarks . "'", "where id=" . $id);
     exit("<script>$.alert({title: '成功',content: 'EPG " . $epg_name . " 修改成功！',type: 'green',buttons: {confirm: {text: '确定',btnClass: 'btn-primary',action: function(){self.location='epgadmin.php';}}}});</script>");
 } 
 if ($_GET["act"]=="edit") { 
 	$id=!empty($_GET["id"])?$_GET["id"]:exit("<script>$.alert({title: '错误',content: '参数为空！',type: 'red',buttons: {confirm: {text: '确定',btnClass: 'btn-primary',action: function(){self.location='epgadmin.php';}}}});</script>");
 	//检查EPG是否存在
-	$result=$db->mQuery("select name,content,remarks from luo2888_epg where id=".$id);
+	$result=$db->mQuery("select name,content,remarks from iptv_epg where id=".$id);
 	if (!mysqli_num_rows($result)) {
 		mysqli_free_result($result);
 		exit("<script>$.alert({title: '错误',content: 'EPG不存在！',type: 'red',buttons: {confirm: {text: '确定',btnClass: 'btn-primary',action: function(){self.location=document.referrer;}}}});</script>");
@@ -40,7 +40,7 @@ if ($_GET["act"]=="edit") {
 	unset($row);
 	mysqli_free_result($result);
 	//获取频道内容
-	$result=$db->mQuery("SELECT distinct name FROM luo2888_channels order by category,id");
+	$result=$db->mQuery("SELECT distinct name FROM iptv_channels order by category,id");
 	if (!mysqli_num_rows($result)) {
 		mysqli_free_result($result);
 		exit("<script>$.alert({title: '错误',content: '对不起，无法生成频道信息！',type: 'red',buttons: {confirm: {text: '确定',btnClass: 'btn-primary',action: function(){self.location=document.referrer;}}}});</script>");
@@ -73,7 +73,7 @@ $("#listctr").hide();
 							<?=$epgopt?>
 						</select>&nbsp;&nbsp;
 						<input class="form-control" type="text" name="name" style="width: 125px;" placeholder="EPG名称" value="<?php echo $epgname;?>">
-						<input class="form-control" type="text" name="remarks" style="width: 185px;" placeholder="多个备注请用 | 分隔开" value="<?php echo $remarks;?>">
+						<input class="form-control" type="text" name="remarks" style="width: 125px;" placeholder="备注" value="<?php echo $remarks;?>">
 						<input type="hidden" name="id" style="width: 0px;" value="<?php echo $id;?>">
 						<button class="btn btn-default"  type="submit" name="bindchannel" onclick="return confirm('自动绑定频道列表后,如果不准确请手动修改!!!')">搜索绑定频道</button>
 						<button class="btn btn-default"  type="submit" name="clearbind" onclick="return confirm('确定要清空绑定的频道列表吗？')">清空绑定</button>

@@ -1,15 +1,14 @@
 <?php
-//decode by w ww.mi knio.c om
 require_once "../config.php";require_once "../apps/usercheck.php"; ?>
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=0.92, maximum-scale=1, user-scalable=no" />
-<meta name="keywords" content="IPTV,后台管理系统 - 站 / 长 / 图 / 库（dkewl.com）" />
-<meta name="description" content="IPTV后台管理系统 - 站 / 长 / 图 / 库（dkewl.com）" />
-<meta name="author" content="luo2888" />
+<meta name="keywords" content="IPTV,后台管理系统" />
+<meta name="description" content="IPTV后台管理系统" />
+<meta name="author" content="iptv" />
 <meta name="renderer" content="webkit" />
-<title>IPTV后台管理系统 - 站 / 长 / 图 / 库（dkewl.com）</title>
+<title>IPTV后台管理系统</title>
 <link rel="icon" href="images/favicon.ico" type="image/ico">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/materialdesignicons.min.css" rel="stylesheet">
@@ -90,7 +89,7 @@ require_once "../config.php";require_once "../apps/usercheck.php"; ?>
 						<li class="nav-item <?php echo $ordersadmin ?>"> <a href="ordersadmin.php"><i class="mdi mdi-wallet-giftcard"></i>订单</a></li>
 						<li class="nav-item <?php echo $epgadmin ?>"> <a href="epgadmin.php"><i class="mdi mdi-television-guide"></i>EPG</a> </li>
 						<li class="nav-item nav-item-has-subnav">
-              <a href="movie.php"><i class="mdi mdi-language-javascript"></i>点播管理</a>
+             <!-- <a href="movie.php"><i class="mdi mdi-language-javascript"></i>点播管理</a>-->
             </li>
 						<li class="nav-item nav-item-has-subnav channeladmin">
 							<a href="javascript:void(0)"><i class="mdi mdi-television-classic"></i>频道列表</a>
@@ -119,8 +118,8 @@ require_once "../config.php";require_once "../apps/usercheck.php"; ?>
 				
 				<div class="sidebar-footer">
 					<p align="center"><?php echo date("Y-m-d H:i",time()); ?></p>
-					<p align="center">源码来自刀客源码（dkewl.com）
-					<p class="copyright">Copyright &copy; 2020. <a target="_blank" href="//www.dkewl.com">dkewl.com</a> All rights reserved. </p>
+					<p align="center">群晖讨论QQ群：<a target="_blank" >762319488</a></p>
+					<p class="copyright">Copyright &copy; 2020. <a target="_blank" href="http://bobohome.f3322.net:8880/sspks/">裙下孤魂</a> All rights reserved. </p>
 				</div>
 			</div>
 		</aside>

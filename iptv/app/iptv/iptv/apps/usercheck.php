@@ -9,7 +9,7 @@ if (isset($_SESSION['user'])) {
     exit();
 } 
 
-if ($row = $db->mGetRow("luo2888_admin", "*", "where name='$user'")) {
+if ($row = $db->mGetRow("iptv_admin", "*", "where name='$user'")) {
     $psw = $row['psw'];
 } else {
     $psw = '';

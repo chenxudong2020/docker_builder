@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2022-05-30 17:03:01
--- 服务器版本： 5.7.26
--- PHP 版本： 5.6.9
+-- 生成日期： 2021-03-20 15:40:29
+-- 服务器版本： 10.3.21-MariaDB
+-- PHP 版本： 7.2.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,55 +19,55 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 数据库： `zztuku_com`
+-- 数据库： `iptv`
 --
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `eztv_movie`
+-- 表的结构 `qhtv_movie`
 --
 
-CREATE TABLE `eztv_movie` (
+CREATE TABLE `qhtv_movie` (
   `id` int(11) NOT NULL,
   `name` text NOT NULL,
-  `api` text,
+  `api` text DEFAULT NULL,
   `state` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `luo2888_admin`
+-- 表的结构 `iptv_admin`
 --
 
-CREATE TABLE `luo2888_admin` (
+CREATE TABLE `iptv_admin` (
   `id` int(11) NOT NULL,
   `name` varchar(16) NOT NULL,
   `psw` varchar(32) NOT NULL,
-  `showcounts` tinyint(1) NOT NULL DEFAULT '20',
-  `author` tinyint(1) NOT NULL DEFAULT '0',
-  `useradmin` tinyint(1) NOT NULL DEFAULT '0',
-  `ipcheck` tinyint(1) NOT NULL DEFAULT '0',
-  `epgadmin` tinyint(1) NOT NULL DEFAULT '0',
-  `mealsadmin` tinyint(1) NOT NULL DEFAULT '0',
-  `channeladmin` tinyint(1) NOT NULL DEFAULT '0'
+  `showcounts` tinyint(1) NOT NULL DEFAULT 20,
+  `author` tinyint(1) NOT NULL DEFAULT 0,
+  `useradmin` tinyint(1) NOT NULL DEFAULT 0,
+  `ipcheck` tinyint(1) NOT NULL DEFAULT 0,
+  `epgadmin` tinyint(1) NOT NULL DEFAULT 0,
+  `mealsadmin` tinyint(1) NOT NULL DEFAULT 0,
+  `channeladmin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `luo2888_admin`
+-- 转存表中的数据 `iptv_admin`
 --
 
-INSERT INTO `luo2888_admin` (`id`, `name`, `psw`, `showcounts`, `author`, `useradmin`, `ipcheck`, `epgadmin`, `mealsadmin`, `channeladmin`) VALUES
+INSERT INTO `iptv_admin` (`id`, `name`, `psw`, `showcounts`, `author`, `useradmin`, `ipcheck`, `epgadmin`, `mealsadmin`, `channeladmin`) VALUES
 (1, 'admin', '980784867833e9c6e8cf5816874bb08c', 20, 1, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `luo2888_adminrec`
+-- 表的结构 `iptv_adminrec`
 --
 
-CREATE TABLE `luo2888_adminrec` (
+CREATE TABLE `iptv_adminrec` (
   `id` int(11) NOT NULL,
   `name` varchar(16) NOT NULL,
   `ip` varchar(16) NOT NULL,
@@ -76,105 +76,65 @@ CREATE TABLE `luo2888_adminrec` (
   `func` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- 转存表中的数据 `luo2888_adminrec`
---
-
-INSERT INTO `luo2888_adminrec` (`id`, `name`, `ip`, `loc`, `time`, `func`) VALUES
-(1, 'admin', '36.113.112.127', '中国江苏，电信', '2021-06-26 21:34:55', '输入错误密码'),
-(2, 'admin', '36.113.112.127', '中国江苏，电信', '2021-06-26 21:35:09', '用户登入'),
-(3, 'admin', '36.113.101.41', '江苏南京，电信', '2021-06-30 21:25:59', '用户登入'),
-(4, 'admin', '125.110.206.161', '浙江温州，电信', '2021-07-01 07:09:53', '输入错误密码'),
-(5, 'admin', '125.110.206.161', '浙江温州，电信', '2021-07-01 07:10:10', '输入错误密码'),
-(6, 'admin', '125.110.206.161', '浙江温州，电信', '2021-07-01 07:10:23', '用户登入'),
-(7, 'admin', '125.110.232.167', '浙江温州，电信', '2021-07-11 10:17:48', '输入错误密码'),
-(8, 'admin', '125.110.232.167', '浙江温州，电信', '2021-07-11 10:18:02', '输入错误密码'),
-(9, 'admin', '125.110.232.167', '浙江温州，电信', '2021-07-11 10:18:28', '用户登入'),
-(10, 'admin', '60.181.28.60', '浙江温州，电信', '2021-10-08 19:26:57', '输入错误密码'),
-(11, 'admin', '60.181.28.60', '浙江温州，电信', '2021-10-08 19:27:19', '输入错误密码'),
-(12, 'admin', '60.181.28.60', '浙江温州，电信', '2021-10-08 19:27:30', '用户登入'),
-(13, 'admin', '60.181.28.60', '浙江温州，电信', '2021-10-08 19:47:19', '用户登入'),
-(14, 'admin', '60.181.28.60', '浙江温州，电信', '2021-10-08 19:53:29', '用户登入'),
-(15, 'admin', '122.97.175.4', '江苏南京，联通/基站WiFi', '2021-10-08 20:36:20', '输入错误密码'),
-(16, 'admin', '122.97.175.4', '江苏南京，联通/基站WiFi', '2021-10-08 20:36:36', '用户登入'),
-(17, 'admin', '60.181.30.99', '浙江温州，电信', '2021-10-09 21:59:13', '用户登入'),
-(18, 'admin', '60.181.30.99', '浙江温州，电信', '2021-10-11 07:27:35', '用户登入'),
-(19, 'admin', '60.181.30.99', '浙江温州，电信', '2021-10-11 12:43:29', '用户登入'),
-(20, 'admin', '60.181.30.99', '浙江温州，电信', '2021-10-11 13:05:37', '用户登入'),
-(21, 'admin', '60.181.30.99', '浙江温州，电信', '2021-10-11 20:58:37', '用户登入'),
-(22, 'admin', '60.181.30.99', '浙江温州，电信', '2021-10-11 21:31:31', '用户登入'),
-(23, 'admin', '60.181.30.99', '浙江温州，电信', '2021-10-12 06:48:47', '用户登入'),
-(24, 'admin', '60.181.30.99', '浙江温州，电信', '2021-10-12 20:53:21', '用户登入'),
-(25, 'admin', '118.254.192.139', '湖南衡阳，电信', '2022-05-21 21:09:35', '用户登入'),
-(26, 'pengyangtao', '223.147.198.77', '湖南省，电信', '2022-05-22 03:07:49', '尝试登陆'),
-(27, 'admin', '223.147.198.77', '湖南省，电信', '2022-05-22 03:08:01', '用户登入'),
-(28, 'admin', '118.254.193.109', '湖南省衡阳市，电信', '2022-05-23 16:09:14', '用户登入'),
-(29, 'admin', '118.254.193.109', '湖南省衡阳市，电信', '2022-05-23 16:09:21', '用户登入'),
-(30, 'admin', '118.254.193.109', '湖南省衡阳市，电信', '2022-05-23 21:06:15', '用户登入'),
-(31, 'admin', '127.0.0.1', 'localhost', '2022-05-30 16:54:50', '输入错误密码'),
-(32, 'admin', '127.0.0.1', 'localhost', '2022-05-30 16:56:49', '输入错误密码'),
-(33, 'admin', '127.0.0.1', 'localhost', '2022-05-30 16:57:45', '用户登入');
-
 -- --------------------------------------------------------
 
 --
--- 表的结构 `luo2888_category`
+-- 表的结构 `iptv_category`
 --
 
-CREATE TABLE `luo2888_category` (
+CREATE TABLE `iptv_category` (
   `id` int(11) NOT NULL,
   `name` varchar(16) NOT NULL,
-  `enable` tinyint(1) NOT NULL DEFAULT '1',
+  `enable` tinyint(1) NOT NULL DEFAULT 1,
   `psw` varchar(16) DEFAULT NULL,
   `type` varchar(16) NOT NULL DEFAULT 'default',
   `url` varchar(1024) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `luo2888_category`
+-- 转存表中的数据 `iptv_category`
 --
 
-INSERT INTO `luo2888_category` (`id`, `name`, `enable`, `psw`, `type`, `url`) VALUES
-(2, 'Sason', 1, '', 'default', 'https://raw.githubusercontent.com/sasoncheung/iptv/master/all.txt'),
-(57, '上海', 1, '', 'province', NULL),
-(64, '云南', 1, '', 'province', NULL),
-(68, '内蒙古', 1, '', 'province', NULL),
-(69, '北京', 1, '', 'province', NULL),
-(59, '吉林', 1, '', 'province', NULL),
-(76, '四川', 1, '', 'province', NULL),
-(56, '天津', 1, '', 'province', NULL),
-(1, '央视直播', 1, '', 'default', NULL),
-(67, '宁夏', 1, '', 'province', NULL),
-(53, '安徽', 1, '', 'province', NULL),
-(75, '山东', 1, '', 'province', NULL),
-(58, '山西', 1, '', 'province', NULL),
-(50, '广东', 1, '', 'province', NULL),
-(71, '广西', 1, '', 'province', NULL),
-(74, '新疆', 1, '', 'province', NULL),
-(60, '江苏', 1, '', 'province', NULL),
-(54, '江西', 1, '', 'province', NULL),
-(52, '河北', 1, '', 'province', NULL),
-(49, '河南', 1, '', 'province', NULL),
-(73, '浙江', 1, '', 'province', NULL),
-(62, '海南', 1, '', 'province', NULL),
-(51, '湖北', 1, '', 'province', NULL),
-(70, '湖南', 1, '', 'province', NULL),
-(72, '甘肃', 1, '', 'province', NULL),
-(61, '福建', 1, '', 'province', NULL),
-(66, '西藏', 1, '', 'province', NULL),
-(63, '贵州', 1, '', 'province', NULL),
-(48, '重庆', 1, '', 'province', NULL),
-(65, '陕西', 1, '', 'province', NULL),
-(248, '隐藏频道', 1, '12345', 'vip', NULL),
-(55, '黑龙江', 1, '', 'province', NULL);
+INSERT INTO `iptv_category` (`id`, `name`, `enable`, `psw`, `type`, `url`) VALUES
+(59, '上海', 1, '', 'province', NULL),
+(66, '云南', 1, '', 'province', NULL),
+(70, '内蒙古', 1, '', 'province', NULL),
+(71, '北京', 1, '', 'province', NULL),
+(61, '吉林', 1, '', 'province', NULL),
+(78, '四川', 1, '', 'province', NULL),
+(58, '天津', 1, '', 'province', NULL),
+(69, '宁夏', 1, '', 'province', NULL),
+(55, '安徽', 1, '', 'province', NULL),
+(77, '山东', 1, '', 'province', NULL),
+(60, '山西', 1, '', 'province', NULL),
+(52, '广东', 1, '', 'province', NULL),
+(73, '广西', 1, '', 'province', NULL),
+(76, '新疆', 1, '', 'province', NULL),
+(62, '江苏', 1, '', 'province', NULL),
+(56, '江西', 1, '', 'province', NULL),
+(54, '河北', 1, '', 'province', NULL),
+(51, '河南', 1, '', 'province', NULL),
+(75, '浙江', 1, '', 'province', NULL),
+(64, '海南', 1, '', 'province', NULL),
+(53, '湖北', 1, '', 'province', NULL),
+(72, '湖南', 1, '', 'province', NULL),
+(74, '甘肃', 1, '', 'province', NULL),
+(63, '福建', 1, '', 'province', NULL),
+(68, '西藏', 1, '', 'province', NULL),
+(1, '试看频道', 1, '', 'default', NULL),
+(65, '贵州', 1, '', 'province', NULL),
+(50, '重庆', 1, '', 'province', NULL),
+(67, '陕西', 1, '', 'province', NULL),
+(250, '隐藏频道', 1, '12345', 'vip', NULL),
+(57, '黑龙江', 1, '', 'province', NULL);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `luo2888_channels`
+-- 表的结构 `iptv_channels`
 --
 
-CREATE TABLE `luo2888_channels` (
+CREATE TABLE `iptv_channels` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `url` varchar(1024) DEFAULT NULL,
@@ -182,71 +142,70 @@ CREATE TABLE `luo2888_channels` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `luo2888_channels`
+-- 转存表中的数据 `iptv_channels`
 --
 
-INSERT INTO `luo2888_channels` (`id`, `name`, `url`, `category`) VALUES
-(2, '测试', 'http://127.0.0.1', '隐藏频道'),
-(756, 'CCTV-1', 'http://www.aik.cool', '央视直播');
+INSERT INTO `iptv_channels` (`id`, `name`, `url`, `category`) VALUES
+(2, '测试', 'http://127.0.0.1', '隐藏频道');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `luo2888_config`
+-- 表的结构 `iptv_config`
 --
 
-CREATE TABLE `luo2888_config` (
+CREATE TABLE `iptv_config` (
   `id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
-  `value` text
+  `value` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `luo2888_config`
+-- 转存表中的数据 `iptv_config`
 --
 
-INSERT INTO `luo2888_config` (`id`, `name`, `value`) VALUES
-(1, 'adinfo', ''),
-(2, 'adtext', '刀客源码网Test'),
+INSERT INTO `iptv_config` (`id`, `name`, `value`) VALUES
+(1, 'adinfo', '欢迎使用群晖电视。'),
+(2, 'adtext', '欢迎使用群晖电视。'),
 (3, 'appurl', 'https://127.0.0.1/tv.apk'),
 (4, 'appurl_sdk14', 'https://127.0.0.1/tv_sdk14.apk'),
 (5, 'appver', '1.0'),
 (6, 'appver_sdk14', '1.0'),
-(7, 'app_appname', '爱看直播'),
-(8, 'app_packagename', 'cn.aik.player'),
+(7, 'app_appname', '群晖电视'),
+(8, 'app_packagename', 'com.qhtv.powerful'),
 (9, 'app_sign', '12315'),
 (10, 'autoupdate', '1'),
 (11, 'buffTimeOut', '30'),
 (12, 'dataver', '1'),
-(13, 'decoder', '2'),
-(14, 'epg_api_chk', ''),
+(13, 'decoder', '1'),
+(14, 'epg_api_chk', '0'),
 (15, 'ipcount', '2'),
-(16, 'ipchk', '4'),
+(16, 'ipchk', '1'),
 (17, 'max_sameip_user', '5'),
 (18, 'needauthor', '1'),
 (19, 'randkey', '6d7caa26b6de5941e3b24fd7c573d0bb'),
 (20, 'secret_key', NULL),
-(21, 'setver', '6'),
+(21, 'setver', '0'),
 (22, 'showtime', '120'),
 (23, 'showinterval', '5'),
 (24, 'showwea', '0'),
-(25, 'tipepgerror_1000', '1000_EPG接口验证失败!'),
-(26, 'tipepgerror_1001', '1001_EPG接口验证失败系!'),
-(27, 'tipepgerror_1002', '1002_EPG接口验证失败!'),
-(28, 'tipepgerror_1003', '1003_EPG接口验证失败!'),
-(29, 'tipepgerror_1004', '1004_EPG接口验证失败!'),
-(30, 'tipepgerror_1005', '1005_EPG接口验证失败!'),
+(25, 'tipepgerror_1000', '1000_EPG接口验证失败!如有疑问请加QQ群：762319488'),
+(26, 'tipepgerror_1001', '1001_EPG接口验证失败系!如有疑问请加QQ群：762319488'),
+(27, 'tipepgerror_1002', '1002_EPG接口验证失败!如有疑问请加QQ群：762319488'),
+(28, 'tipepgerror_1003', '1003_EPG接口验证失败!如有疑问请加QQ群：762319488'),
+(29, 'tipepgerror_1004', '1004_EPG接口验证失败!如有疑问请加QQ群：762319488'),
+(30, 'tipepgerror_1005', '1005_EPG接口验证失败!如有疑问请加QQ群：762319488'),
 (31, 'tiploading', '正在连接，请稍后 ...'),
-(32, 'tipuserexpired', '账号已到期，请联系公众号客服续费。'),
-(33, 'tipuserforbidden', '账号已禁用，请联系公众号客服。'),
-(34, 'tipusernoreg', '未被授权使用，请联系公众号客服，@luo2888的工作室。'),
+(32, 'tipuserexpired', '账号已到期，请联系管理员。'),
+(33, 'tipuserforbidden', '账号已禁用，请联系管理员。'),
+(34, 'tipusernoreg', '未被授权使用，请联系管理员。'),
 (35, 'trialdays', '-999'),
 (36, 'updateinterval', '10'),
 (37, 'up_size', '0.0M'),
 (38, 'up_sets', '0'),
 (39, 'up_text', '1.公告测试'),
-(40, 'weaapi_id', '75825241'),
-(41, 'weaapi_key', 'FBrRgz4e'),
+(40, 'weaapi_id', NULL),
+(41, 'weaapi_key', NULL),
 (42, 'alipay_appid', NULL),
 (43, 'alipay_privatekey', NULL),
 (44, 'alipay_publickey', NULL);
@@ -254,59 +213,78 @@ INSERT INTO `luo2888_config` (`id`, `name`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `luo2888_epg`
+-- 表的结构 `iptv_epg`
 --
 
-CREATE TABLE `luo2888_epg` (
+CREATE TABLE `iptv_epg` (
   `id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
-  `content` text,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `content` text DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
   `remarks` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `luo2888_epg`
+-- 转存表中的数据 `iptv_epg`
 --
 
-INSERT INTO `luo2888_epg` (`id`, `name`, `content`, `status`, `remarks`) VALUES
-(31, '51zmt-广东卫视', '广东卫视', 1, ''),
-(32, '51zmt-湖南卫视', '湖南卫视', 1, '湖南卫视'),
-(33, '51zmt-CCTV1', 'CCTV-1', 1, ''),
-(34, '51zmt-CCTV2', 'CCTV-2', 1, ''),
-(35, '51zmt-CCTV3', 'CCTV-3', 1, ''),
-(36, '51zmt-CCTV4', 'CCTV-4', 1, '');
+INSERT INTO `iptv_epg` (`id`, `name`, `content`, `status`, `remarks`) VALUES
+(1, 'cntv-cctv1', 'CCTV-1', 1, NULL),
+(2, 'cntv-cctv2', 'CCTV-2', 1, NULL),
+(3, 'cntv-cctv3', 'CCTV-3', 1, NULL),
+(4, 'cntv-cctv4', 'CCTV-4', 1, NULL),
+(5, 'cntv-cctv5', 'CCTV-5', 1, NULL),
+(6, 'cntv-cctv5plus', 'CCTV-5Plus', 1, NULL),
+(7, 'cntv-cctv6', 'CCTV-6', 1, NULL),
+(8, 'cntv-cctv7', 'CCTV-7', 1, NULL),
+(9, 'cntv-cctv8', 'CCTV-8', 1, NULL),
+(10, 'cntv-cctvjilu', 'CCTV-9', 1, NULL),
+(11, 'cntv-cctv10', 'CCTV-10', 1, NULL),
+(12, 'cntv-cctv11', 'CCTV-11', 1, NULL),
+(13, 'cntv-cctv12', 'CCTV-12', 1, NULL),
+(14, 'cntv-cctv13', 'CCTV-13', 1, NULL),
+(15, 'cntv-cctvchild', 'CCTV-14', 1, NULL),
+(16, 'cntv-cctv15', 'CCTV-15', 1, NULL),
+(17, 'cntv-cctv17', 'CCTV-17', 1, NULL),
+(18, 'cntv-cetv1', 'CETV-1', 1, NULL),
+(19, 'cntv-cetv2', 'CETV-2', 1, NULL),
+(20, 'cntv-cetv3', 'CETV-3', 1, NULL),
+(21, 'cntv-cetv4', 'CETV-4', 1, NULL),
+(22, 'cntv-cctv4k', 'CCTV 4K超高清', 1, NULL),
+(23, 'tvmao-ZJTV-ZJTV1', '浙江卫视', 1, NULL),
+(24, 'tvmao-JSTV-JSTV1', '江苏卫视', 1, NULL),
+(25, 'tvmao-HUNANTV-HUNANTV1', '湖南卫视', 1, NULL);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `luo2888_meals`
+-- 表的结构 `iptv_meals`
 --
 
-CREATE TABLE `luo2888_meals` (
+CREATE TABLE `iptv_meals` (
   `id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
-  `amount` int(4) NOT NULL DEFAULT '0',
-  `days` int(4) NOT NULL DEFAULT '0',
-  `content` text,
-  `status` tinyint(1) NOT NULL DEFAULT '1'
+  `amount` int(4) NOT NULL DEFAULT 0,
+  `days` int(4) NOT NULL DEFAULT 0,
+  `content` text DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `luo2888_meals`
+-- 转存表中的数据 `iptv_meals`
 --
 
-INSERT INTO `luo2888_meals` (`id`, `name`, `amount`, `days`, `content`, `status`) VALUES
-(1000, '试看套餐', 1, 30, '央视直播_卫视直播_其他频道', 1),
-(1002, '会员套餐', 7, 999, '央视直播_卫视直播_Sason_其他频道_重庆_河南_广东_湖北_河北_安徽_江西_黑龙江_天津_上海_山西_吉林_江苏_福建_海南_贵州_云南_陕西_西藏_宁夏_内蒙古_北京_湖南_广西_甘肃_浙江_新疆_山东_四川_隐藏频道', 1);
+INSERT INTO `iptv_meals` (`id`, `name`, `amount`, `days`, `content`, `status`) VALUES
+(1000, '试看套餐', 0, 0, '试看频道', 1),
+(1002, '会员套餐', 7, 999, '重庆_河南_广东_湖北_河北_安徽_江西_黑龙江_天津_上海_山西_吉林_江苏_福建_海南_贵州_云南_陕西_西藏_宁夏_内蒙古_北京_湖南_广西_甘肃_浙江_新疆_山东_四川_隐藏频道', 1);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `luo2888_payment`
+-- 表的结构 `iptv_payment`
 --
 
-CREATE TABLE `luo2888_payment` (
+CREATE TABLE `iptv_payment` (
   `userid` bigint(20) NOT NULL,
   `order_id` varchar(128) NOT NULL,
   `meal` int(4) NOT NULL,
@@ -317,10 +295,10 @@ CREATE TABLE `luo2888_payment` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `luo2888_users`
+-- 表的结构 `iptv_users`
 --
 
-CREATE TABLE `luo2888_users` (
+CREATE TABLE `iptv_users` (
   `id` int(11) NOT NULL,
   `name` bigint(20) NOT NULL,
   `mac` varchar(32) NOT NULL,
@@ -329,83 +307,72 @@ CREATE TABLE `luo2888_users` (
   `ip` varchar(16) NOT NULL,
   `region` varchar(32) DEFAULT NULL,
   `exp` bigint(20) NOT NULL,
-  `vpn` tinyint(5) NOT NULL DEFAULT '0',
-  `idchange` tinyint(5) NOT NULL DEFAULT '0',
+  `vpn` tinyint(5) NOT NULL DEFAULT 0,
+  `idchange` tinyint(5) NOT NULL DEFAULT 0,
   `author` varchar(16) DEFAULT NULL,
-  `authortime` bigint(20) NOT NULL DEFAULT '0',
-  `status` int(4) NOT NULL DEFAULT '-1',
+  `authortime` bigint(20) NOT NULL DEFAULT 0,
+  `status` int(4) NOT NULL DEFAULT -1,
   `lasttime` bigint(20) NOT NULL,
   `marks` varchar(16) DEFAULT NULL,
-  `meal` int(11) NOT NULL DEFAULT '1000'
+  `meal` int(11) NOT NULL DEFAULT 1000
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- 转存表中的数据 `luo2888_users`
---
-
-INSERT INTO `luo2888_users` (`id`, `name`, `mac`, `deviceid`, `model`, `ip`, `region`, `exp`, `vpn`, `idchange`, `author`, `authortime`, `status`, `lasttime`, `marks`, `meal`) VALUES
-(1, 198769, 'e0:dc:ff:f9:e1:97', '33fe270b3f075adc', 'Mi9 Pro 5G', '60.181.27.98', '浙江温州，电信', 1625932800, 0, 1, 'admin', 1624714947, 999, 1635074554, '已授权', 1000),
-(2, 882815, '00:04:4b:84:12:1d', '621dbbad489bd3f7', 'SHIELD Android TV', '80.251.221.251', '北美洲，美国', 1634140800, 0, 0, 'admin', 1634043223, 1, 1634122453, '已授权', 1000),
-(3, 796357, '90:17:c8:24:87:f4', 'fd59987d417aab64', 'LIO-AN00', '36.28.212.8', '浙江杭州，电信', 1634140800, 0, 0, 'admin', 1634043581, 1, 1634052689, '已授权', 1000),
-(4, 694332, '82:f1:04:30:32:00', 'df2cc411f812b1db', 'YAL-AL10', '118.254.193.109', '湖南省衡阳市，电信', 1661702400, 0, 0, 'admin', 1653144600, 1, 1653293449, '已授权', 1002),
-(5, 242315, '08:00:27:49:28:b3', 'd0bb2198e063a6ef', 'Mate 10 Pro', '223.146.244.210', '湖南省衡阳市，电信', 1653580800, 0, 0, NULL, 0, -999, 1653336181, '免费', 1000);
 
 --
 -- 转储表的索引
 --
 
 --
--- 表的索引 `eztv_movie`
+-- 表的索引 `qhtv_movie`
 --
-ALTER TABLE `eztv_movie`
+ALTER TABLE `qhtv_movie`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- 表的索引 `luo2888_admin`
+-- 表的索引 `iptv_admin`
 --
-ALTER TABLE `luo2888_admin`
+ALTER TABLE `iptv_admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `luo2888_adminrec`
+-- 表的索引 `iptv_adminrec`
 --
-ALTER TABLE `luo2888_adminrec`
+ALTER TABLE `iptv_adminrec`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `luo2888_category`
+-- 表的索引 `iptv_category`
 --
-ALTER TABLE `luo2888_category`
+ALTER TABLE `iptv_category`
   ADD UNIQUE KEY `name` (`name`);
 
 --
--- 表的索引 `luo2888_channels`
+-- 表的索引 `iptv_channels`
 --
-ALTER TABLE `luo2888_channels`
+ALTER TABLE `iptv_channels`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `luo2888_config`
+-- 表的索引 `iptv_config`
 --
-ALTER TABLE `luo2888_config`
+ALTER TABLE `iptv_config`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `luo2888_epg`
+-- 表的索引 `iptv_epg`
 --
-ALTER TABLE `luo2888_epg`
+ALTER TABLE `iptv_epg`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- 表的索引 `luo2888_meals`
+-- 表的索引 `iptv_meals`
 --
-ALTER TABLE `luo2888_meals`
+ALTER TABLE `iptv_meals`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `luo2888_users`
+-- 表的索引 `iptv_users`
 --
-ALTER TABLE `luo2888_users`
+ALTER TABLE `iptv_users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `mac` (`mac`,`deviceid`);
 
@@ -414,52 +381,52 @@ ALTER TABLE `luo2888_users`
 --
 
 --
--- 使用表AUTO_INCREMENT `eztv_movie`
+-- 使用表AUTO_INCREMENT `qhtv_movie`
 --
-ALTER TABLE `eztv_movie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `qhtv_movie`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- 使用表AUTO_INCREMENT `luo2888_admin`
+-- 使用表AUTO_INCREMENT `iptv_admin`
 --
-ALTER TABLE `luo2888_admin`
+ALTER TABLE `iptv_admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- 使用表AUTO_INCREMENT `luo2888_adminrec`
+-- 使用表AUTO_INCREMENT `iptv_adminrec`
 --
-ALTER TABLE `luo2888_adminrec`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+ALTER TABLE `iptv_adminrec`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- 使用表AUTO_INCREMENT `luo2888_channels`
+-- 使用表AUTO_INCREMENT `iptv_channels`
 --
-ALTER TABLE `luo2888_channels`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=757;
+ALTER TABLE `iptv_channels`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- 使用表AUTO_INCREMENT `luo2888_config`
+-- 使用表AUTO_INCREMENT `iptv_config`
 --
-ALTER TABLE `luo2888_config`
+ALTER TABLE `iptv_config`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
--- 使用表AUTO_INCREMENT `luo2888_epg`
+-- 使用表AUTO_INCREMENT `iptv_epg`
 --
-ALTER TABLE `luo2888_epg`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+ALTER TABLE `iptv_epg`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- 使用表AUTO_INCREMENT `luo2888_meals`
+-- 使用表AUTO_INCREMENT `iptv_meals`
 --
-ALTER TABLE `luo2888_meals`
+ALTER TABLE `iptv_meals`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1003;
 
 --
--- 使用表AUTO_INCREMENT `luo2888_users`
+-- 使用表AUTO_INCREMENT `iptv_users`
 --
-ALTER TABLE `luo2888_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `iptv_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -107,11 +107,11 @@
 												<?php
 													$recStart=$recCounts*($page-1);
 													if($user=='admin'){
-													$func="select status,name,mac,deviceid,model,ip,region,lasttime,exp,author,marks,vpn,meal from luo2888_users where status>0 $searchparam order by $order limit $recStart,$recCounts";
+													$func="select status,name,mac,deviceid,model,ip,region,lasttime,exp,author,marks,vpn,meal from iptv_users where status>0 $searchparam order by $order limit $recStart,$recCounts";
 													}else{
-														$func="select status,name,mac,deviceid,model,ip,region,lasttime,exp,author,marks,vpn,meal from luo2888_users where status>0 and author='$user' $searchparam order by $order limit $recStart,$recCounts";
+														$func="select status,name,mac,deviceid,model,ip,region,lasttime,exp,author,marks,vpn,meal from iptv_users where status>0 and author='$user' $searchparam order by $order limit $recStart,$recCounts";
 													}
-													$meals=$db->mQuery("select id,name from luo2888_meals");
+													$meals=$db->mQuery("select id,name from iptv_meals");
 													if (mysqli_num_rows($meals)) {
 														$meals_arr = [];
 														while ($row = mysqli_fetch_array($meals, MYSQLI_ASSOC)) {

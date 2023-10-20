@@ -27,10 +27,10 @@ function sort_id() {
     } else if ($categorytype == 'vip') {
         $numCount = 250;
     } 
-    $result = $db->mQuery("SELECT * from luo2888_category where type='$categorytype' order by id");
+    $result = $db->mQuery("SELECT * from iptv_category where type='$categorytype' order by id");
     while ($row = mysqli_fetch_array($result)) {
         $name = $row['name'];
-        $db->mSet("luo2888_category", "id=$numCount", "where name='$name'");
+        $db->mSet("iptv_category", "id=$numCount", "where name='$name'");
         unset($name);
         $numCount++;
     } 
@@ -41,7 +41,7 @@ sort_id();
 // 检测上下移的ID参数是否存在
 function chk_sort_id() {
     global $categorytype, $minid, $maxid, $db;
-    if ($row = $db->mGetRow("luo2888_category", "min(id),max(id)", "where type='$categorytype'")) {
+    if ($row = $db->mGetRow("iptv_category", "min(id),max(id)", "where type='$categorytype'")) {
         $minid = $row['min(id)'];
         $maxid = $row['max(id)'];
     } 
@@ -51,7 +51,7 @@ chk_sort_id();
 function add_channel_list($cname, $srclist) {
     global $db;
     if (!empty($srclist && $cname)) {
-        $db->mDel("luo2888_channels", "where category='$cname'");
+        $db->mDel("iptv_channels", "where category='$cname'");
         $repetnum = 0;
         $rows = explode("\n", $srclist);
         $rows = preg_replace('# ,#', ',', $rows);
@@ -77,7 +77,7 @@ function add_channel_list($cname, $srclist) {
                         $src2 = str_replace("\'", "", $src2);
                         $src2 = str_replace("}", "", $src2);
                         $src2 = str_replace("{", "", $src2);
-                        $channelurl = $db->mQuery("SELECT url from luo2888_channels");
+                        $channelurl = $db->mQuery("SELECT url from iptv_channels");
                         while ($url = mysqli_fetch_array($channelurl)) {
                             if ($src2 == $url[0]) {
                                 $src2 = '';
@@ -87,7 +87,7 @@ function add_channel_list($cname, $srclist) {
                         unset($url);
                         mysqli_free_result($channelurl);
                         if ($channelname != '' && $src2 != '') {
-                            $db->mInt("luo2888_channels", "id,name,url,category", "NULL,'$channelname','$src2','$cname'");
+                            $db->mInt("iptv_channels", "id,name,url,category", "NULL,'$channelname','$src2','$cname'");
                         } 
                     } 
                 } else {
@@ -95,7 +95,7 @@ function add_channel_list($cname, $srclist) {
                     $src2 = str_replace("\'", "", $src2);
                     $src2 = str_replace("}", "", $src2);
                     $src2 = str_replace("{", "", $src2);
-                    $channelurl = $db->mQuery("SELECT url from luo2888_channels");
+                    $channelurl = $db->mQuery("SELECT url from iptv_channels");
                     while ($url = mysqli_fetch_array($channelurl)) {
                         if ($src2 == $url[0]) {
                             $src2 = '';
@@ -105,7 +105,7 @@ function add_channel_list($cname, $srclist) {
                     unset($url);
 					mysqli_free_result($channelurl);
                     if ($channelname != '' && $src2 != '') {
-                        $db->mInt("luo2888_channels", "id,name,url,category", "NULL,'$channelname','$src2','$cname'");
+                        $db->mInt("iptv_channels", "id,name,url,category", "NULL,'$channelname','$src2','$cname'");
                     } 
                 } 
             } 
@@ -119,7 +119,7 @@ function add_channel_list($cname, $srclist) {
 if (isset($_GET['category'])) {
     $cname = $_GET['category'];
 } else {
-    if ($row = $db->mGetRow("luo2888_category", "name", "order by id")) {
+    if ($row = $db->mGetRow("iptv_category", "name", "order by id")) {
         $cname = $row['name'];
         unset($row);
     } else {
@@ -147,10 +147,10 @@ if (isset($_POST['submit']) && isset($_POST['category'])) {
         echo "<script>lightyear.notify('类别名称不能为空！', 'danger', 3000);</script>";
     } else {
         $numCount = $maxid + 1;
-        $categoryname = $db->mGetRow("luo2888_category", "name", "where name='$category'");
+        $categoryname = $db->mGetRow("iptv_category", "name", "where name='$category'");
         if (empty($categoryname)) {
-            $db->mInt("luo2888_category", "id,name,psw,type", "$numCount,'$category','$cpass','$categorytype'");
-            $showindex = $db->mGet("luo2888_category", "count(*)", "where type='$categorytype'") - 1;
+            $db->mInt("iptv_category", "id,name,psw,type", "$numCount,'$category','$cpass','$categorytype'");
+            $showindex = $db->mGet("iptv_category", "count(*)", "where type='$categorytype'") - 1;
             echo "<script>showindex=$showindex;lightyear.notify('增加类别$category 成功！', 'success', 3000);</script>";
             sort_id();
             mysqli_free_result($result);
@@ -167,16 +167,16 @@ if (isset($_POST['addthirdlist'])) {
         echo "<script>lightyear.notify('类别名称不能为空！', 'danger', 3000);</script>";
     } else {
         $numCount = $maxid + 1;
-        $categoryname = $db->mGetRow("luo2888_category", "name", "where name='$category'");
+        $categoryname = $db->mGetRow("iptv_category", "name", "where name='$category'");
         if (empty($categoryname)) {
-            $db->mInt("luo2888_category", "id,name,psw,type,url", "$numCount,'$category','$cpass','$categorytype','$listurl'");
-            $showindex = $db->mGet("luo2888_category", "count(*)", "where type='$categorytype'") - 1;
+            $db->mInt("iptv_category", "id,name,psw,type,url", "$numCount,'$category','$cpass','$categorytype','$listurl'");
+            $showindex = $db->mGet("iptv_category", "count(*)", "where type='$categorytype'") - 1;
             $addlist = add_channel_list($category, $srclist);
             if ($addlist !== -1) {
                 echo "<script>showindex=$showindex;lightyear.notify('增加列表$category 成功！', 'success', 3000);</script>";
             } else {
                 echo "<script>showindex=$showindex;lightyear.notify('增加列表$category 失败！', 'danger', 3000);</script>";
-                $db->mDel("luo2888_category", "where name='$category'");
+                $db->mDel("iptv_category", "where name='$category'");
             } 
             sort_id();
         } 
@@ -185,12 +185,12 @@ if (isset($_POST['addthirdlist'])) {
 // 更新外部列表
 if (isset($_POST['updatelist'])) {
     $category = $_POST['thirdlist'];
-	$listurl=$db->mGet("luo2888_category", "url", "where name='$category'");
+	$listurl=$db->mGet("iptv_category", "url", "where name='$category'");
     $srclist = file_get_contents($listurl);
     if ($category == "") {
         echo "<script>lightyear.notify('列表名称不能为空！', 'danger', 3000);</script>";
     } else {
-        $listurl = $db->mGetRow("luo2888_category", "url", "where name='$category'");
+        $listurl = $db->mGetRow("iptv_category", "url", "where name='$category'");
         $addlist = add_channel_list($category, $srclist);
         if ($addlist !== -1) {
             echo "<script>$.alert({title: '成功',content: '更新列表$category 成功！',type: 'green',buttons: {confirm: {text: '好',btnClass: 'btn-primary',action: function(){location.replace(location.href);}}}});</script>";
@@ -206,11 +206,11 @@ if (isset($_POST['submit_deltype']) && isset($_POST['category'])) {
     if ($category == "") {
         echo "<script>lightyear.notify('类别名称不能为空！', 'danger', 3000);</script>";
     } else {
-        if ($categoryid = $db->mGet("luo2888_category", "id", "where name='$category'")) {
-            $db->mSet("luo2888_category", "id=id-1", "where id>$categoryid");
+        if ($categoryid = $db->mGet("iptv_category", "id", "where name='$category'")) {
+            $db->mSet("iptv_category", "id=id-1", "where id>$categoryid");
         } 
-        $db->mDel("luo2888_category", "where name='$category'");
-        $db->mDel("luo2888_channels", "where category='$category'");
+        $db->mDel("iptv_category", "where name='$category'");
+        $db->mDel("iptv_channels", "where category='$category'");
         sort_id();
         echo "<script>showindex=$showindex-1;lightyear.notify('$category 删除成功！', 'success', 3000);</script>";
     } 
@@ -224,8 +224,8 @@ if (isset($_POST['submit_modifytype']) && isset($_POST['category'])) {
     if ($category == "") {
         echo "<script>lightyear.notify('类别名称不能为空！', 'danger', 3000);</script>";
     } else {
-        $db->mSet("luo2888_category", "name='$category',psw='$cpass'", "where name='$category0'");
-        $db->mSet("luo2888_channels", "category='$category'", "where category='$category0'");
+        $db->mSet("iptv_category", "name='$category',psw='$cpass'", "where name='$category0'");
+        $db->mSet("iptv_channels", "category='$category'", "where category='$category0'");
         echo "<script>showindex=$showindex;lightyear.notify('$category 修改成功！', 'success', 3000);</script>";
         $cname = $category;
     } 
@@ -234,11 +234,11 @@ if (isset($_POST['submit_modifytype']) && isset($_POST['category'])) {
 if (isset($_POST['submit_moveup']) && isset($_POST['category'])) {
     $category = $_POST['category'];
     $showindex = $_POST['showindex'];
-    if ($id = $db->mGet("luo2888_category", "id", "where name='$category'")) {
+    if ($id = $db->mGet("iptv_category", "id", "where name='$category'")) {
         $preid = $id-1;
         if ($preid >= $minid) {
-            $db->mSet("luo2888_category", "id=id+1", "where id=$preid");
-            $db->mSet("luo2888_category", "id=id-1", "where name='$category'");
+            $db->mSet("iptv_category", "id=id+1", "where id=$preid");
+            $db->mSet("iptv_category", "id=id-1", "where name='$category'");
             echo "<script>showindex=$showindex-1;</script>";
         } else {
             echo "<script>showindex=$showindex-1;lightyear.notify('已经上移到最顶了！', 'danger', 3000);</script>";
@@ -249,11 +249,11 @@ if (isset($_POST['submit_moveup']) && isset($_POST['category'])) {
 if (isset($_POST['submit_movedown']) && isset($_POST['category'])) {
     $category = $_POST['category'];
     $showindex = $_POST['showindex'];
-    if ($id = $db->mGet("luo2888_category", "id", "where name='$category'")) {
+    if ($id = $db->mGet("iptv_category", "id", "where name='$category'")) {
         $nextid = $id + 1;
         if ($nextid <= $maxid) {
-            $db->mSet("luo2888_category", "id=id-1", "where id=$nextid");
-            $db->mSet("luo2888_category", "id=id+1", "where name='$category'");
+            $db->mSet("iptv_category", "id=id-1", "where id=$nextid");
+            $db->mSet("iptv_category", "id=id+1", "where name='$category'");
             echo "<script>showindex=$showindex+1;</script>";
         } else {
             echo "<script>showindex=$showindex;lightyear.notify('已经下移到最底了！', 'danger', 3000);</script>";
@@ -263,9 +263,9 @@ if (isset($_POST['submit_movedown']) && isset($_POST['category'])) {
 // 置顶分类
 if (isset($_POST['submit_movetop']) && isset($_POST['category'])) {
     $category = $_POST['category'];
-    if ($id = $db->mGet("luo2888_category", "Min(id)", "where type='$categorytype'")) {
+    if ($id = $db->mGet("iptv_category", "Min(id)", "where type='$categorytype'")) {
         $id = $id-1;
-        $db->mSet("luo2888_category", "id=$id", "where name='$category'");
+        $db->mSet("iptv_category", "id=$id", "where name='$category'");
         sort_id();
         echo "<script>showindex=0;</script>";
     } 
@@ -274,27 +274,27 @@ if (isset($_POST['submit_movetop']) && isset($_POST['category'])) {
 if (isset($_POST['submit']) && isset($_POST['ver'])) {
     $updateinterval = $_POST['updateinterval'];
     if (isset($_POST['autoupdate'])) {
-		$db->mSet("luo2888_config", "value='1'", "where name='autoupdate'");
-		$db->mSet("luo2888_config", "value='$updateinterval'", "where name='updateinterval'");
+		$db->mSet("iptv_config", "value='1'", "where name='autoupdate'");
+		$db->mSet("iptv_config", "value='$updateinterval'", "where name='updateinterval'");
     } else {
         $ver = $_POST['ver'];
-		$db->mSet("luo2888_config", "value='0'", "where name='autoupdate'");
-		$db->mSet("luo2888_config", "value='$ver'", "where name='dataver'");
+		$db->mSet("iptv_config", "value='0'", "where name='autoupdate'");
+		$db->mSet("iptv_config", "value='$ver'", "where name='dataver'");
     } 
     echo "<script>lightyear.notify('保存成功！', 'success', 3000);</script>";
 } 
 // 分类开关
 if (isset($_POST['checkpdname'])) {
-    $db->mSet("luo2888_category", "enable=0");
+    $db->mSet("iptv_category", "enable=0");
     foreach ($_POST['enable'] as $categoryenable) {
-        $db->mSet("luo2888_category", "enable=1", "where name='$categoryenable'");
+        $db->mSet("iptv_category", "enable=1", "where name='$categoryenable'");
     } 
 } 
 // 获取列表设置
-$ver = $db->mGet("luo2888_config", "value", "where name='dataver'");
-$versionname = $db->mGet("luo2888_config", "value", "where name='appver'");
-$autoupdate = $db->mGet("luo2888_config", "value", "where name='autoupdate'");
-$updateinterval = $db->mGet("luo2888_config", "value", "where name='updateinterval'");
+$ver = $db->mGet("iptv_config", "value", "where name='dataver'");
+$versionname = $db->mGet("iptv_config", "value", "where name='appver'");
+$autoupdate = $db->mGet("iptv_config", "value", "where name='autoupdate'");
+$updateinterval = $db->mGet("iptv_config", "value", "where name='updateinterval'");
 
 if ($autoupdate == 1) {
     $checktext = "checked='true'";

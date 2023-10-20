@@ -13,7 +13,7 @@ if ($_SESSION['author'] == 0) {
 // 删除用户
 if (isset($_POST['submitdel'])) {
     foreach ($_POST['id'] as $id) {
-        $db->mDel("luo2888_users", "where name=$id");
+        $db->mDel("iptv_users", "where name=$id");
         echo "<script>lightyear.notify('用户$id 已删除！', 'success', 3000);</script>";
     } 
 } 
@@ -35,7 +35,7 @@ if (isset($_POST['submitauthor'])) {
             } else {
                 $meal = $meals[$userid];
             } 
-            $db->mSet("luo2888_users", "status=1,exp=$exp,author='$administrator',authortime=$nowtime,marks='已授权',meal='$meal'", "where name='$id'");
+            $db->mSet("iptv_users", "status=1,exp=$exp,author='$administrator',authortime=$nowtime,marks='已授权',meal='$meal'", "where name='$id'");
         } 
         unset($meals);
         echo "<script>$.alert({title: '成功',content: '选中用户已授权" . $_POST['exp'] . "天。',type: 'green',buttons: {confirm: {text: '好',btnClass: 'btn-primary',action: function(){window.location.href='useradmin.php';}}}});</script>";
@@ -59,7 +59,7 @@ if (isset($_POST['submitauthorforever'])) {
             } else {
                 $meal = $meals[$userid];
             } 
-            $db->mSet("luo2888_users", "status=999,exp=$exp,author='$administrator',authortime=$nowtime,marks='已授权',meal='$meal'", "where name='$id'");
+            $db->mSet("iptv_users", "status=999,exp=$exp,author='$administrator',authortime=$nowtime,marks='已授权',meal='$meal'", "where name='$id'");
         } 
         unset($meals);
         echo"<script>$.alert({title: '成功',content: '选中用户已授权为永不到期。',type: 'green',buttons: {confirm: {text: '好',btnClass: 'btn-primary',action: function(){window.location.href='useradmin.php';}}}});</script>";
@@ -73,7 +73,7 @@ if (isset($_POST['submitforbidden'])) {
         foreach ($_POST['id'] as $id) {
             $exp = strtotime(date("Y-m-d"), time());
             $administrator = $_SESSION['user'];
-            $db->mSet("luo2888_users", "status=0", "where name='$id'");
+            $db->mSet("iptv_users", "status=0", "where name='$id'");
             echo "<script>lightyear.notify('用户$id 已被禁止试用！', 'success', 3000);</script>";
         } 
     } 
@@ -81,12 +81,12 @@ if (isset($_POST['submitforbidden'])) {
 // 删除一天前未授权用户
 if (isset($_POST['submitdelonedaybefor'])) {
     $onedaybefore = strtotime(date("Y-m-d"), time());
-    $db->mDel("luo2888_users", "where status=-1 and lasttime<$onedaybefore");
+    $db->mDel("iptv_users", "where status=-1 and lasttime<$onedaybefore");
     echo"<script>lightyear.notify('已删除一天前未授权用户！', 'success', 3000);</script>";
 } 
 // 删除所有未授权用户
 if (isset($_POST['submitdelall'])) {
-    $db->mDel("luo2888_users", "where status=-1 or status=-999");
+    $db->mDel("iptv_users", "where status=-1 or status=-999");
     echo"<script>lightyear.notify('已删除所有未授权用户！', 'success', 3000);</script>";
 } 
 // 搜索关键字
@@ -98,10 +98,10 @@ $keywords = trim($_GET['keywords']);
 // 设置每页显示数量
 if (isset($_POST['recCounts'])) {
     $recCounts = $_POST['recCounts'];
-    $db->mSet("luo2888_admin", "showcounts=$recCounts", "where name='$user'");
+    $db->mSet("iptv_admin", "showcounts=$recCounts", "where name='$user'");
 } 
 // 获取每页显示数量
-if ($row = $db->mGetRow("luo2888_admin", "showcounts", "where name='$user'")) {
+if ($row = $db->mGetRow("iptv_admin", "showcounts", "where name='$user'")) {
     $recCounts = $row['showcounts'];
 } else {
     $recCounts = 100;
@@ -120,7 +120,7 @@ if (isset($_GET['order'])) {
     $order = 'lasttime desc';
 } 
 // 获取用户总数并根据每页显示数量计算页数
-if ($row = $db->mGetRow("luo2888_users", "count(*)", "where status=-1 or status=-999 or status=0")) {
+if ($row = $db->mGetRow("iptv_users", "count(*)", "where status=-1 or status=-999 or status=0")) {
     $userCount = $row[0];
     $pageCount = ceil($row[0] / $recCounts);
 } else {
@@ -137,21 +137,21 @@ if (isset($_POST['jumpto'])) {
 } 
 // 获取当天上线用户总数
 $todayTime = strtotime(date("Y-m-d"), time());
-if ($row = $db->mGetRow("luo2888_users", "count(*)", "where status=-1 or status=-999 and lasttime>$todayTime")) {
+if ($row = $db->mGetRow("iptv_users", "count(*)", "where status=-1 or status=-999 and lasttime>$todayTime")) {
     $todayuserCount = $row[0];
 } else {
     $todayuserCount = 0;
 } 
 unset($row);
 // 获取当天授权用户总数
-if ($row = $db->mGetRow("luo2888_users", "count(*)", "where status>0 and authortime>$todayTime")) {
+if ($row = $db->mGetRow("iptv_users", "count(*)", "where status>0 and authortime>$todayTime")) {
     $todayauthoruserCount = $row[0];
 } else {
     $todayauthoruserCount = 0;
 } 
 unset($row);
 // 获取授权开关状态试用天数
-$needauthor = $db->mGet("luo2888_config", "value", "where name='needauthor'");
-$isfreeuser = $db->mGet("luo2888_config", "value", "where name='trialdays'");
+$needauthor = $db->mGet("iptv_config", "value", "where name='needauthor'");
+$isfreeuser = $db->mGet("iptv_config", "value", "where name='trialdays'");
 
 ?>

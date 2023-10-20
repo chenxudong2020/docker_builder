@@ -51,7 +51,7 @@
 						
 						if (isset($_GET['checkpay'])) {
 							$checkpay = $_GET['checkpay'];
-						    if($db->mGet("luo2888_meals", "status", "where userid=$checkpay") == 1){
+						    if($db->mGet("iptv_meals", "status", "where userid=$checkpay") == 1){
 								exit ("<script>$.alert({title: '支付成功',content: '订单已支付成功，请重新启动APP！',type: 'green',buttons: {confirm: {text: '确定',btnClass: 'btn-primary',action: function(){window.location.href='payment.php';}}}});</script>");
 						    } else {
 								exit ("<script>$.alert({title: '支付失败',content: '支付状态为未支付，如果您已支付，请联系管理员！',type: 'red',buttons: {confirm: {text: '确定',btnClass: 'btn-primary',action: function(){window.location.href='payment.php';}}}});</script>");
@@ -61,7 +61,7 @@
 					<?php 						
 					if (isset($_POST['userid_enter'])) {
 						$userid=$_POST['userid'];
-						if ($row = $db->mCheckRow("luo2888_users", "name,mac,ip,region", "where name='$userid'")) {
+						if ($row = $db->mCheckRow("iptv_users", "name,mac,ip,region", "where name='$userid'")) {
 						    $userid= $row['name'];
 						    $usermac= $row['mac'];
 						    $userip= $row['ip'];
@@ -85,7 +85,7 @@
 										<input type="hidden" name="userid" value="'. $userid .'"/>
 										<select class="btn btn-sm btn-default dropdown-toggle" style="height: 30px;" name="mealid">
 											<option value="">请选择</option>';
-											$result=$db->mQuery("select id,name from luo2888_meals where status=1 and id<>1000 ORDER BY id ASC");
+											$result=$db->mQuery("select id,name from iptv_meals where status=1 and id<>1000 ORDER BY id ASC");
 											while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 												echo '<option value="' . $row["id"] . '">' . $row["name"] . '</option>';
 											} 
@@ -116,7 +116,7 @@
 				</form>
 				<hr>
 				<footer class="col-sm-12 text-center">
-					<p class="m-b-0">Copyright © 2020 <a href="http://www.right.com.cn">right.com.cn</a>. All right reserved</p>
+					<p class="m-b-0">Copyright © 2020 <a href="http://www.iptv.cn">iptv.cn</a>. All right reserved</p>
 				</footer>
 			</div>
 		</div>

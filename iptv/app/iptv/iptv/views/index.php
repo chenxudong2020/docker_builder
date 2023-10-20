@@ -116,10 +116,10 @@
 							<tbody>
 								<?php
 								$num=1;
-								$result=$db->mQuery("SELECT name from luo2888_category order by id");
+								$result=$db->mQuery("SELECT name from iptv_category order by id");
 								while ($row=mysqli_fetch_array($result)) {
 									$categoryname=$row['name'];
-									if ($channelnumdata = $db->mGetRow("luo2888_channels","count(*)","where category='$categoryname'")) {
+									if ($channelnumdata = $db->mGetRow("iptv_channels","count(*)","where category='$categoryname'")) {
 									    $channelnum = $channelnumdata[0];
 									} else {
 									    $channelnum = 0;

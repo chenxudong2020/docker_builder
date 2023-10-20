@@ -42,7 +42,7 @@ function submitForm(){
 										<tbody style="font-size:12px;font-weight: bold;">
 											<?php
 											//获取套餐数据显示
-											$result=$db->mQuery("select * from luo2888_meals");
+											$result=$db->mQuery("select * from iptv_meals");
 											if (!mysqli_num_rows($result)) {
 												echo"<tr>";
 												echo"<td colspan=\"5\" align=\"center\" style=\"font-size:14px;color:red;height:35px;font-weight: bold;\">当前未有套餐数据！";

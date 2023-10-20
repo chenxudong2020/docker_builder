@@ -1,11 +1,10 @@
-FROM php:7.4-apache AS base
+FROM php:7.4-apache
 
-#ADD app/sources.list /etc/apt/ 
+ADD app/sources.list /etc/apt/ 
 
 
 
 # 将当前目录下的所有文件复制到容器中的/var/www/html目录下
-#COPY app/iptv/ /var/www/html
 COPY app/ /usr/local/app
 
 WORKDIR /usr/local/app
@@ -22,7 +21,7 @@ RUN apt update && apt-get -y install mariadb-server net-tools vim \
 
 
 # 安装PHP扩展
-# RUN docker-php-ext-install mysqli pdo pdo_mysql gd sockets
+RUN docker-php-ext-install mysqli pdo pdo_mysql gd sockets
 
 # 将Apache的rewrite模块启用
 RUN a2enmod rewrite

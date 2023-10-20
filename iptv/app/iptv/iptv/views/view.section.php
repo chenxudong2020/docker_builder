@@ -89,7 +89,7 @@ require_once "../config.php";require_once "../apps/usercheck.php"; ?>
 						<li class="nav-item <?php echo $ordersadmin ?>"> <a href="ordersadmin.php"><i class="mdi mdi-wallet-giftcard"></i>订单</a></li>
 						<li class="nav-item <?php echo $epgadmin ?>"> <a href="epgadmin.php"><i class="mdi mdi-television-guide"></i>EPG</a> </li>
 						<li class="nav-item nav-item-has-subnav">
-             <!-- <a href="movie.php"><i class="mdi mdi-language-javascript"></i>点播管理</a>-->
+             <a href="movie.php"><i class="mdi mdi-language-javascript"></i>点播管理</a>
             </li>
 						<li class="nav-item nav-item-has-subnav channeladmin">
 							<a href="javascript:void(0)"><i class="mdi mdi-television-classic"></i>频道列表</a>

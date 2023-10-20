@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:5.6-apache
 
 ADD app/sources.list /etc/apt/ 
 

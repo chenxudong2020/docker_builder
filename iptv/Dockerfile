@@ -1,6 +1,6 @@
 FROM ubuntu/apache2
 
-ADD app/sources.list /etc/apt/ 
+#ADD app/sources.list /etc/apt/ 
 
 
 

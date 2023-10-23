@@ -7,3 +7,6 @@
 [submodule "rustdesk-api-server"]
 	path = rustdesk-api-server
 	url = https://github.com/xiaoyi510/rustdesk-api-server.git
+[submodule "PMail"]
+	path = PMail
+	url = https://github.com/Jinnrry/PMail.git

@@ -10,3 +10,6 @@
 [submodule "PMail"]
 	path = PMail
 	url = https://github.com/Jinnrry/PMail.git
+[submodule "Docker-CodeWeavers_CrossOver-VNC"]
+	path = Docker-CodeWeavers_CrossOver-VNC
+	url = https://github.com/john-shine/Docker-CodeWeavers_CrossOver-VNC.git

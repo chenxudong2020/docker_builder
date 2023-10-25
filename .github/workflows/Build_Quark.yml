@@ -27,6 +27,9 @@ jobs:
       - name: build_JAR_AND_Images
         id: build_JAR_AND_Images
         run : |
+        if [ -d "Docker-CodeWeavers_CrossOver-VNC-Modify/Quark" ]; then
+          \cp -rf * ../../Docker-CodeWeavers_CrossOver-VNC/Quark
+        fi
           cd Docker-CodeWeavers_CrossOver-VNC/Quark
           docker build --rm -t quark-crossover-vnc .
           

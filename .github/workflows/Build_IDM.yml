@@ -27,10 +27,10 @@ jobs:
       - name: build_JAR_AND_Images
         id: build_JAR_AND_Images
         run : |
-         if [ -d "Docker-CodeWeavers_CrossOver-VNC-Modify/Internet Download Manager" ]; then
-            \cp -rf * ../../Docker-CodeWeavers_CrossOver-VNC/Internet Download Manager
+         if [ -d "Docker-CodeWeavers_CrossOver-VNC-Modify/Internet\ Download\ Manager/" ]; then
+            \cp -rf * ../../Docker-CodeWeavers_CrossOver-VNC/Internet\ Download\ Manager/
           fi
-          cd Docker-CodeWeavers_CrossOver-VNC/Internet Download Manager
+          cd Docker-CodeWeavers_CrossOver-VNC/Internet\ Download\ Manager/
           docker build --rm -t idm-crossover-vnc .
           
       - name: Login to aliyuncs

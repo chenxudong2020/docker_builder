@@ -1,7 +1,7 @@
 FROM dorowu/ubuntu-desktop-lxde-vnc:bionic-lxqt
 
 # install language pack
-RUN apt-get update; \
+RUN apt-get update -y; \
     apt-get install -y apt-transport-https language-pack-zh-hans ttf-wqy-microhei; \
     apt-get autoclean; \
     apt-get clean; \
@@ -28,7 +28,7 @@ RUN apt-get install -y gnupg2; \
     apt-key add /tmp/winehq.key; \
     rm /tmp/winehq.key; \
     echo "deb https://dl.winehq.org/wine-builds/ubuntu/ bionic main" >> /etc/apt/sources.list; \
-    apt-get update; \
+    apt-get update -y; \
     apt-get install -y --install-recommends winehq-stable; \
     wine --version; \
     wget -P /root/.cache/wine https://dl.winehq.org/wine/wine-gecko/2.47/wine_gecko-2.47-x86_64.msi; \

@@ -33,7 +33,5 @@ RUN apt-get install -y gnupg2; \
     wine --version; \
     wget -P /root/.cache/wine https://dl.winehq.org/wine/wine-gecko/2.47/wine_gecko-2.47-x86_64.msi; \
     wget -P /root/.cache/wine https://dl.winehq.org/wine/wine-gecko/2.47/wine_gecko-2.47-x86.msi; \
-    wget -P /root/.cache/wine https://dl.winehq.org/wine/wine-mono/4.7.1/wine-mono-4.7.1.msi; \
-    apt-get autoclean; \
-    apt-get clean; \
-    apt-get autoremove
+    wget -P /root/.cache/wine https://dl.winehq.org/wine/wine-mono/4.7.1/wine-mono-4.7.1.msi;
+

@@ -28,6 +28,7 @@ jobs:
         id: build_JAR_AND_Images
         run : |
           cd Docker-CodeWeavers_CrossOver-VNC/Thunder
+          \cp -rf ../../Docker-CodeWeavers_CrossOver-VNC-Modify/Thunder/* ./
           docker build --rm -t thunder-crossover-vnc .
           
       - name: Login to aliyuncs

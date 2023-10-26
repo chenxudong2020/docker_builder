@@ -29,7 +29,7 @@ jobs:
         run : |
           
           cd Docker-CodeWeavers_CrossOver-VNC/Internet\ Download\ Manager/
-          \cp -rf Docker-CodeWeavers_CrossOver-VNC-Modify/IDM/* ./
+          \cp -rf ../../Docker-CodeWeavers_CrossOver-VNC-Modify/IDM/* ./
           docker build --rm -t idm-crossover-vnc .
           
       - name: Login to aliyuncs

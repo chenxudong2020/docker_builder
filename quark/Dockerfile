@@ -7,20 +7,20 @@ RUN apt-get update; \
     apt-get clean; \
     apt-get autoremove
 
-COPY quark/QuarkCloudDrive.exe /tmp/QuarkCloudDrive.exe   
-
 ENV LANG=zh_CN.UTF-8 \
     LC_ALL=zh_CN.UTF-8
     
-# download quark
+# download BaiduNetdisk
 RUN apt-get install -y wget; \
-    chmod 777 tmp/QuarkCloudDrive.exe; \
+    wget -P /tmp https://pdds.quark.cn/download/stfile/ppvrwquuypqtprxrg/QuarkCloudDrive-v2.5.55-release-pckk@other_ch-20231020100530.exe \
+    chmod 777 tmp/QuarkCloudDrive-v2.5.55-release-pckk@other_ch-20231020100530.exe; \
     apt-get autoclean; \
     apt-get clean; \
     apt-get autoremove
 
- EXPOSE 80   
-    
+
+ EXPOSE 80 
+
 # install wine
 RUN apt-get install -y gnupg2; \
     dpkg --add-architecture i386; \

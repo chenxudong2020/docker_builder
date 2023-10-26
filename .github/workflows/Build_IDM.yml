@@ -28,8 +28,9 @@ jobs:
         id: build_JAR_AND_Images
         run : |
           cd Docker-CodeWeavers_CrossOver-VNC-Modify/Internet\ Download\ Manager/
-          \cp -rf * ../../Docker-CodeWeavers_CrossOver-VNC/Internet\ Download\ Manager/
+          \cp -rf * ../../Docker-CodeWeavers_CrossOver-VNC/Internet\ Download\ Manager
           cd ../../
+          cd Docker-CodeWeavers_CrossOver-VNC/Internet\ Download\ Manager/
           docker build --rm -t idm-crossover-vnc .
           
       - name: Login to aliyuncs

@@ -12,7 +12,7 @@ ENV LANG=zh_CN.UTF-8 \
     
 # download BaiduNetdisk
 RUN apt-get install -y wget; \
-    wget -P /tmp https://pdds.quark.cn/download/stfile/ppvrwquuypqtprxrg/QuarkCloudDrive-v2.5.55-release-pckk@other_ch-20231020100530.exe \
+    wget -P /tmp https://pdds.quark.cn/download/stfile/ppvrwquuypqtprxrg/QuarkCloudDrive-v2.5.55-release-pckk@other_ch-20231020100530.exe;\
     chmod 777 tmp/QuarkCloudDrive-v2.5.55-release-pckk@other_ch-20231020100530.exe; \
     apt-get autoclean; \
     apt-get clean; \

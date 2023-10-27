@@ -33,4 +33,12 @@ jobs:
         run : |
           git clone https://github.com/ChisBread/chislash.git
           cd chislash
-          sudo docker buildx build --push --platform=linux/amd64,linux/arm/v7,linux/arm64/v8 --tag registry.cn-hangzhou.aliyuncs.com/dubux/chislash:latest --no-cache .
+          docker buildx create \ 
+            --name multi-platform \ 
+            --use --platform \ 
+            linux/amd64,linux/arm/v7,linux/arm64/v8 \ 
+  -         -driver docker-container
+          sudo docker buildx build --push \
+          --platform=linux/amd64,linux/arm/v7,linux/arm64/v8 \
+          --tag registry.cn-hangzhou.aliyuncs.com/dubux/chislash:latest \
+          --no-cache .

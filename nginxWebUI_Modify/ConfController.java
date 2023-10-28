@@ -306,14 +306,13 @@ public class ConfController extends BaseController {
 
 	@Mapping(value = "reloadSH")
 	public synchronized void reloadSH(String certDir,String domain) {
-		
+		logger.info("start running reload.sh");
 		try {
 			String reload=homeConfig.home+"reload.sh";
 			File reloadFile=new File(reload);
 			if(reloadFile.exists()){
 				cpCert(certDir,domain);
 				String cmd="sh "+reload;
-				logger.info("start running command:"+cmd);
 				String rs = RuntimeUtil.execForStr(cmd);
 				logger.info(rs);
 			}

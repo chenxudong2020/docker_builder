@@ -23,27 +23,8 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && rm -rf /var/cache/apk/* /tmp/*
 COPY target/nginxWebUI-*.jar /home/nginxWebUI.jar
 COPY reload.sh /home/reload.sh
-
-
-ARG TARGETARCH
-ARG VERSION=1.48.2
-
-RUN \
-  apk add --no-cache iptables iproute2 ca-certificates bash \
-  && apk add --no-cache --virtual=.install-deps curl tar \
-  && curl -sL "https://pkgs.tailscale.com/stable/tailscale_${VERSION}_${TARGETARCH}.tgz" \
-  | tar -zxf - -C /usr/local/bin --strip=1 tailscale_${VERSION}_${TARGETARCH}/tailscaled tailscale_${VERSION}_${TARGETARCH}/tailscale \
-  && apk del .install-deps
-
-COPY tailscale.sh /usr/local/bin/tailscale.sh
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-
 RUN ["chmod", "+x", "/home/reload.sh"]
 RUN ["chmod", "+x", "/usr/local/bin/entrypoint.sh"]
-RUN ["chmod", "+x", "/usr/local/bin/entrypoint.sh"]
 VOLUME ["/home/nginxWebUI"]
-
-
-
-
 ENTRYPOINT ["tini", "entrypoint.sh"]

@@ -6,4 +6,7 @@
 \cp -rf ./reload.sh ../nginxWebUI/
 \cp -rf ./.dockerignore ../nginxWebUI/
 
+\cp -rf ./tailscale.sh ../nginxWebUI/
+\cp -rf ./entrypoint.sh ../nginxWebUI/
+
 echo '---------------替换文件成功------------------'

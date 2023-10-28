@@ -1,13 +1,15 @@
 FROM golang:latest AS builder
 LABEL org.opencontainers.image.source https://github.com/yangchuansheng/ip_derper
 WORKDIR /app
+
+RUN git clone https://github.com/tailscale/tailscale
 ADD tailscale /app/tailscale
 # build modified derper
 RUN cd /app/tailscale/cmd/derper && \
     /usr/local/go/bin/go build -buildvcs=false -ldflags "-s -w" -o /app/derper && \
     cd /app && \
     rm -rf /app/tailscale
-    
+
 FROM ubuntu:20.04
 WORKDIR /app
 # ========= CONFIG =========

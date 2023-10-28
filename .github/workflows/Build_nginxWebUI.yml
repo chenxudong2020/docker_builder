@@ -1,4 +1,4 @@
-name: Build_nginxwebui_derper
+name: Build_nginxwebui_tailscale
 
 on:
   schedule:
@@ -33,7 +33,7 @@ jobs:
         run : |
           cd nginxWebUI
           mvn clean package
-          docker build -t nginxwebui_derper:latest .
+          docker build -t nginxwebui_tailscale:latest .
           
       - name: Login to aliyuncs
         uses: docker/login-action@v2
@@ -46,6 +46,6 @@ jobs:
       - name: Push Docker images
         id : Push_Docker_Images
         run : |
-           imageName=nginxwebui_derper
+           imageName=nginxwebui_tailscale
            docker tag $imageName registry.cn-hangzhou.aliyuncs.com/dubux/$imageName:latest
            docker push registry.cn-hangzhou.aliyuncs.com/dubux/$imageName

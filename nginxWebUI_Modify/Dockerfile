@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 FROM golang:latest AS builder
 LABEL org.opencontainers.image.source https://github.com/yangchuansheng/ip_derper
 WORKDIR /app
@@ -36,11 +37,14 @@ COPY build_cert.sh /app/
 COPY --from=builder /app/derper /app/derper
 
 
+=======
+FROM alpine:3.17
+>>>>>>> parent of 47715c8 (add)
 ENV LANG=zh_CN.UTF-8 \
     TZ=Asia/Shanghai \
     PS1="\u@\h:\w \$ "
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
-    && apt-get install -y \
+    && apk add --update --no-cache \
        nginx \
        nginx-mod-stream \
        nginx-mod-http-headers-more \
@@ -64,6 +68,4 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN ["chmod", "+x", "/home/reload.sh"]
 RUN ["chmod", "+x", "/usr/local/bin/entrypoint.sh"]
 VOLUME ["/home/nginxWebUI"]
- 
-
 ENTRYPOINT ["tini", "entrypoint.sh"]

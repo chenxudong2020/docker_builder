@@ -23,8 +23,8 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && rm -rf /var/cache/apk/* /tmp/*
 COPY target/nginxWebUI-*.jar /home/nginxWebUI.jar
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN ["chmod", "+x", "/home/nginxWebUI/reload.sh"]
 RUN ["chmod", "+x", "/usr/local/bin/entrypoint.sh"]
 VOLUME ["/home/nginxWebUI"]
 ADD reload.sh /reload.sh
+RUN ["chmod", "+x", "/reload.sh"]
 ENTRYPOINT ["tini", "entrypoint.sh"]

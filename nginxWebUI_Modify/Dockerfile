@@ -26,5 +26,5 @@ COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 ADD reload.sh /home/nginxWebUI/reload.sh
 RUN ["chmod", "+x", "/home/nginxWebUI/reload.sh"]
 RUN ["chmod", "+x", "/usr/local/bin/entrypoint.sh"]
-VOLUME ["/home/nginxWebUI"]
+#VOLUME ["/home/nginxWebUI"]
 ENTRYPOINT ["tini", "entrypoint.sh"]

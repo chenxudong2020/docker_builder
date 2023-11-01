@@ -6,5 +6,6 @@ WORKDIR /app
 RUN yum update -y && \
     yum install -y lm_sensors bc i2c-tools
 
-COPY tempature.sh /app/
-ENTRYPOINT tempature.sh
+COPY tempature.sh /app/tempature.sh
+RUN ["chmod", "+x", "/app/tempature.sh"]
+CMD /app/tempature.sh

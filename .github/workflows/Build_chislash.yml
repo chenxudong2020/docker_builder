@@ -14,6 +14,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -28,16 +31,10 @@ jobs:
           username: ${{ secrets.HUB_NAME }}
           password: ${{ secrets.HUB_PASS }}  
 
-      - name: Clone Codes
-        id: build_Image_PUSH
-        run : |
-          git clone https://github.com/ChisBread/chislash.git
-  
       - name: Build and push Docker images
         uses: docker/build-push-action@v5
         with:
           context: chislash/./
-          platforms: linux/amd64
           push: true
           tags: |
             registry.cn-hangzhou.aliyuncs.com/dubux/chislash:latest   

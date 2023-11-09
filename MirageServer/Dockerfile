@@ -2,8 +2,13 @@ FROM golang:latest AS builder
 
 LABEL org.opencontainers.image.source https://github.com/MirageNetwork/MirageServer
 
-RUN apt-get update && \
-    apt-get install nodejs -y
+
+RUN curl -o node.tar.gz https://nodejs.org/dist/v20.9.0/node-v20.9.0-linux-x64.tar.gz \
+    && tar -xzf node.tar.gz -C /usr/local --strip-components=1 \
+    && rm node.tar.gz
+ 
+ENV PATH="/usr/local/bin:${PATH}"
+
 
 WORKDIR /app
 

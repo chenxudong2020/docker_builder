@@ -6,8 +6,10 @@ if [ yes != "$STDBUF" ]; then
 fi
 set -eE
 source /etc/envinit.sh
-source /etc/myenvinit.sh
 source /etc/utils.sh
+export AUTHENTICATION="\"dubux:Opopop880\""
+export SECRET="Opopop880"
+
 # cleanup iptables
 PIDS=""
 _term() {

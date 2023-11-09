@@ -23,6 +23,11 @@ RUN cd /app/MirageServer/cockpit_web && \
     mv `basename ./*` ./mirageserver
 
 FROM ubuntu:20.04
+
+RUN echo "deb http://th.archive.ubuntu.com/ubuntu jammy main" >> /etc/apt/sources.list
+RUN apt-get update && \
+    apt-get install -y openssl curl && \
+    apt-get install -y libc6
 WORKDIR /app
 COPY --from=builder /app/MirageServer/dist/dist/mirageserver /app/mirageserver
 RUN ["chmod", "+x", "/app/mirageserver"]

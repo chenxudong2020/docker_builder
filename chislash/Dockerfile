@@ -7,4 +7,7 @@ RUN rm -rf /myroot/bin/clash_service
 COPY clash_service /usr/bin/clash_service
 COPY clash_service /myroot/bin/clash_service
 
+RUN ["chmod", "+x", "/usr/bin/clash_service"]
+RUN ["chmod", "+x", "/myroot/bin/clash_service"]
+
 ENTRYPOINT [ "/entrypoint.sh" ]

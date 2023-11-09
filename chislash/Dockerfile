@@ -1,15 +1,11 @@
 FROM chisbread/chislash:latest AS build
 
 
-RUN rm -rf /usr/bin/clash_service
-RUN rm -rf /myroot/bin/clash_service
+ENV SECRET_VALUE="chislash"
+ENV AUTHENTICATION="admin:chilash"
 
 
-COPY clash_service /usr/bin/clash_service
-COPY clash_service /myroot/bin/clash_service
-RUN ["chmod", "+x", "/usr/bin/clash_service"]
-RUN ["chmod", "+x", "/myroot/bin/clash_service"]
+COPY build_required /build_required
+RUN ["chmod", "+x", "/build_required"]
 
-
-
-ENTRYPOINT [ "/entrypoint.sh" ]
+ENTRYPOINT [ "/build_required" ]

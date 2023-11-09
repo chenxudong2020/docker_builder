@@ -4,7 +4,7 @@ echolog() {
 }
 if [ ! -f "$REQUIRED_CONFIG" ]; then
     echolog "生成/etc/clash/required.yaml文件"
-    echo "secret:$SECRET_VALUE" >> /etc/clash/required.yaml
+    echo "secret: $SECRET_VALUE" >> /etc/clash/required.yaml
     echo "authentication:" >> /etc/clash/required.yaml
     echo " -\"$AUTHENTICATION\"" >> /etc/clash/required.yaml
     REQUIRED_CONFIG=/etc/clash/required.yaml

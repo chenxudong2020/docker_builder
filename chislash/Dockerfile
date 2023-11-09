@@ -1,7 +1,10 @@
 FROM chisbread/chislash:latest AS build
 
 
-RUN rm -rf /default/clash/utils/override.py
-COPY override.py /default/clash/utils/override.py
+RUN rm -rf /usr/bin/clash_service/clash_service
+RUN rm -rf /myroot/bin/clash_service/clash_service
+
+COPY clash_service /usr/bin/clash_service/clash_service
+COPY clash_service /myroot/bin/clash_service/clash_service
 
 ENTRYPOINT [ "/entrypoint.sh" ]

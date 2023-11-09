@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-source /etc/utils.sh
+echolog() {
+    echo -e "\033[32m[chislash log]\033[0m" $*
+}
 if [ ! -f "$REQUIRED_CONFIG" ]; then
     echolog "生成/etc/clash/required.yaml文件"
     echo "secret:$SECRET_VALUE" >> /etc/clash/required.yaml

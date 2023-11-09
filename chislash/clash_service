@@ -6,6 +6,7 @@ if [ yes != "$STDBUF" ]; then
 fi
 set -eE
 source /etc/envinit.sh
+source /etc/myenvinit.sh
 source /etc/utils.sh
 # cleanup iptables
 PIDS=""

@@ -19,8 +19,8 @@ jobs:
           submodules: true
       - name: Clone Code
         run: |
-        cd MirageServer
-        git clone --recurse-submodules https://github.com/MirageNetwork/MirageServer
+         cd MirageServer
+         git clone --recurse-submodules https://github.com/MirageNetwork/MirageServer
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -35,10 +35,10 @@ jobs:
           username: ${{ secrets.HUB_NAME }}
           password: ${{ secrets.HUB_PASS }}
 
-          - name: Build and push Docker images
-          uses: docker/build-push-action@v5
-          with:
-            context: MirageServer/./
-            push: true
-            tags: |
-              registry.cn-hangzhou.aliyuncs.com/dubux/MirageServer:latest   
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v5
+        with:
+          context: MirageServer/./
+          push: true
+          tags: |
+            registry.cn-hangzhou.aliyuncs.com/dubux/MirageServer:latest   

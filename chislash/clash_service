@@ -90,8 +90,8 @@ if [ "$ENABLE_CLASH" == "1" ]; then
         "$IPV6_PROXY"
     # 加入代理加密
     echolog "添加加密字符串到config.yaml"
-    echo " authentication: " >> /etc/clash/config.yaml
-    echo "  - \"dubux:Opopop880\" " >> /etc/clash/config.yaml  
+    echo "authentication: $AUTHENTICATION" >> /etc/clash/config.yaml
+    echo "secret: $SECRET" >> /etc/clash/config.yaml
     ################### 启动clash服务 ###################
     echolog "Clash启动中..."
     $NO_ENGLISH || echolog "Clash is starting ..."

@@ -20,6 +20,10 @@ RUN cd /app/MirageServer/cockpit_web && \
     npm install && npm run build && \
     go run /app/MirageServer/dist/build.go && \
     cd /app/MirageServer/dist/dist/ && \
+    echo "---------------------------------------------" && \
+    ls -al && \ 
+    echo `basename ./*` && \
+    echo "---------------------------------------------" && \
     mv `basename ./*` ./MirageServer
 
 FROM ubuntu:20.04

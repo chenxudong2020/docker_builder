@@ -22,9 +22,7 @@ RUN cd /app/MirageServer/cockpit_web && \
     cd /app/MirageServer/dist/dist/ && \
     mv `basename ./*` ./mirageserver
 
-FROM ubuntu:20.04
-
-RUN echo "deb http://th.archive.ubuntu.com/ubuntu jammy main" >> /etc/apt/sources.list
+FROM debain:latest
 RUN apt-get update && \
     apt-get install -y openssl curl && \
     apt-get install -y libc6

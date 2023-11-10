@@ -22,7 +22,7 @@ RUN cd /app/MirageServer/cockpit_web && \
     cd /app/MirageServer/dist/dist/ && \
     mv `basename ./*` ./mirageserver
 
-FROM debain:latest
+FROM debian:stable
 RUN apt-get update && \
     apt-get install -y openssl curl && \
     apt-get install -y libc6

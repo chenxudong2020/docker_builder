@@ -2,6 +2,7 @@ FROM alpine
 
 WORKDIR /app
 
+ENV PATH="/app:${PATH}"
 ENV IS_DEBUG=true
 
 

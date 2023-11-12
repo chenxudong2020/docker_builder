@@ -25,7 +25,7 @@ do
 		 eslog "55度以下"
 		 i2cset -y 0 0x54 0xf0 100
 	fi
-	sleep 60
+	sleep 30
 done
 
 

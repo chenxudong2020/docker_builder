@@ -9,6 +9,7 @@ RUN yum update -y && \
 
 COPY *.sh .
 
-RUN ["chmod", "+x", "*.sh"]
+
+RUN chmod +x *.sh
 
 ENTRYPOINT tempature.sh

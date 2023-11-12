@@ -31,14 +31,9 @@ done
 
 
 function tempature_off(){
-   if [ -f "tempature_off.sh" ]; then
          eslog "退出执行 tempature_off.sh."
          bash tempature_off.sh
          exit
-     else
-         eslog "tempature_off.sh不存在"
-         exit
-     fi
 }
 
 trap 'tempature_off' SIGTERM          

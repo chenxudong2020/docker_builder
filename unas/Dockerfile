@@ -13,10 +13,8 @@ RUN apk add --update --no-cache lm_sensors bc i2c-tools psmisc && \
 COPY tempature.sh .
 COPY tempature_off.sh .
 
-RUN ls && echo "-----------------------------" && ls -al
-
 RUN ["chmod", "+x", "tempature.sh"]
 RUN ["chmod", "+x", "tempature_off.sh"]
 
 
-ENTRYPOINT [ "/home/tempature.sh" ]
+ENTRYPOINT ["tini", "tempature.sh"]

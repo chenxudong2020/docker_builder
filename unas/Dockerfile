@@ -11,8 +11,6 @@ COPY tempature_off.sh /app/tempature_off.sh
 RUN ["chmod", "+x", "/app/tempature.sh"]
 RUN ["chmod", "+x", "/app/tempature_off.sh"]
 
-
-HEALTHCHECK --interval=5s --timeout=3s \
-  CMD [ -f /app/tempature_off.sh ] || exit 1
+ONBUILD RUN /app/tempature_off.sh
 
 ENTRYPOINT [ "/app/tempature.sh" ]

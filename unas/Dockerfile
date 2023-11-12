@@ -1,7 +1,7 @@
 FROM centos:7
 WORKDIR /app
 
-
+ENV PATH="/app:${PATH}"
 ENV IS_DEBUG=false
 
 RUN yum update -y && \

@@ -6,6 +6,19 @@ function eslog(){
     fi    
 }
 
+
+
+
+function tempature_off(){
+         eslog "退出执行 tempature_off.sh."
+         bash tempature_off.sh
+         exit
+}
+
+trap tempature_off SIGTERM
+
+
+
 while true
 do
     cpu_temp=$(sensors | grep -i "Core 0" | awk '{print $3}' | grep -oP "\d+\.\d+")
@@ -30,10 +43,4 @@ done
 
 
 
-function tempature_off(){
-         eslog "退出执行 tempature_off.sh."
-         bash tempature_off.sh
-         exit
-}
 
-trap 'tempature_off' SIGTERM          

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function eslog(){
-    if [ "$IS_DEBUG" == false ]; then
+    if [ "$IS_DEBUG" == true ]; then
         echo $*
     fi    
 }

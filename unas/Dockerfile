@@ -16,4 +16,4 @@ RUN ["chmod", "+x", "/app/tempature.sh"]
 RUN ["chmod", "+x", "/app/tempature_off.sh"]
 
 
-ENTRYPOINT ["/app/tempature.sh"]
+ENTRYPOINT /app/tempature.sh

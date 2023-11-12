@@ -9,8 +9,8 @@ RUN apk add --update --no-cache lm_sensors bc i2c-tools psmisc && \
     echo "Asia/Shanghai" > /etc/timezone && \
     rm -rf /var/cache/apk/* /tmp/* /var/tmp/* $HOME/.cache
 
-COPY tempature.sh /app/tempature.sh
-COPY tempature_off.sh /app/tempature_off.sh
+ADD tempature.sh /app/tempature.sh
+ADD tempature_off.sh /app/tempature_off.sh
 RUN ["chmod", "+x", "/app/tempature.sh"]
 RUN ["chmod", "+x", "/app/tempature.sh"]
 

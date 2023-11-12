@@ -21,9 +21,9 @@ done
 
 
 tempature_off(){
-   if [ -f "/app/tempature_off.sh" ]; then
+   if [ -f "/home/tempature_off.sh" ]; then
          $IS_DEBUG || echo "退出执行 tempature_off.sh."
-         bash /app/tempature_off.sh
+         bash /home/tempature_off.sh
          exit
      else
          $IS_DEBUG || echo "tempature_off.sh不存在"

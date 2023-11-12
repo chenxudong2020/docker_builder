@@ -37,6 +37,6 @@ function tempature_off(){
          exit
 }
 
-trap 'tempature_off' SIGQUIT
+trap 'tempature_off' SIGQUIT SIGTERM
 
 

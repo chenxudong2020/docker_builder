@@ -18,3 +18,17 @@ do
 	fi
 	sleep 60
 done
+
+
+function tempature_off(){
+   if [ -f "/app/tempature_off.sh" ]; then
+         echo "退出执行 tempature_off.sh."
+         bash /app/tempature_off.sh
+         exit
+     else
+         echo "stop file not exist"
+         exit
+     fi
+}
+
+trap 'tempature_off' SIGTERM          

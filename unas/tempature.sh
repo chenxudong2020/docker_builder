@@ -8,8 +8,6 @@ function eslog(){
 
 
 
-
-
 while true
 do
     cpu_temp=$(sensors | grep -i "Core 0" | awk '{print $3}' | grep -oP "\d+\.\d+")
@@ -39,6 +37,6 @@ function tempature_off(){
          exit
 }
 
-trap 'tempature_off' SIGTERM
+trap 'tempature_off' SIGQUIT
 
 

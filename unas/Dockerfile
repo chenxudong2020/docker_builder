@@ -12,7 +12,7 @@ WORKDIR /app
 COPY tempature.sh /app/tempature.sh
 COPY tempature_off.sh /app/tempature_off.sh
 
-RUN ls -al
+RUN chmod +x *
 
 
 ENTRYPOINT /app/tempature.sh

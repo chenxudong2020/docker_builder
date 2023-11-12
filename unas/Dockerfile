@@ -1,7 +1,7 @@
 FROM alpine
 WORKDIR /app
 
-ENV IS_DEBUG=false
+ENV IS_DEBUG=true
 
 
 RUN apk update && \
@@ -16,4 +16,4 @@ RUN ["chmod", "+x", "tempature.sh"]
 RUN ["chmod", "+x", "tempature_off.sh"]
 
 
-ENTRYPOINT [ "tempature.sh" ]
+ENTRYPOINT [ "/app/tempature.sh" ]

@@ -1,6 +1,6 @@
 FROM alpine
 
-WORKDIR /app
+
 
 ENV PATH="/app:${PATH}"
 ENV IS_DEBUG=true
@@ -11,11 +11,12 @@ RUN apk add --update --no-cache lm_sensors bc i2c-tools psmisc && \
     echo "Asia/Shanghai" > /etc/timezone && \
     rm -rf /var/cache/apk/* /tmp/* /var/tmp/* $HOME/.cache
 
-COPY tempature.sh .
-COPY tempature_off.sh .
+WORKDIR /app
+COPY tempature.sh /app
+COPY tempature_off.sh /app
 
-RUN ["chmod", "+x", "tempature.sh"]
-RUN ["chmod", "+x", "tempature_off.sh"]
+RUN ["chmod", "+x", "/app/tempature.sh"]
+RUN ["chmod", "+x", "/app/tempature_off.sh"]
 
 
 ENTRYPOINT ["tempature.sh"]

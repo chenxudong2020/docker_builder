@@ -9,15 +9,6 @@ function eslog(){
 
 
 
-function tempature_off(){
-         eslog "退出执行 tempature_off.sh."
-         bash tempature_off.sh
-         exit
-}
-
-trap tempature_off SIGTERM
-
-
 
 while true
 do
@@ -42,5 +33,12 @@ done
 
 
 
+function tempature_off(){
+         eslog "退出执行 tempature_off.sh."
+         bash tempature_off.sh
+         exit
+}
+
+trap 'tempature_off' SIGTERM
 
 

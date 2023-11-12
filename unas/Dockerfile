@@ -12,4 +12,6 @@ COPY *.sh .
 
 RUN chmod +x *.sh
 
+STOPSIGNAL SIGQUIT
+
 ENTRYPOINT tempature.sh

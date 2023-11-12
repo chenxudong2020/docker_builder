@@ -1,10 +1,15 @@
 #!/bin/bash
 
-IS_LOG=$IS_DEBUG!
+function eslog(){
+    if [ "$IS_DEBUG" == false ]; then
+        echo $*
+    fi    
+}
 
 while true
 do
     cpu_temp=$(sensors | grep -i "Core 0" | awk '{print $3}' | grep -oP "\d+\.\d+")
+    eslog "当前温度$cpu_temp"
    if (( $(echo "$cpu_temp >= 75" | bc -l) )); then
         eslog "大于等于75"
 	    i2cset -y 0 0x54 0xf0 255
@@ -22,11 +27,7 @@ do
 done
 
 
-function eslog(){
-    if [ "$IS_DEBUG" == false ]; then
-        echo "$*"
-    fi    
-}
+
 
 
 function tempature_off(){

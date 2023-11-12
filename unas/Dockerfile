@@ -17,4 +17,4 @@ RUN ["chmod", "+x", "tempature.sh"]
 RUN ["chmod", "+x", "tempature_off.sh"]
 
 
-ENTRYPOINT ["tini", "tempature.sh"]
+ENTRYPOINT ["tempature.sh"]

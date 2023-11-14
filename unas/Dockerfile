@@ -19,4 +19,4 @@ COPY *.sh .
 
 RUN chmod +x *.sh
 
-CMD bash tempature.sh
+CMD ["tempature.sh"]

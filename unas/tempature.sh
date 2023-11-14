@@ -12,7 +12,6 @@ function tempature_off(){
          exit
 }
 
-trap "echo TRAPed signal" QUIT TERM
 trap 'tempature_off' SIGQUIT SIGTERM
 
 while true

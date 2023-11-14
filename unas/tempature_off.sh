@@ -5,5 +5,4 @@ function eslog(){
     fi    
 }
 eslog "关闭tempature并设置风扇转速100"
-killall tempature.sh 
 i2cset -y 0 0x54 0xf0 100

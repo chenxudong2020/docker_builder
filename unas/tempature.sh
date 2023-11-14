@@ -6,7 +6,14 @@ function eslog(){
     fi    
 }
 
+function tempature_off(){
+         eslog "退出执行 tempature_off.sh."
+         bash tempature_off.sh
+         exit
+}
 
+trap "echo TRAPed signal" QUIT TERM
+trap 'tempature_off' SIGQUIT SIGTERM
 
 while true
 do
@@ -31,12 +38,8 @@ done
 
 
 
-function tempature_off(){
-         eslog "退出执行 tempature_off.sh."
-         bash tempature_off.sh
-         exit
-}
 
-trap 'tempature_off' SIGQUIT SIGTERM
+
+
 
 

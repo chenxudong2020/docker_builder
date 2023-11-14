@@ -12,8 +12,4 @@ COPY *.sh .
 
 RUN chmod +x *.sh
 
-ENTRYPOINT tempature.sh
-
-STOPSIGNAL SIGQUIT
-
-CMD tempature_off.sh
+ENTRYPOINT ["tempature.sh"]

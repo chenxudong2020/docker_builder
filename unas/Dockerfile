@@ -19,4 +19,4 @@ COPY *.sh .
 
 RUN chmod +x *.sh
 
-ENTRYPOINT tempature.sh
+CMD bash tempature.sh

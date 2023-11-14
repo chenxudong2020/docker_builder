@@ -15,7 +15,7 @@ trap 'tempature_off' QUIT TERM SIGQUIT SIGTERM
 
 while true
 do
-    cpu_temp=$(sensors | grep -i "Physical id 0" | awk '{print $4}' | grep -oP "\d+\.\d+")
+    cpu_temp=$(sensors | grep -i "Physical id 0" | awk '{print $4}' | tr -d '+' | tr -d '+°C')
    if (( $(echo "$cpu_temp >= 75" | bc -l) )); then
         eslog "当前cpu温度：$cpu_temp，大于等于75，转速设置255"
 	    i2cset -y 0 0x54 0xf0 255

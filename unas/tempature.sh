@@ -7,7 +7,6 @@ function eslog(){
 }
 
 function tempature_off(){
-         eslog "退出执行 tempature_off.sh."
          bash tempature_off.sh
          exit
 }

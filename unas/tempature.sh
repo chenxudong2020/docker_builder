@@ -11,7 +11,7 @@ function tempature_off(){
          exit
 }
 
-trap 'tempature_off' QUIT TERM SIGQUIT SIGTERM
+trap 'tempature_off' TERM
 
 while true
 do

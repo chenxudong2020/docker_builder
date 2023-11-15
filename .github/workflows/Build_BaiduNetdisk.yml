@@ -29,6 +29,7 @@ jobs:
         run : |
           cd Docker-CodeWeavers_CrossOver-VNC-Modify/BaiduNetdisk
           \cp -rf Dockerfile ../../Docker-CodeWeavers_CrossOver-VNC/BaiduNetdisk/
+          \cp -rf entrypoint.sh ../../Docker-CodeWeavers_CrossOver-VNC/BaiduNetdisk/
           cd ../../Docker-CodeWeavers_CrossOver-VNC/BaiduNetdisk
           docker build --rm -t baidunetdisk-crossover-vnc .
           

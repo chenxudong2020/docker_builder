@@ -6,7 +6,7 @@ LABEL io.openshift.expose-services="5901:tcp"
 
 USER root
 
-ENV DOMAIN=""
+ENV DOMAIN="dubux.eu.org"
 
 ENV DISPLAY=":1"
 ENV USER="baidu"
@@ -79,9 +79,9 @@ RUN /bin/echo -e 'export QT_IM_MODULE=fcitx' >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e 'export XMODIFIERS="@im=fcitx"' >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "sleep 3"  >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "fcitx"  >> ${HOME}/.vnc/xstartup
-
-RUN /bin/echo -e  "[ -f ${HOME}/baidunetdiskdownload/.vnc/${DOMAIN}.crt ] && /opt/noVNC-1.4.0/utils/novnc_proxy --listen 6080 --cert ${HOME}/.vnc/${DOMAIN}.crt --key ${HOME}/.vnc/${DOMAIN}.key --vnc ${DOMAIN}:5901 &"
 RUN /bin/echo -e "sudo mkdir -p /home/baidu/baidunetdiskdownload/"  >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e  "/opt/noVNC-1.4.0/utils/novnc_proxy --listen 6080 --cert ${HOME}/baidunetdiskdownload/.vnc/${DOMAIN}.crt --key ${HOME}/baidunetdiskdownload/.vnc/${DOMAIN}.key --vnc ${DOMAIN}:5901 &"
+
 RUN /bin/echo -e "sudo chmod -R a=rwx /home/baidu/baidunetdiskdownload/"  >> ${HOME}/.vnc/xstartup
 
 RUN /bin/echo -e "while true; do" >> ${HOME}/.vnc/xstartup

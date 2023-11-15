@@ -27,7 +27,9 @@ jobs:
       - name: build_JAR_AND_Images
         id: build_JAR_AND_Images
         run : |
-          cd Docker-CodeWeavers_CrossOver-VNC/BaiduNetdisk
+          cd Docker-CodeWeavers_CrossOver-VNC-Modify/BaiduNetdisk
+          \cp -rf Dockerfile ../../Docker-CodeWeavers_CrossOver-VNC/BaiduNetdisk/
+          cd ../../Docker-CodeWeavers_CrossOver-VNC/BaiduNetdisk
           docker build --rm -t baidunetdisk-crossover-vnc .
           
       - name: Login to aliyuncs

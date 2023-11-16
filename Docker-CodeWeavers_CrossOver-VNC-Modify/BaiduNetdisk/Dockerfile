@@ -36,10 +36,10 @@ RUN yum check-update -y ; \
     export CFLAGS="-m32" && \
     export LDFLAGS="-m32" && \
     make && make install && \
-    wget https://github.com/novnc/noVNC/archive/v1.4.0.tar.gz -O /tmp/noVNC.tar.gz && \
+    wget https://github.com/novnc/noVNC/archive/v1.3.0.tar.gz -O /tmp/noVNC.tar.gz && \
     tar -zxvf /tmp/noVNC.tar.gz -C /opt && \
-    git clone https://github.com/novnc/websockify /opt/noVNC-1.4.0/utils/websockify && \
-    mv /opt/noVNC-1.4.0/vnc_lite.html /opt/noVNC-1.4.0/index.html && \
+    git clone https://github.com/novnc/websockify /opt/noVNC-1.3.0/utils/websockify && \
+    mv /opt/noVNC-1.3.0/vnc_lite.html /opt/noVNC-1.3.0/index.html && \
     yum remove -y git glibc-devel.i686 && \
     yum groupremove -y "Development Tools" && \
     rm -rf /tmp/libfaketime && rm -f /tmp/noVNC.tar.gz && \
@@ -68,7 +68,7 @@ RUN /bin/echo -e 'alias ll="ls -last"' >> ${HOME}/.bashrc
 # Always run the WM last!
 RUN /bin/echo -e "export DISPLAY=${DISPLAY}"  >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "[ -r ${HOME}/.Xresources ] && xrdb ${HOME}/.Xresources\nxsetroot -solid grey"  >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "/opt/noVNC-1.4.0/utils/novnc_proxy --listen 6080 --vnc 127.0.0.1:5901 &"  >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "/opt/noVNC-1.3.0/utils/novnc_proxy --listen 6080 --vnc 127.0.0.1:5901 &"  >> ${HOME}/.vnc/xstartup
 RUN cp ${HOME}/.vnc/xstartup ${HOME}/.vnc/xstartup_after
 RUN /bin/echo -e "${INSTALLDIR}/bin/crossover" >> ${HOME}/.vnc/xstartup_after
 

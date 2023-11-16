@@ -28,8 +28,8 @@ jobs:
         id: build_JAR_AND_Images
         run : |
           
-          \cp -rf Docker-CodeWeavers_CrossOver-VNC-Modify/BaiduNetdisk/Dockerfile Docker-CodeWeavers_CrossOver-VNC/BaiduNetdisk/
-          \cp -rf Docker-CodeWeavers_CrossOver-VNC-Modify/BaiduNetdisk/entrypoint.sh Docker-CodeWeavers_CrossOver-VNC/BaiduNetdisk/
+          # \cp -rf Docker-CodeWeavers_CrossOver-VNC-Modify/BaiduNetdisk/Dockerfile Docker-CodeWeavers_CrossOver-VNC/BaiduNetdisk/
+          # \cp -rf Docker-CodeWeavers_CrossOver-VNC-Modify/BaiduNetdisk/entrypoint.sh Docker-CodeWeavers_CrossOver-VNC/BaiduNetdisk/
           cd Docker-CodeWeavers_CrossOver-VNC/BaiduNetdisk
           docker build --rm -t baidunetdisk-crossover-vnc .
           

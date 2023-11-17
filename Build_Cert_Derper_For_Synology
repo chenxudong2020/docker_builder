@@ -34,8 +34,8 @@ RUN apk update && \
     apk add --no-cache openssl curl && \
     rm -rf /var/cache/apk/*
 WORKDIR /app
-COPY build_cert.sh /app/build_cert.sh
-COPY --from=builder /app/derper /app/derper
+COPY build_cert.sh .
+COPY --from=builder /app/derper .
 
 # build self-signed certs && start derper
 CMD /app/derper --hostname=$DERP_HOST \

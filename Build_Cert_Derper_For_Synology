@@ -31,7 +31,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/re
 
 
 RUN apk update && \
-    apk add --no-cache openssl curl libc6 && \
+    apk add --no-cache openssl curl && \
     rm -rf /var/cache/apk/*
 
 COPY build_cert.sh /app/

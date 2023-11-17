@@ -14,13 +14,7 @@ RUN cd /app/tailscale/cmd/derper && \
 
 FROM alpine:latest
 
-
-
-
-
-
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
-
 
 RUN apk update && \
     apk add --no-cache openssl curl && \
@@ -39,6 +33,7 @@ ENV DERP_VERIFY_CLIENTS false
 ENV PATH="/app:${PATH}"
 # ==========================
 
+RUN echo "---------------------------------" && ls -al 
 COPY build_cert.sh .
 COPY --from=builder /app/derper .
 

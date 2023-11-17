@@ -38,6 +38,7 @@ ENV PATH="/app:${PATH}"
 
 
 COPY build_cert.sh .
+COPY run_derper.sh .
 COPY --from=builder /app/derper .
 
 RUN chmod +x *

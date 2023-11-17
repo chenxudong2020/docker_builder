@@ -19,7 +19,7 @@ FROM alpine:latest
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
 
 RUN apk update && \
-    apk add --no-cache openssl curl && \
+    apk add --no-cache bash openssl curl && \
     rm -rf /var/cache/apk/*
 
 

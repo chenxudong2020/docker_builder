@@ -12,6 +12,10 @@ RUN cd /app/tailscale/cmd/derper && \
     cd /app && \
     rm -rf /app/tailscale
 
+RUN cd /app && echo "---------------------------------" && ls -al 
+
+
+
 FROM alpine:latest
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
@@ -20,7 +24,6 @@ RUN apk update && \
     apk add --no-cache openssl curl && \
     rm -rf /var/cache/apk/*
 
-RUN cd /app/ && echo "---------------------------------" && ls -al 
 
 WORKDIR /app
 

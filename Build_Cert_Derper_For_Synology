@@ -12,7 +12,7 @@ RUN cd /app/tailscale/cmd/derper && \
     cd /app && \
     rm -rf /app/tailscale
 
-FROM ubuntu:20.04
+FROM alpine:latest
 WORKDIR /app
 
 # ========= CONFIG =========
@@ -27,13 +27,12 @@ ENV DERP_VERIFY_CLIENTS false
 
 
 
-RUN echo "deb http://th.archive.ubuntu.com/ubuntu jammy main" >> /etc/apt/sources.list
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
 
-# apt
-RUN apt-get update && \
-    apt-get install -y openssl curl && \
-    apt-get install -y libc6
 
+RUN apk update && \
+    apk add --no-cache openssl curl libc6 && \
+    rm -rf /var/cache/apk/*
 
 COPY build_cert.sh /app/
 COPY --from=builder /app/derper /app/derper

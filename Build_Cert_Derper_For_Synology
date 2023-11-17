@@ -40,9 +40,9 @@ ENV PATH="/app:${PATH}"
 COPY build_cert.sh .
 COPY --from=builder /app/derper .
 
+RUN ["chmod", "+x", "/app/derper"]
 
-
-CMD derper --hostname=$DERP_HOST \
+CMD /app/derper --hostname=$DERP_HOST \
     --certmode=manual \
     --certdir=$DERP_CERTS \
     --stun=$DERP_STUN  \

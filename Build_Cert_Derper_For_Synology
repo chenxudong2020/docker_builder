@@ -37,10 +37,15 @@ ENV PATH="/app:${PATH}"
 # ==========================
 
 
-COPY build_cert.sh .
-COPY run_derper.sh .
+
 COPY --from=builder /app/derper .
 
 RUN chmod +x *
 
-CMD ["run_derper.sh"]
+CMD bash /app/derper --hostname=$DERP_HOST \
+    --certmode=manual \
+    --certdir=$DERP_CERTS \
+    --stun=$DERP_STUN  \
+    --a=$DERP_ADDR \
+    --http-port=$DERP_HTTP_PORT \
+    --verify-clients=$DERP_VERIFY_CLIENTS

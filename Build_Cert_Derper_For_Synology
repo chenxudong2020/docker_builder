@@ -15,15 +15,7 @@ RUN cd /app/tailscale/cmd/derper && \
 FROM alpine:latest
 
 
-# ========= CONFIG =========
-# - derper args
-ENV DERP_ADDR :18889
-ENV DERP_HTTP_PORT -1
-ENV DERP_HOST your-hostname.com
-ENV DERP_CERTS=/app/certs/
-ENV DERP_STUN true
-ENV DERP_VERIFY_CLIENTS false
-# ==========================
+
 
 
 
@@ -33,7 +25,20 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/re
 RUN apk update && \
     apk add --no-cache openssl curl && \
     rm -rf /var/cache/apk/*
+
 WORKDIR /app
+
+# ========= CONFIG =========
+# - derper args
+ENV DERP_ADDR :18889
+ENV DERP_HTTP_PORT -1
+ENV DERP_HOST your-hostname.com
+ENV DERP_CERTS=/app/certs/
+ENV DERP_STUN true
+ENV DERP_VERIFY_CLIENTS false
+ENV PATH="/app:${PATH}"
+# ==========================
+
 COPY build_cert.sh .
 COPY --from=builder /app/derper .
 

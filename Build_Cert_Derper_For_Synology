@@ -13,7 +13,7 @@ RUN cd /app/tailscale/cmd/derper && \
     rm -rf /app/tailscale
 
 FROM alpine:latest
-WORKDIR /app
+
 
 # ========= CONFIG =========
 # - derper args
@@ -33,8 +33,8 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/re
 RUN apk update && \
     apk add --no-cache openssl curl && \
     rm -rf /var/cache/apk/*
-
-COPY build_cert.sh /app/
+WORKDIR /app
+COPY build_cert.sh /app/build_cert.sh
 COPY --from=builder /app/derper /app/derper
 
 # build self-signed certs && start derper

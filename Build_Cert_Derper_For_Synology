@@ -42,10 +42,5 @@ COPY --from=builder /app/derper .
 
 RUN ["chmod", "+x", "/app/derper"]
 
-CMD /app/derper --hostname=$DERP_HOST \
-    --certmode=manual \
-    --certdir=$DERP_CERTS \
-    --stun=$DERP_STUN  \
-    --a=$DERP_ADDR \
-    --http-port=$DERP_HTTP_PORT \
-    --verify-clients=$DERP_VERIFY_CLIENTS
+CMD ["/app/derper","--hostname=$DERP_HOST","--certmode=manual","--certdir=$DERP_CERTS","--stun=$DERP_STUN","--a=$DERP_ADDR","--http-port=$DERP_HTTP_PORT","--verify-clients=$DERP_VERIFY_CLIENTS"]
+

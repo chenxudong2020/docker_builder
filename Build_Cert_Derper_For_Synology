@@ -20,6 +20,8 @@ RUN apk update && \
     apk add --no-cache openssl curl && \
     rm -rf /var/cache/apk/*
 
+RUN cd /app/ && echo "---------------------------------" && ls -al 
+
 WORKDIR /app
 
 # ========= CONFIG =========
@@ -33,9 +35,13 @@ ENV DERP_VERIFY_CLIENTS false
 ENV PATH="/app:${PATH}"
 # ==========================
 
-RUN echo "---------------------------------" && ls -al 
+
 COPY build_cert.sh .
 COPY --from=builder /app/derper .
+
+
+RUN echo "---------------------------------" && ls -al 
+
 
 # build self-signed certs && start derper
 CMD /app/derper --hostname=$DERP_HOST \

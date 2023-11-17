@@ -12,8 +12,6 @@ RUN cd /app/tailscale/cmd/derper && \
     cd /app && \
     rm -rf /app/tailscale
 
-RUN cd /app && echo "---------------------------------" && ls -al 
-
 
 
 FROM alpine:latest
@@ -43,11 +41,8 @@ COPY build_cert.sh .
 COPY --from=builder /app/derper .
 
 
-RUN echo "---------------------------------" && ls -al 
 
-
-# build self-signed certs && start derper
-CMD /app/derper --hostname=$DERP_HOST \
+CMD derper --hostname=$DERP_HOST \
     --certmode=manual \
     --certdir=$DERP_CERTS \
     --stun=$DERP_STUN  \

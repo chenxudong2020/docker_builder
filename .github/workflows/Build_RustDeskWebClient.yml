@@ -1,8 +1,6 @@
 name: Build_RustDeskWebClient
 
 on:
-  schedule:
-    - cron: '0 18 * * *'
   workflow_dispatch:
     inputs:
       clean_cache:

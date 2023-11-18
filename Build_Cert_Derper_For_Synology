@@ -42,7 +42,6 @@ COPY --from=builder /app/derper .
 
 RUN chmod +x *
 
-RUN ls -al && echo "---------------------------------------"
 
 CMD ["/app/derper", "--hostname=$DERP_HOST \
     --certmode=manual \

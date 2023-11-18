@@ -47,6 +47,12 @@ jobs:
             npm install typescript -g
             npm install protoc -g
             yarn build
+            cd ..
+            wget https://github.com/rustdesk/doc.rustdesk.com/releases/download/console/web_deps.tar.gz
+            tar xzf web_deps.tar.gz
+            cd ..
+            flutter build web --release
+            
             
 
 

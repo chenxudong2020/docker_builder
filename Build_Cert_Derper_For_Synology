@@ -12,21 +12,19 @@ RUN cd /app/tailscale/cmd/derper && \
     cd /app && \
     rm -rf /app/tailscale
 
+FROM ubuntu:20.04
+
+RUN echo "deb http://th.archive.ubuntu.com/ubuntu jammy main" >> /etc/apt/sources.list
 
 
-FROM alpine:latest
-
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
-
-RUN apk update && \
-    apk add --no-cache bash openssl curl && \
-    rm -rf /var/cache/apk/*
-
+RUN apt-get update && \
+    apt-get install -y openssl curl && \
+    apt-get install -y libc6 && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-# ========= CONFIG =========
-# - derper args
+
 ENV DERP_ADDR :18889
 ENV DERP_HTTP_PORT -1
 ENV DERP_HOST your-hostname.com
@@ -34,12 +32,15 @@ ENV DERP_CERTS=/app/certs/
 ENV DERP_STUN true
 ENV DERP_VERIFY_CLIENTS false
 ENV PATH="/app:${PATH}"
-# ==========================
 
 
-
-COPY --from=builder /app/derper .
-
+COPY --from=builder /app/derper /app/derper
 
 
-CMD ["derper"]
+CMD /app/derper --hostname=$DERP_HOST \
+    --certmode=manual \
+    --certdir=$DERP_CERTS \
+    --stun=$DERP_STUN  \
+    --a=$DERP_ADDR \
+    --http-port=$DERP_HTTP_PORT \
+    --verify-clients=$DERP_VERIFY_CLIENTS

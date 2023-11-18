@@ -15,11 +15,6 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
-    strategy:
-      fail-fast: false
-      matrix:
-        job:
-          - { name: "amd64",   target: "x86_64-unknown-linux-musl" }
     steps:
       - uses: actions/checkout@v3
         with:
@@ -30,18 +25,18 @@ jobs:
          go-version: 1.19
          
       - name: Set up Flutter
-      - uses: subosito/flutter-action@v2
-            with:
-              channel: 'stable'
-        run: flutter --version
+        uses: subosito/flutter-action@v2
+        with:
+            channel: 'stable'
+      - run: flutter --version
       
       - name: Set up NodeJS
         uses: actions/setup-node@v4
-              with:
-                node-version: 18
-        run: npm ci
-        run: npm test
-
+        with:
+            node-version: 18
+      - run: npm ci
+      - run: npm test
+      
       - name: Build_WebClient
         run: |
             git clone https://github.com/rustdesk/rustdesk.git
@@ -72,7 +67,6 @@ jobs:
           username: ${{ secrets.HUB_NAME }}
           password: ${{ secrets.HUB_PASS }}
 
-      # Runs a single command using the runners shell
       - name: Build and push Docker images
         uses: docker/build-push-action@v2
         with:

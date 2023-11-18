@@ -43,7 +43,7 @@ COPY --from=builder /app/derper .
 RUN chmod +x *
 
 
-CMD ["/app/derper", "--hostname=$DERP_HOST \
+CMD ["exec /app/derper", "--hostname=$DERP_HOST \
     --certmode=manual \
     --certdir=$DERP_CERTS \
     --stun=$DERP_STUN  \

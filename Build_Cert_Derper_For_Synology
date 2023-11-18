@@ -14,7 +14,7 @@ RUN cd /app/tailscale/cmd/derper && \
 
 
 
-FROM golang:1.19.5-alpine3.16
+FROM alpine:latest
 
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
 
@@ -41,6 +41,8 @@ ENV PATH="/app:${PATH}"
 COPY --from=builder /app/derper .
 
 RUN chmod +x *
+
+RUN ls -al && echo "---------------------------------------"
 
 CMD ["/app/derper", "--hostname=$DERP_HOST \
     --certmode=manual \

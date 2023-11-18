@@ -38,6 +38,7 @@ jobs:
       - name: Build_WebClient
         run: |
             git clone https://github.com/rustdesk/rustdesk.git ./rustdesk_client
+            \cp -rf rustdesk/webclient/* rustdesk_client/flutter/web/js
             cd rustdesk_client
             cd flutter/web/js
             npm install ts-proto
@@ -46,7 +47,7 @@ jobs:
             npm install typescript -g
             npm install protoc -g
             yarn build
-            \cp -rf rustdesk/webclient/* ./
+            
 
 
       - name: Set up QEMU

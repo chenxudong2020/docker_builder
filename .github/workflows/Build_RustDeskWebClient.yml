@@ -46,9 +46,7 @@ jobs:
             npm install typescript -g
             npm install protoc -g
             yarn build
-            echo "-----------------------------------"
-            ls -al
-            echo "-----------------------------------"
+            \cp -rf rustdesk/webclient/* ./
 
 
       - name: Set up QEMU
@@ -69,7 +67,7 @@ jobs:
         with:
           file: 'Dockerfile'
           platforms: linux/amd64
-          context: /rustdesk/webclient/
+          context: rustdesk_client/flutter/web/js
           push: true
           tags: |
             registry.cn-hangzhou.aliyuncs.com/dubux/rustdeskwebclient:latest

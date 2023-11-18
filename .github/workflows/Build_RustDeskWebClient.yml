@@ -1,0 +1,84 @@
+name: Build_RustDeskWebClient
+
+on:
+  schedule:
+    - cron: '0 18 * * *'
+  workflow_dispatch:
+    inputs:
+      clean_cache:
+        description: 'Clear caches'
+        required: false
+        type: boolean
+env:
+  CARGO_TERM_COLOR: always
+  LATEST_TAG: latest
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        job:
+          - { name: "amd64",   target: "x86_64-unknown-linux-musl" }
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Set up Go
+        uses: actions/setup-go@v1
+        with:
+         go-version: 1.19
+         
+      - name: Set up Flutter
+      - uses: subosito/flutter-action@v2
+            with:
+              channel: 'stable'
+        run: flutter --version
+      
+      - name: Set up NodeJS
+        uses: actions/setup-node@v4
+              with:
+                node-version: 18
+        run: npm ci
+        run: npm test
+
+      - name: Build_WebClient
+        run: |
+            git clone https://github.com/rustdesk/rustdesk.git
+            cd rustdesk
+            git switch fix_build
+            cd flutter/web/js
+            npm install ts-proto
+            npm install vite@2.8
+            npm install yarn -g
+            npm install typescript -g
+            npm install protoc -g
+            yarn build
+            echo "-----------------------------------"
+            ls -al
+            echo "-----------------------------------"
+
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Build
+        uses: docker/setup-buildx-action@v1
+          
+      - name: Login to aliyuncs
+        uses: docker/login-action@v2
+        with:
+          registry: registry.cn-hangzhou.aliyuncs.com
+          username: ${{ secrets.HUB_NAME }}
+          password: ${{ secrets.HUB_PASS }}
+
+      # Runs a single command using the runners shell
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v2
+        with:
+          file: 'Dockerfile'
+          platforms: linux/amd64
+          context: /rustdesk/webclient/
+          push: true
+          tags: |
+            registry.cn-hangzhou.aliyuncs.com/dubux/rustdeskwebclient:latest

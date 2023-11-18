@@ -14,8 +14,6 @@ RUN cd /app/tailscale/cmd/derper && \
 
 FROM ubuntu:20.04
 
-RUN echo "deb http://th.archive.ubuntu.com/ubuntu jammy main" >> /etc/apt/sources.list
-
 
 RUN apt-get update && \
     apt-get install -y openssl curl && \

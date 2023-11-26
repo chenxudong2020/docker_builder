@@ -29,6 +29,7 @@ jobs:
         run : |
           git clone https://github.com/linuxserver/docker-code-server.git
           cd docker-code-server
+          \cp -rf ../codeserver/* ./
           docker build -t codeserver:latest .
 
       - name: Login to aliyuncs

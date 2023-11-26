@@ -13,7 +13,8 @@ ENV HOME="/config"
 
 
 #初始化nodejs环境
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh && bash ./install.sh && \
+COPY init.sh /usr/local/init.sh
+RUN  chmod +x /usr/local/init.sh && cd /usr/local/ && ./init.sh && \
     nvm install node
 
 

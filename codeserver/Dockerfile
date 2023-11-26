@@ -12,7 +12,7 @@ ARG DEBIAN_FRONTEND="noninteractive"
 ENV HOME="/config"
 
 
-#初始化nodejs环境
+#初始化nodejs环境123
 COPY init.sh /usr/local/init.sh
 RUN  chmod +x /usr/local/init.sh && cd /usr/local/ && ./init.sh && \
     nvm install node

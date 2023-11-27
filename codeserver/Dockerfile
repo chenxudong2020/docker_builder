@@ -59,7 +59,8 @@ RUN cd ~/
 RUN git clone https://gitee.com/Annlix/nvm-sh_nvm.git .nvm
 RUN cd .nvm && git checkout v0.39.1
 RUN echo "source ~/.nvm/nvm.sh" >> ~/.bashrc
-RUN bash source ~/.bashrc
+RUN echo "source /etc/profile" >> ~/.bashrc
+RUN  /bin/bash -c "source ~/.bashrc"
 
 
 

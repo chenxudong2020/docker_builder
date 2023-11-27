@@ -1,5 +1,5 @@
+FROM registry.cn-hangzhou.aliyuncs.com/dubux/jdk8:latest as jdk8
 FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy
-
 # set version label
 ARG BUILD_DATE
 ARG VERSION
@@ -12,7 +12,7 @@ ARG DEBIAN_FRONTEND="noninteractive"
 ENV HOME="/config"
 
 
-ADD jdk1.8.0_391 /usr/local/
+
  
 
 RUN \
@@ -47,7 +47,8 @@ RUN \
     /var/tmp/*
 
 
-
+COPY --from=jdk8 /usr/local/jdk-8u391-linux-x64.tar.gz /usr/local/jdk-8u391-linux-x64.tar.gz
+RUN tar -zxvf /usr/local/jdk-8u391-linux-x64.tar.gz
 ENV JAVA_HOME usr/local/jdk1.8.0_391
 ENV JRE_HOME $JAVA_HOME/jre
 ENV CLASSPATH $JAVA_HOME/lib/dt.jar:$JAVA_HOME/bin/tools.jar:$JRE_HOME/lib:$CLASS_PATH

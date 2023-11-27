@@ -30,9 +30,7 @@ jobs:
           git clone https://github.com/linuxserver/docker-code-server.git
           cd docker-code-server
           \cp -rf ../codeserver/* ./
-          docker pull registry.cn-hangzhou.aliyuncs.com/dubux/jdk8:latest
-          docker run -itd --name=jdk8  registry.cn-hangzhou.aliyuncs.com/dubux/jdk8:latest
-          docker cp jdk8:/usr/local/jdk1.8.0_391 ./ && ls -al && docker build -t codeserver:latest .
+          docker build -t codeserver:latest .
           
 
       - name: Login to aliyuncs

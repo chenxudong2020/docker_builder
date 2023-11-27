@@ -47,7 +47,7 @@ RUN \
     /var/tmp/*
 
 
-COPY jdk1.8.0_391 /usr/local/
+ADD jdk1.8.0_391 /usr/local/
 ENV JAVA_HOME usr/local/jdk1.8.0_391
 ENV JRE_HOME $JAVA_HOME/jre
 ENV CLASSPATH $JAVA_HOME/lib/dt.jar:$JAVA_HOME/bin/tools.jar:$JRE_HOME/lib:$CLASS_PATH

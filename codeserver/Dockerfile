@@ -29,10 +29,9 @@ RUN \
     vim \
     sudo && \
     cd ~/ && \
-    git clone https://github.com/nvm-sh/nvm .nvm && \
-    cd ~/.nvm && \
+    git clone https://gitee.com/Annlix/nvm-sh_nvm.git .nvm && \
+    cd ~/.nvm && git checkout v0.39.1 && \
     echo "source ~/.nvm/nvm.sh" >> ~/.bashrc && source ~/.bashrc && \
-    source ~/.bashrc && \
     export NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/ && \
     export NVM_IOJS_ORG_MIRROR=https://iojs.org/dist && \
     nvm install 14.20.0 && \

@@ -12,11 +12,6 @@ ARG DEBIAN_FRONTEND="noninteractive"
 ENV HOME="/config"
 
 
-#初始化nodejs环境123
-COPY init.sh /usr/local/init.sh
-RUN  chmod +x /usr/local/init.sh && cd /usr/local/ && ./init.sh && \
-    nvm install node
-
 
  
 
@@ -33,6 +28,15 @@ RUN \
     netcat \
     vim \
     sudo && \
+    cd ~/ && \
+    git clone https://github.com/nvm-sh/nvm .nvm && \
+    cd ~/.nvm && \
+    echo "source ~/.nvm/nvm.sh" >> ~/.bashrc && source ~/.bashrc && \
+    source ~/.bashrc && \
+    export NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/ && \
+    export NVM_IOJS_ORG_MIRROR=https://iojs.org/dist && \
+    nvm install 14.20.0 && \
+    nvm use 14.20.0 && \
   echo "**** install code-server ****" && \
   if [ -z ${CODE_RELEASE+x} ]; then \
     CODE_RELEASE=$(curl -sX GET https://api.github.com/repos/coder/code-server/releases/latest \

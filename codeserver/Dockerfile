@@ -57,7 +57,7 @@ ENV NVM_IOJS_ORG_MIRROR=https://iojs.org/dist
 
 RUN cd ~/
 RUN git clone https://gitee.com/Annlix/nvm-sh_nvm.git .nvm
-RUN cd ~/.nvm && git checkout v0.39.1
+RUN cd .nvm && git checkout v0.39.1
 RUN echo "source ~/.nvm/nvm.sh" >> ~/.bashrc
 RUN source ~/.bashrc
 

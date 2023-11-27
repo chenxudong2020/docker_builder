@@ -22,20 +22,11 @@ RUN \
     git \
     jq \
     libatomic1 \
-    openjdk-8-jdk \
     nano \
     net-tools \
     netcat \
     vim \
     sudo && \
-    cd ~/ && \
-    git clone https://gitee.com/Annlix/nvm-sh_nvm.git .nvm && \
-    cd ~/.nvm && git checkout v0.39.1 && \
-    echo "source ~/.nvm/nvm.sh" >> ~/.bashrc && source ~/.bashrc && \
-    export NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/ && \
-    export NVM_IOJS_ORG_MIRROR=https://iojs.org/dist && \
-    nvm install 14.20.0 && \
-    nvm use 14.20.0 && \
   echo "**** install code-server ****" && \
   if [ -z ${CODE_RELEASE+x} ]; then \
     CODE_RELEASE=$(curl -sX GET https://api.github.com/repos/coder/code-server/releases/latest \
@@ -47,6 +38,16 @@ RUN \
     "https://github.com/coder/code-server/releases/download/v${CODE_RELEASE}/code-server-${CODE_RELEASE}-linux-amd64.tar.gz" && \
   tar xf /tmp/code-server.tar.gz -C \
     /app/code-server --strip-components=1 && \
+    echo "****add nvm nodejs jdk8 ****" && \
+    apt-get install -y openjdk-8-jdk && \
+    cd ~/ && \
+    git clone https://gitee.com/Annlix/nvm-sh_nvm.git .nvm && \
+    cd ~/.nvm && git checkout v0.39.1 && \
+    echo "source ~/.nvm/nvm.sh" >> ~/.bashrc && source ~/.bashrc && \
+    export NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/ && \
+    export NVM_IOJS_ORG_MIRROR=https://iojs.org/dist && \
+    nvm install 14.20.0 && \
+    nvm use 14.20.0 && \
   echo "**** clean up ****" && \
   apt-get clean && \
   rm -rf \
@@ -54,6 +55,27 @@ RUN \
     /tmp/* \
     /var/lib/apt/lists/* \
     /var/tmp/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # add local files

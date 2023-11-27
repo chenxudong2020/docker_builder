@@ -49,7 +49,7 @@ RUN \
 
 
 RUN echo "****add nvm nodejs jdk8 ****" && \
-    apt-get install -y openjdk-8-jdk && \
+    apt install -y openjdk-8-jdk && \
     cd ~/ && \
     git clone https://gitee.com/Annlix/nvm-sh_nvm.git .nvm && \
     cd ~/.nvm && git checkout v0.39.1 && \

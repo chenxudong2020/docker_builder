@@ -48,21 +48,17 @@ RUN \
 
 
 COPY --from=jdk8 /usr/local/jdk-8u391-linux-x64.tar.gz /usr/local/jdk-8u391-linux-x64.tar.gz
-RUN tar -zxvf /usr/local/jdk-8u391-linux-x64.tar.gz
-ENV JAVA_HOME usr/local/jdk1.8.0_391
+RUN tar -zxvf /usr/local/jdk-8u391-linux-x64.tar.gz -C /usr/local && rm -rf /usr/local/jdk-8u391-linux-x64.tar.gz
 ENV JRE_HOME $JAVA_HOME/jre
 ENV CLASSPATH $JAVA_HOME/lib/dt.jar:$JAVA_HOME/bin/tools.jar:$JRE_HOME/lib:$CLASS_PATH
 ENV PATH $JAVA_HOME/bin:$PATH
 ENV NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/
 ENV NVM_IOJS_ORG_MIRROR=https://iojs.org/dist
 
-RUN echo "****add nvm nodejs ****" && \
-    cd ~/ && \
+RUN cd ~/ && \
     git clone https://gitee.com/Annlix/nvm-sh_nvm.git .nvm && \
     cd ~/.nvm && git checkout v0.39.1 && \
     echo "source ~/.nvm/nvm.sh" >> ~/.bashrc && source ~/.bashrc && \
-    nvm install 14.20.0 && \
-    nvm use 14.20.0 && \
 
 
 

@@ -60,9 +60,9 @@ RUN echo "export PATH=$JAVA_HOME/bin:$PATH" >> etc/profile
 RUN echo "export NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/" >> etc/profile
 RUN echo "export NVM_IOJS_ORG_MIRROR=https://iojs.org/dist" >> etc/profile
 
-RUN cd $HOME && git clone https://gitee.com/Annlix/nvm-sh_nvm.git .nvm && cd .nvm && git checkout v0.39.1
-RUN echo "source $HOME/.nvm/nvm.sh" >> ~/.bashrc
-RUN echo "source /etc/profile" >> ~/.bashrc
+RUN cd /usr/local && git clone https://gitee.com/Annlix/nvm-sh_nvm.git nvm && cd /usr/local/nvm && git checkout v0.39.1
+RUN echo "source /usr/local/nvm/nvm.sh" >> ${HOME}/.bashrc
+RUN echo "source /etc/profile" >> ${HOME}/.bashrc
 RUN  /bin/bash -c "source $HOME/.bashrc"
 
 

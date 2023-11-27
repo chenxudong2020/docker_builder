@@ -46,24 +46,23 @@ RUN \
     /var/lib/apt/lists/* \
     /var/tmp/*
 
-
+RUN echo "**** init JAVA and NVM  ****"
 COPY --from=jdk8 /usr/local/jdk-8u391-linux-x64.tar.gz /usr/local/jdk-8u391-linux-x64.tar.gz
 RUN tar -zxvf /usr/local/jdk-8u391-linux-x64.tar.gz -C /usr/local && rm -rf /usr/local/jdk-8u391-linux-x64.tar.gz
 ENV JAVA_HOME=/usr/local/jdk1.8.0_391
 ENV JRE_HOME=$JAVA_HOME/jre
 ENV CLASS_PATH="${CLASS_PATH}"
 ENV PATH="${PATH}"
-RUN echo "export JAVA_HOME=${JAVA_HOME}" >> etc/profile
-RUN echo "export JRE_HOME=$JAVA_HOME/jre" >> etc/profile
-RUN echo "export CLASSPATH=$JAVA_HOME/lib/dt.jar:$JAVA_HOME/bin/tools.jar:$JRE_HOME/lib:$CLASS_PATH" >> etc/profile
-RUN echo "export PATH=$JAVA_HOME/bin:$PATH" >> etc/profile
-RUN echo "export NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/" >> etc/profile
-RUN echo "export NVM_IOJS_ORG_MIRROR=https://iojs.org/dist" >> etc/profile
-
-RUN cd /usr/local && git clone https://gitee.com/Annlix/nvm-sh_nvm.git nvm && cd /usr/local/nvm && git checkout v0.39.1
-RUN echo "source /usr/local/nvm/nvm.sh" >> ${HOME}/.bashrc
-RUN echo "source /etc/profile" >> ${HOME}/.bashrc
-RUN  /bin/bash -c "source $HOME/.bashrc"
+RUN echo "export JAVA_HOME=${JAVA_HOME}" >> etc/profile && \
+ echo "export JRE_HOME=$JAVA_HOME/jre" >> etc/profile && \
+ echo "export CLASSPATH=$JAVA_HOME/lib/dt.jar:$JAVA_HOME/bin/tools.jar:$JRE_HOME/lib:$CLASS_PATH" >> etc/profile && \
+ echo "export PATH=$JAVA_HOME/bin:$PATH" >> etc/profile && \
+ echo "export NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/" >> etc/profile && \
+ echo "export NVM_IOJS_ORG_MIRROR=https://iojs.org/dist" >> etc/profile && \
+ cd /usr/local && git clone https://gitee.com/Annlix/nvm-sh_nvm.git nvm && cd /usr/local/nvm && git checkout v0.39.1 && \
+ chmod +x /usr/local/nvm/nvm.sh && \
+ echo "source /usr/local/nvm/nvm.sh" >> /etc/profile && \
+ /bin/bash -c "source /etc/profile"
 
 
 

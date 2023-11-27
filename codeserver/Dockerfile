@@ -55,6 +55,7 @@ ENV PATH $JAVA_HOME/bin:$PATH
 ENV NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/
 ENV NVM_IOJS_ORG_MIRROR=https://iojs.org/dist
 
+RUN exec bash
 RUN cd ~/
 RUN git clone https://gitee.com/Annlix/nvm-sh_nvm.git .nvm
 RUN cd .nvm && git checkout v0.39.1

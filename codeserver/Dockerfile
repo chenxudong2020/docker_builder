@@ -46,18 +46,22 @@ RUN \
     /var/lib/apt/lists/* \
     /var/tmp/*
 
+FROM registry.cn-hangzhou.aliyuncs.com/dubux/jdk8:latest as jdk8
+COPY FROM=jdk8 /usr/local/jdk1.8.0_391 /usr/local/
+ENV JAVA_HOME usr/local/jdk1.8.0_391
+ENV JRE_HOME $JAVA_HOME/jre
+ENV CLASSPATH $JAVA_HOME/lib/dt.jar:$JAVA_HOME/bin/tools.jar:$JRE_HOME/lib:$CLASS_PATH
+ENV PATH $JAVA_HOME/bin:$PATH
+ENV NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/
+ENV NVM_IOJS_ORG_MIRROR=https://iojs.org/dist
 
-
-RUN echo "****add nvm nodejs jdk8 ****" && \
-    apt install -y openjdk-8-jdk && \
+RUN echo "****add nvm nodejs ****" && \
     cd ~/ && \
     git clone https://gitee.com/Annlix/nvm-sh_nvm.git .nvm && \
     cd ~/.nvm && git checkout v0.39.1 && \
-    echo "source ~/.nvm/nvm.sh" >> ~/.bashrc && source ~/.bashrc
- #   export NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/ && \
- #   export NVM_IOJS_ORG_MIRROR=https://iojs.org/dist && \
- #   nvm install 14.20.0 && \
- #   nvm use 14.20.0 && \
+    echo "source ~/.nvm/nvm.sh" >> ~/.bashrc && source ~/.bashrc && \
+    nvm install 14.20.0 && \
+    nvm use 14.20.0 && \
 
 
 

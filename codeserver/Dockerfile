@@ -49,11 +49,12 @@ RUN \
 
 COPY --from=jdk8 /usr/local/jdk-8u391-linux-x64.tar.gz /usr/local/jdk-8u391-linux-x64.tar.gz
 RUN tar -zxvf /usr/local/jdk-8u391-linux-x64.tar.gz -C /usr/local && rm -rf /usr/local/jdk-8u391-linux-x64.tar.gz
-ENV JRE_HOME $JAVA_HOME/jre
-ENV CLASSPATH $JAVA_HOME/lib/dt.jar:$JAVA_HOME/bin/tools.jar:$JRE_HOME/lib:$CLASS_PATH
-ENV PATH $JAVA_HOME/bin:$PATH
-ENV NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/
-ENV NVM_IOJS_ORG_MIRROR=https://iojs.org/dist
+RUN echo "JAVA_HOME=/usr/local/jdk1.8.0_391" >> etc/profile
+RUN echo "JRE_HOME=$JAVA_HOME/jre" >> etc/profile
+RUN echo "CLASSPATH $JAVA_HOME/lib/dt.jar:$JAVA_HOME/bin/tools.jar:$JRE_HOME/lib:$CLASS_PATH" >> etc/profile
+RUN echo "PATH $JAVA_HOME/bin:$PATH" >> etc/profile
+RUN echo "NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/" >> etc/profile
+RUN echo "NVM_IOJS_ORG_MIRROR=https://iojs.org/dist" >> etc/profile
 
 RUN cd ~/
 RUN git clone https://gitee.com/Annlix/nvm-sh_nvm.git .nvm

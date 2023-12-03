@@ -65,16 +65,6 @@ RUN echo "export JAVA_HOME=${JAVA_HOME}" >> etc/profile && \
  /bin/bash -c "source /etc/profile"
 
 
-ENV NVM_RC_VERSION=
-ENV NVM_DIR=/usr/local/nvm
-ENV NVM_CD_FLAGS=
-
-
- ENV PATH $JAVA_HOME/bin:$PATH
- ENV NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/
- ENV NVM_IOJS_ORG_MIRROR=https://iojs.org/dist
-
-
 
 
 

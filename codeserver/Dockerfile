@@ -62,7 +62,7 @@ RUN echo "export JAVA_HOME=${JAVA_HOME}" >> etc/profile && \
  cd /usr/local && git clone https://gitee.com/Annlix/nvm-sh_nvm.git nvm && cd /usr/local/nvm && git checkout v0.39.1 && \
  chmod +x /usr/local/nvm/nvm.sh && \
  echo "source /usr/local/nvm/nvm.sh" >> /etc/profile && \
- echo "source /etc/profile" >> /root/.bashrc
+ ln -s /usr/local/nvm/nvm.sh /etc/profile.d/nvm.sh
 
 
 

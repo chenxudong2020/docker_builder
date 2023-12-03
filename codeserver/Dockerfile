@@ -53,16 +53,16 @@ ENV JAVA_HOME=/usr/local/jdk1.8.0_391
 ENV JRE_HOME=$JAVA_HOME/jre
 ENV CLASS_PATH="${CLASS_PATH}"
 ENV PATH="${PATH}"
-RUN echo "export JAVA_HOME=${JAVA_HOME}" >> etc/profile && \
- echo "export JRE_HOME=$JAVA_HOME/jre" >> etc/profile && \
- echo "export CLASSPATH=$JAVA_HOME/lib/dt.jar:$JAVA_HOME/bin/tools.jar:$JRE_HOME/lib:$CLASS_PATH" >> etc/profile && \
- echo "export PATH=$JAVA_HOME/bin:$PATH" >> etc/profile && \
- echo "export NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/" >> etc/profile && \
- echo "export NVM_IOJS_ORG_MIRROR=https://iojs.org/dist" >> etc/profile && \
+RUN echo "export JAVA_HOME=${JAVA_HOME}" >> /etc/profile.d/java_nvm.sh && \
+ echo "export JRE_HOME=$JAVA_HOME/jre" >> /etc/profile.d/java_nvm.sh && \
+ echo "export CLASSPATH=$JAVA_HOME/lib/dt.jar:$JAVA_HOME/bin/tools.jar:$JRE_HOME/lib:$CLASS_PATH" >> /etc/profile.d/java_nvm.sh && \
+ echo "export PATH=$JAVA_HOME/bin:$PATH" >> /etc/profile.d/java_nvm.sh && \
+ echo "export NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/" >> /etc/profile.d/java_nvm.sh && \
+ echo "export NVM_IOJS_ORG_MIRROR=https://iojs.org/dist" >> /etc/profile.d/java_nvm.sh && \
  cd /usr/local && git clone https://gitee.com/Annlix/nvm-sh_nvm.git nvm && cd /usr/local/nvm && git checkout v0.39.1 && \
  chmod +x /usr/local/nvm/nvm.sh && \
- echo "source /usr/local/nvm/nvm.sh" >> /etc/profile && \
- /bin/bash -c "source /etc/profile"
+ echo "source /usr/local/nvm/nvm.sh" >> /etc/profile.d/java_nvm.sh && \
+ chmod +x /etc/profile.d/java_nvm.sh
 
 
 

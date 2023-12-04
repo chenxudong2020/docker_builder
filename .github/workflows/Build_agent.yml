@@ -28,7 +28,8 @@ jobs:
         id: build_JAR_AND_Images
         run : |
           git clone https://github.com/kerberos-io/agent.git
-          \cp -rf agent_modify/* agent/
+          rm -rf ./agent/Dockerfile
+          \cp -rf ./agent_modify/* ./agent/
           cd agent
           docker build -t agent:latest .
           

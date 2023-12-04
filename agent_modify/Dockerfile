@@ -118,7 +118,7 @@ RUN /home/agent/main version
 
 RUN cp /home/agent/data/config/config.json /home/agent/data/config.template.json
 # add latest config file 
-ADD https://raw.githubusercontent.com/kerberos-io/agent/master/machinery/data/config/config.json /home/agent/data/config/config.json
+RUN wget https://raw.githubusercontent.com/kerberos-io/agent/master/machinery/data/config/config.json -O /home/agent/data/config/config.json
 
 ###########################
 # Set permissions correctly

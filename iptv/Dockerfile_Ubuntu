@@ -1,4 +1,4 @@
-FROM hub.docker.com/r/freedomx20/nginx-fpm7.4
+FROM freedomx20/nginx-fpm7.4:1.0
 
 
 # 将当前目录下的所有文件复制到容器中的/var/www/html目录下

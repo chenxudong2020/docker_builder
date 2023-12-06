@@ -39,6 +39,25 @@ require_once "../config.php";require_once "../apps/usercheck.php"; ?>
 				<nav class="sidebar-main">
 					<ul class="nav nav-drawer">
 						<?php
+						 $index='';
+						 $author='';
+						 $useradmin='';
+						 $exception='';
+						 $mealsadmin='';
+						 $epgadmin='';
+						 $ordersadmin='';
+						 $default='';
+						 $province='';
+						 $chinanet='';
+						 $unicom='';
+						 $cmcc='';
+						 $vip='';
+						 $index0='';
+						 $index1='';
+						 $index2='';
+						 $index3='';
+						 $index4='';
+						 $index5='';
 						if (strpos($_SERVER['REQUEST_URI'],'index.php') !== false){
 							$index='active';
 						} else if (strpos($_SERVER['REQUEST_URI'],'author.php') !== false){

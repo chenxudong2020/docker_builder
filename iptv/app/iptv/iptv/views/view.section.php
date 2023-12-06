@@ -107,9 +107,6 @@ require_once "../config.php";require_once "../apps/usercheck.php"; ?>
 						<li class="nav-item <?php echo $mealsadmin ?>"> <a href="mealsadmin.php"><i class="mdi mdi-shopping"></i>套餐</a></li>
 						<li class="nav-item <?php echo $ordersadmin ?>"> <a href="ordersadmin.php"><i class="mdi mdi-wallet-giftcard"></i>订单</a></li>
 						<li class="nav-item <?php echo $epgadmin ?>"> <a href="epgadmin.php"><i class="mdi mdi-television-guide"></i>EPG</a> </li>
-						<li class="nav-item nav-item-has-subnav">
-             <a href="movie.php"><i class="mdi mdi-language-javascript"></i>点播管理</a>
-            </li>
 						<li class="nav-item nav-item-has-subnav channeladmin">
 							<a href="javascript:void(0)"><i class="mdi mdi-television-classic"></i>频道列表</a>
 							<ul class="nav nav-subnav">
@@ -121,17 +118,14 @@ require_once "../config.php";require_once "../apps/usercheck.php"; ?>
 								<li class="<?php echo $vip ?>"><a href="channeladmin.php?type=vip">会员频道</a></li>
 							</ul>
 						</li>
+						 
 						<li class="nav-item nav-item-has-subnav sysadmin">
 							<a href="javascript:void(0)"><i class="mdi mdi-settings-box"></i>系统设置</a>
 							<ul class="nav nav-subnav">
-								<li class="<?php echo $index0 ?>"><a href="sysadmin.php?index=0">系统公告</a></li>
-								<li class="<?php echo $index1 ?>"><a href="sysadmin.php?index=1">背景图片</a></li>
-								<li class="<?php echo $index2 ?>"><a href="sysadmin.php?index=2">后台记录</a></li>		
-								<li class="<?php echo $index3 ?>"><a href="sysadmin.php?index=3">后台设置</a></li>
-								<li class="<?php echo $index4 ?>"><a href="sysadmin.php?index=4">客户端设置</a></li>
-								<li class="<?php echo $index5 ?>"><a href="sysadmin.php?index=5">管理员设置</a></li>
+								<li class="<?php echo $index0 ?>"><a href="sysadmin.php">管理员设置</a></li>
 							</ul>
 						</li>
+						 
 					</ul>
 				</nav>
 				

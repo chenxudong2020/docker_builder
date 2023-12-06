@@ -32,9 +32,6 @@ RUN a2enmod rewrite
 
 
 
-#设置环境变量，便于管理
-ENV MARIADB_USER iptv
-ENV MARIADB_PASS 123456
 # 对外服务的域名或者公网IP
 ENV HOST=www.dubux.ltd
 #docker映射之后的端口

@@ -20,7 +20,7 @@ RUN apt update && apt-get -y install mariadb-server net-tools vim \
 
 
 # 安装PHP扩展
-RUN apt-get install php7.4-mysqli php7.4-gd php7.4-sockets php7.4-zip php7.4-pdo php7.4-pdo_mysql
+RUN apt-get install php7.4-mysqli php7.4-gd php7.4-sockets php7.4-zip
  
 
 

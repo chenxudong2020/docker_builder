@@ -28,7 +28,7 @@ jobs:
         id: build_JAR_AND_Images
         run : |
           cd iptv
-          docker build -t iptv:latest . --no-cache
+          docker build -f ./Dockerfile_Ubuntu -t iptv:latest . --no-cache
           
       - name: Login to aliyuncs
         uses: docker/login-action@v2

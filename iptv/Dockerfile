@@ -13,7 +13,7 @@ RUN rm -rf /usr/share/nginx/html/public && ln -s /usr/local/app/iptv /usr/share/
 
 
 #安装mariadb数据库
-RUN apk update && apk add mariadb-server net-tools vim
+RUN apk update && apk add mariadb mariadb-client net-tools vim
   #  libpng-dev \
  #   libjpeg-dev \
   #  libpq-dev \

@@ -8,12 +8,12 @@ FROM tcyfree/lnmp-docker
 COPY app/ /usr/local/app
 
 WORKDIR /usr/local/app
-RUN ln -s /usr/local/app/iptv /var/www/html/iptv
+RUN rm -rf /usr/share/nginx/html/public && ln -s /usr/local/app/iptv /usr/share/nginx/html/public
 
 
 
 #安装mariadb数据库
-RUN apt update && apt-get -y install mariadb-server net-tools vim \
+RUN apk update && apk add mariadb-server net-tools vim \
     libpng-dev \
     libjpeg-dev \
     libpq-dev \

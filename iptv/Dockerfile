@@ -13,17 +13,17 @@ RUN rm -rf /usr/share/nginx/html/public && ln -s /usr/local/app/iptv /usr/share/
 
 
 #安装mariadb数据库
-RUN apk update && apk add mariadb-server net-tools vim \
-    libpng-dev \
-    libjpeg-dev \
-    libpq-dev \
-    libxml2-dev\
-    zlib1g-dev \
-    libzip-dev
+RUN apk update && apk add mariadb-server net-tools vim
+  #  libpng-dev \
+ #   libjpeg-dev \
+  #  libpq-dev \
+  #  libxml2-dev\
+  #  zlib1g-dev \
+  #  libzip-dev
 
 
 # 安装PHP扩展
-RUN docker-php-ext-install mysqli pdo pdo_mysql gd sockets zip
+#RUN docker-php-ext-install mysqli pdo pdo_mysql gd sockets zip
 
 # 将Apache的rewrite模块启用
 #RUN a2enmod rewrite

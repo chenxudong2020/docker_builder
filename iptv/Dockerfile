@@ -11,7 +11,7 @@ WORKDIR /usr/local/app
 RUN rm -rf /usr/share/nginx/html/public && ln -s /usr/local/app/iptv /usr/share/nginx/html/public
 
 
-
+RUN apk update && apk add bash
 
 
 # 对外服务的域名或者公网IP

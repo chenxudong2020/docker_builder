@@ -1,4 +1,4 @@
-FROM php:8.0-apache
+FROM tcyfree/lnmp-docker
 
 #ADD app/sources.list /etc/apt/ 
 
@@ -50,7 +50,7 @@ RUN echo "set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936" >> /etc/vim/
 
 
 
-RUN \cp -rf php.ini /usr/local/etc/php
+#RUN \cp -rf php.ini /usr/local/etc/php
 
 
 #初始化
@@ -68,8 +68,8 @@ RUN bash install.sh $HOST $PORT
 #导出端口
 EXPOSE 3306
 EXPOSE 80
- 
-ENTRYPOINT service apache2 restart & mysqld_safe
+RUN chmod +x /usr/share/nginx/html/entrypoint.sh 
+ENTRYPOINT ["/usr/share/nginx/html/entrypoint.sh & mysqld_safe"] 
  
 
 

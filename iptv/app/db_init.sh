@@ -1,5 +1,4 @@
 #!/bin/bash
-
 mysql_install_db --user=mysql
 sleep 3
 mysqld_safe &

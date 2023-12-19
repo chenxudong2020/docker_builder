@@ -26,7 +26,7 @@ RUN ["chmod", "+x", "install.sh"]
 RUN bash install.sh $HOST $PORT
 
  
-
+ENTRYPOINT ["/usr/share/nginx/html/entrypoint.sh"]
 
 #导出端口
 EXPOSE 3306

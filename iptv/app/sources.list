@@ -1,0 +1,26 @@
+#http://mirrors.163.com/debian/为软件源也可以为其他的 bullseye为版本代号 main non-free contrib区别如下
+deb http://mirrors.163.com/debian/ bullseye main non-free contrib
+
+deb http://mirrors.163.com/debian/ bullseye-updates main non-free contrib
+
+deb http://mirrors.163.com/debian/ bullseye-backports main non-free contrib
+
+deb-src http://mirrors.163.com/debian/ bullseye main non-free contrib
+
+deb-src http://mirrors.163.com/debian/ bullseye-updates main non-free contrib
+
+deb-src http://mirrors.163.com/debian/ bullseye-backports main non-free contrib
+
+#deb http://mirrors.163.com/debian-security/ bullseye/updates main non-free contrib
+
+#deb http://mirrors.ustc.edu.cn/debian-security/ bullseye/updates main non-free contrib
+
+#deb-src http://mirrors.163.com/debian-security/ bullseye/updates main non-free contrib
+
+#deb-src http://mirrors.ustc.edu.cn/debian-security/ bullseye/updates main non-free contrib
+
+deb http://mirrors.ustc.edu.cn/debian-security/ stable-security main non-free contrib
+
+deb-src http://mirrors.ustc.edu.cn/debian-security/ stable-security main non-free contrib
+
+

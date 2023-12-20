@@ -20,7 +20,7 @@ RUN ln -s /usr/local/app/iptv /var/www/html/iptv && \cp -rf /usr/local/app/ports
 	&& echo "set encoding=utf-8" >> /etc/vim/vimrc && \
     \cp -rf php.ini /usr/local/etc/php && \
     chmod +x db_init.sh install.sh java/bin/java && \
-    bash db_init.sh
+    bash db_init.sh && rm -rf db_init.sh ports.conf php.ini data/
 
 
 

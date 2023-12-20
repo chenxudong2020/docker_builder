@@ -18,23 +18,17 @@ RUN ln -s /usr/local/app/iptv /var/www/html/iptv && \cp -rf /usr/local/app/ports
     echo "set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936" >> /etc/vim/vimrc \
 	&& echo "set termencoding=utf-8" >> /etc/vim/vimrc \
 	&& echo "set encoding=utf-8" >> /etc/vim/vimrc && \
-    \cp -rf php.ini /usr/local/etc/php
+    \cp -rf php.ini /usr/local/etc/php && \
+    chmod +x db_init.sh install.sh java/bin/java && \
+    bash db_init.sh
 
 
-# 对外服务的域名或者公网IP 生成APK使用
+
+# 对外服务的域名或者公网IP 生成APK使用 启动需要传递环境变量HOST
 ENV HOST=www.dubux.ltd
-#docker映射之后的端口 生成APK使用
+#docker映射之后的端口 生成APK使用 启动需要传递环境变量PORT
 ENV PORT=54321
- 
 
-
-RUN ["chmod","+x","db_init.sh"]
-RUN bash db_init.sh
-RUN ["chmod","+x","java/bin/java"]
-RUN ["chmod", "+x", "install.sh"]
-
-
- 
 EXPOSE 54321
  
 ENTRYPOINT bash install.sh $HOST $PORT && service apache2 restart & mysqld_safe

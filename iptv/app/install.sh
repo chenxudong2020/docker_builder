@@ -1,4 +1,6 @@
 #!/bin/bash
+MARIADB_USER=iptv
+MARIADB_PASS=123456
 MDB10_PORT=3306
 mdb_pass=$MARIADB_PASS
 WEB_DIR=/usr/local/app/iptv

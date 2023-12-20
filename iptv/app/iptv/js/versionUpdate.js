@@ -2,8 +2,8 @@ var versionUpdate = function () {
   var data = {
     versionNum: 'V6.3.6',
     versionTime: '2021.03.19',
-    versionLink: 'iptv/app/QHTV.apk',
-	managementLink: 'iptv/iptv/',
+    versionLink: 'app/QHTV.apk',
+	managementLink: 'iptv/',
     versionSize: '0.00MB',
     versionAndroid: 'Android 4.0+',
   }

@@ -1,5 +1,6 @@
 #!/bin/bash
-
+MARIADB_USER=iptv
+MARIADB_PASS=123456
 mysql_install_db --user=mysql
 sleep 3
 mysqld_safe &

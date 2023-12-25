@@ -1,19 +1,15 @@
 
-FROM keyurbhole/flutter_web_desk:v1.0.0
+FROM ubuntu:20.04
 ADD rustdesk /usr/local/rustdesk
 
-# WORKDIR /usr/local/rustdesk
+RUN  echo "deb http://th.archive.ubuntu.com/ubuntu jammy main" >> /etc/apt/sources.list && \
+     apt-get update && \
+     apt-get install -y psmisc && \
+     cd /usr/local/rustdesk && \ 
+     chmod +x hbbs hbbr rustdesk-utils runhbb rustdeskweb apiserver && \
+     rm -rf /app/server/server.sh && \
+     mv /usr/local/rustdesk/rustdeskweb /app/server/
 
-RUN echo "deb http://th.archive.ubuntu.com/ubuntu jammy main" >> /etc/apt/sources.list
-
-RUN apt-get update && \
-    apt-get install -y psmisc
-
-RUN cd /usr/local/rustdesk && chmod +x hbbs hbbr rustdesk-utils runhbb rustdeskweb apiserver
-
-RUN rm -rf /app/server/server.sh && mv /usr/local/rustdesk/rustdeskweb /app/server/
-
-EXPOSE 9000
 EXPOSE 21114
 EXPOSE 21115
 EXPOSE 21116

@@ -10,7 +10,7 @@ if [ "$enable_web_client" ] && [ "$key" ];then
      if [ "$enable_web_client" = "true" ];then
         ./hbbs -k $key & ./hbbr -k $key & ./apiserver & /app/server/rustdeskweb
      else
-       ./hbbs -k $key & ./hbbr -k $key
+       ./hbbs -k $key & ./hbbr -k $key & ./apiserver
      fi  
 elif [ -n "$enable_web_client" ] && [ -z "$key" ];then
       if [ "$enable_web_client" = "true" ];then

@@ -10,8 +10,8 @@ RUN  sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/r
      apk add --no-cache bash psmisc && \
      rm -rf /var/cache/apk/* && \
      cd /usr/local/rustdesk && \ 
-     chmod +x hbbs hbbr rustdesk-utils runhbb rustdeskweb apiserver && \
-     rm -rf ./conf ./webclient
+     chmod +x hbbs hbbr rustdesk-utils runhbb rustdeskweb apiserver
+
      
 
 EXPOSE 21114

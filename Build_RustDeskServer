@@ -1,14 +1,18 @@
 
-FROM ubuntu:20.04
+FROM alpine:latest
+
+
+
 ADD rustdesk /usr/local/rustdesk
 
-RUN  echo "deb http://th.archive.ubuntu.com/ubuntu jammy main" >> /etc/apt/sources.list && \
-     apt-get update && \
-     apt-get install -y psmisc && \
+RUN  sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories && \
+     apk update && \
+     apk add --no-cache bash psmisc && \
+     rm -rf /var/cache/apk/* && \
      cd /usr/local/rustdesk && \ 
      chmod +x hbbs hbbr rustdesk-utils runhbb rustdeskweb apiserver && \
-     rm -rf /app/server/server.sh && \
-     mv /usr/local/rustdesk/rustdeskweb /app/server/
+     rm -rf ./conf ./webclient
+     
 
 EXPOSE 21114
 EXPOSE 21115
@@ -20,6 +24,6 @@ EXPOSE 21116/udp
 
 
 ENV KEY=rustdeskkey
-ENV ENABLE_WEB_CLIENT false
 
-ENTRYPOINT /usr/local/rustdesk/runhbb $KEY $ENABLE_WEB_CLIENT
+
+ENTRYPOINT /usr/local/rustdesk/runhbb $KEY false

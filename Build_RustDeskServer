@@ -1,15 +1,11 @@
 
-FROM alpine:latest
+FROM debian:slim
 
 
-ENV export CGO_ENABLED=1 
+
 ADD rustdesk /usr/local/rustdesk
 
-RUN  sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories && \
-     apk update && \
-     apk add --no-cache bash psmisc && \
-     rm -rf /var/cache/apk/* && \
-     cd /usr/local/rustdesk && \ 
+ RUN cd /usr/local/rustdesk && \ 
      chmod +x hbbs hbbr rustdesk-utils runhbb rustdeskweb apiserver
 
   

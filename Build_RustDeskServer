@@ -2,7 +2,7 @@
 FROM alpine:latest
 
 
-
+ENV export CGO_ENABLED=1 
 ADD rustdesk /usr/local/rustdesk
 
 RUN  sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories && \
@@ -12,7 +12,7 @@ RUN  sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/r
      cd /usr/local/rustdesk && \ 
      chmod +x hbbs hbbr rustdesk-utils runhbb rustdeskweb apiserver
 
-     
+  
 
 EXPOSE 21114
 EXPOSE 21115

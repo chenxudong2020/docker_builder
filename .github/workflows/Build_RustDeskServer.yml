@@ -31,8 +31,8 @@ jobs:
       - name: Build RustDesk API Server
         run: |
           cd rustdesk-api-server
-          CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o rustdesk-api-server .
-          \cp -f rustdesk-api-server ../rustdesk/apiserver
+         # CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build -o rustdesk-api-server .
+         # \cp -f rustdesk-api-server ../rustdesk/apiserver
   
       - name: Build RustDesk Server
         run: |

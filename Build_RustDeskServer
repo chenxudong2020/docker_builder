@@ -1,5 +1,5 @@
 
-FROM visense/debain11_slim
+FROM visense/debain11_slim:v1
 
 
 

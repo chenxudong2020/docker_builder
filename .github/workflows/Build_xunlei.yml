@@ -38,8 +38,5 @@ jobs:
         run : |
           cd thunder/docker
           docker buildx build --platform linux/amd64,linux/arm64 \
-          --tag registry.cn-hangzhou.aliyuncs.com/dubux/xunlei:$tag \
-          --tag registry.cn-hangzhou.aliyuncs.com/dubux/xunlei:$tag \
           --tag registry.cn-hangzhou.aliyuncs.com/dubux/xunlei:latest \
-          --tag registry.cn-hangzhou.aliyuncs.com/dubux/xunlei:latest \
-          --build-arg VERSION=$tag --push .
+          --build-arg VERSION=1.0.0 --push .

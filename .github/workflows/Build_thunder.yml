@@ -1,4 +1,4 @@
-name: Build_lnmp
+name: Build_thunder
 
 on:
   schedule:
@@ -19,7 +19,7 @@ jobs:
           submodules: true
       - name: Clone Code
         run: |
-         git clone --recurse-submodules https://github.com/tcyfree/lnmp-docker
+         git clone --recurse-submodules https://github.com/gngpp/thunder.git
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -37,7 +37,7 @@ jobs:
       - name: Build and push Docker images
         uses: docker/build-push-action@v5
         with:
-          context: lnmp-docker/./
+          context: thunder/docker/./
           push: true
           tags: |
-            registry.cn-hangzhou.aliyuncs.com/dubux/lnmp-docker:latest   
+            registry.cn-hangzhou.aliyuncs.com/dubux/thunder:latest   

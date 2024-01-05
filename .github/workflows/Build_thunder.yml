@@ -35,9 +35,11 @@ jobs:
           password: ${{ secrets.HUB_PASS }}
 
       - name: Build and push Docker images
-        uses: docker/build-push-action@v5
-        with:
-          context: thunder/docker/./
-          push: true
-          tags: |
-            registry.cn-hangzhou.aliyuncs.com/dubux/thunder:latest   
+        run : |
+          cd thunder/docker
+          docker buildx build --platform linux/amd64,linux/arm64 \
+        --tag registry.cn-hangzhou.aliyuncs.com/dubux/thunder:$tag \
+        --tag registry.cn-hangzhou.aliyuncs.com/dubux/thunder:$tag \
+        --tag registry.cn-hangzhou.aliyuncs.com/dubux/thunder:latest \
+        --tag registry.cn-hangzhou.aliyuncs.com/dubux/thunder:latest \
+        --build-arg VERSION=$tag --push .
